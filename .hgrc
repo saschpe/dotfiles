@@ -1,0 +1,11 @@
+[ui]
+username = Sascha Peilicke <sasch.pe@gmx.de>
+verbose = True
+
+[alias]
+ci = commit
+df = diff
+pu = pull -u
+
+[diff]
+git = True

@@ -1,0 +1,63 @@
+[core]
+    editor = vi
+    #autocrlf = true
+
+[user]
+    name = Sascha Peilicke
+    email = saschpe@suse.de
+    signingkey = 2AD9B755
+
+[branch]
+    autosetupmerge = true
+
+[merge]
+    tool = vimdiff
+
+[color]
+    ui = auto
+
+[alias]
+    br = branch
+    co = checkout
+    cp = cherry-pick
+    ci = commit
+    dc = diff --cached
+    df = diff
+    ds = diff --stat
+    fa = fetch --all
+    fo = fetch origin
+    fp = format-patch
+    lo = log --pretty=oneline --abbrev-commit
+    lol = log --decorate --stat
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    pr = pull --rebase
+    prom = pull --rebase origin master
+    # Summary of what to push
+    # like "git log", but include the diffs
+    ps = log --pretty=oneline origin..master
+    ra = rebase --abort
+    rc = rebase --continue
+    rs = rebase --skip
+    #s  = stash
+    sa = stash apply
+    sc = stash clear
+    sl = stash list
+    sp = stash pop
+    st = status
+    wc = whatchanged
+    wh = whatchanged -p
+    wo = whatchanged -p origin..
+
+[sendemail]
+   #confirm = auto
+   #smtpencryption = tls
+   #smtpserver = mail.gmx.net
+   #smtpuser = saschpe@gmx.de
+   #smtpserverport = 465
+   #smtpencryption = tls
+   #smtpserver = mail.suse.de
+   ##smtpuser = speilicke@suse.de
+   #smtpserverport = 25
+
+#[url "git@git.kde.org:"]
+#    pushInsteadOf = git://anongit.kde.org
