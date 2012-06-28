@@ -35,8 +35,8 @@ else                                        " Vim running in a terminal
   colorscheme peachpuff
   "colorscheme default
   "hi Folded ctermfg=grey ctermbg=darkgrey
-  hi Comment ctermfg=blue ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
+  hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -54,6 +54,7 @@ set splitright                              " Vsplit creates new window right of
 set wildmenu                                " Menu when pressing <Tab> for ex commands
 "set list                                    " Show special (non-printable) characters
 "set listchars=tab:\ \ ,eol:$
+set scrolloff=3                             " Add some breathing room at top and bottom of screen
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text formatting / layout
