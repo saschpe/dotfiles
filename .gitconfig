@@ -49,15 +49,16 @@
     wo = whatchanged -p origin..
 
 [sendemail]
-   #confirm = auto
-   #smtpencryption = tls
-   #smtpserver = mail.gmx.net
-   #smtpuser = saschpe@gmx.de
-   #smtpserverport = 465
+    confirm = auto
+    from = Sascha Peilicke <saschpe@gmx.de>
+    smtpencryption = ssl
+    smtpserver = mail.gmx.net
+    smtpserverport = 465
+    smtpuser = saschpe@gmx.de
    #smtpencryption = tls
    #smtpserver = mail.suse.de
-   ##smtpuser = speilicke@suse.de
    #smtpserverport = 25
+   #smtpuser = speilicke@suse.de
 
 #[url "git@git.kde.org:"]
 #    pushInsteadOf = git://anongit.kde.org
