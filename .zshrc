@@ -70,6 +70,7 @@ alias j="ps ax"
 alias open="kde-open 2> /dev/null > /dev/null"
 alias iosc="osc -A ibs"
 alias psc='ps xawf -eo pid,user,cgroup,args'
+alias virshduff='virsh -c qemu+ssh://root@duff.suse.de/system'
 
 # Global aliases
 alias -g "\&"="&> /dev/null &|"
@@ -94,7 +95,11 @@ export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
 export PAGER="less -RMi"
 export PATH=/usr/sbin:/sbin:$PATH
 #export PROMPT="%n@%m:%~%# "                # Fancy prompt
-export PROMPT=$'%{\e[0;32m%}%n@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
+if [ $UID -eq 0 ] ; then
+    export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;32m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
+else
+    export PROMPT=$'%{\e[0;32m%}%n%{\e[0;32m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
+fi
 
 # Go language specific settings
 export GOARCH=amd64
