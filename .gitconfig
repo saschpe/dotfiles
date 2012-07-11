@@ -62,3 +62,6 @@
 
 #[url "git@git.kde.org:"]
 #    pushInsteadOf = git://anongit.kde.org
+
+[credential]
+	helper = cache
