@@ -5,7 +5,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-startup_message off
+startup_message off                 # Turn off start message
+msgwait 1                           # Set messages timeout to one second
 deflogin on                         # Log new screen windows in utmp.
 autodetach on                       # Never, ever turn this off.
 shell zsh                           # Just in case it isn't clear...
@@ -13,9 +14,18 @@ vbell off                           # I like to hear the beep.
 #zombie cr                           # Keep dead windows until told to exit
 verbose on                          # Show command for windows when resurrected
 # escape ^zz                          # Escape key is C-z. 
-defscrollback 5000                  # A large scrollback
+scrollback 10000                    # Bump up the size of the scrollback buffer
+defscrollback 10000                 # A large scrollback
 defutf8 on                          # Run everything in UTF-8.
 defnonblock on                      # Unresponsive windows don't block session
+
+# Get rid of screen 0
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+
+# Create initial window
+screen 1
 
 # 256 color xterm
 #attrcolor b ".I"
@@ -38,32 +48,32 @@ bell "%c bell -> %n%f %t^G"
 vbell_msg " *beep* "
 
 # Use the function keys to switch among windows.
-bindkey -k k1 select 0
-bindkey -k k2 select 1
-bindkey -k k3 select 2
-bindkey -k k4 select 3
-bindkey -k k5 select 4
-bindkey -k k6 select 5
-bindkey -k k7 select 6
-bindkey -k k8 select 7
-bindkey -k k9 select 8
-bindkey -k k; select 9
-bindkey -k F1 select 10
-bindkey -k F2 select 11
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+bindkey -k k9 select 9
+bindkey -k k; select 10
+bindkey -k F1 select 11
+bindkey -k F2 select 12
 # windows 13-24 are Shift-Fn.  May not work in all terminals.
-bindkey -k F3 select 12
-bindkey -k F4 select 13
-bindkey -k F5 select 14
-bindkey -k F6 select 15
-bindkey -k F7 select 16
-bindkey -k F8 select 17
-bindkey -k F9 select 18
-bindkey -k FA select 19
+bindkey -k F3 select 13
+bindkey -k F4 select 14
+bindkey -k F5 select 15
+bindkey -k F6 select 16
+bindkey -k F7 select 17
+bindkey -k F8 select 18
+bindkey -k F9 select 19
+bindkey -k FA select 20
 # screen only seems to understand up to FA.
-#bindkey -k FB select 20
-#bindkey -k FC select 21
-#bindkey -k FD select 22
-#bindkey -k FE select 23
+#bindkey -k FB select 21
+#bindkey -k FC select 22
+#bindkey -k FD select 23
+#bindkey -k FE select 24
 
 # select works on window names, too. This gives me the first window with a free shell
 bind s select zsh
