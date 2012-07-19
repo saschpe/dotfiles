@@ -169,6 +169,10 @@ function osc_expand_link () {
     osc api "/source/$1/$2?rev=$3&linkrev=base&expand"
 }
 
+function silent () {
+    $@ > /dev/null 2>&1
+}
+
 if [ $TERM = "screen" ] ; then
     # Set/reset hostname in screen window title SSH'd machine:
     function ssh () {
@@ -180,3 +184,4 @@ if [ $TERM = "screen" ] ; then
     # Set it initially for new windows:
     echo -n -e "\033k${HOST}\033\\"
 fi
+
