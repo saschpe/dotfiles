@@ -168,3 +168,11 @@ function find_first_in () {
 function osc_expand_link () {
     osc api "/source/$1/$2?rev=$3&linkrev=base&expand"
 }
+
+# Set/reset hostname in screen window title SSH'd machine:
+function ssh () {
+    args=$@
+    echo -n -e "\033k${args##* }\033\\"
+    command ssh "$@";
+    echo -n -e "\033k${HOST}\033\\"
+}
