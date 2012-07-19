@@ -176,3 +176,5 @@ function ssh () {
     command ssh "$@";
     echo -n -e "\033k${HOST}\033\\"
 }
+# Set it initially for new windows:
+echo -n -e "\033k${HOST}\033\\"
