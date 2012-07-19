@@ -119,6 +119,19 @@ map tt <ESC>:%s/\t/    /g<CR>               " Convert tab to 4 spaces
 map tT <ESC>:%s/    /\t/g<CR>               " Convert 4 spaces to tab
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GNU screen
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If Esc key doesn't work:
+"maptimeout 5
+" Fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python / Django options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BicycleRepairMan - refactoring for Python settings
