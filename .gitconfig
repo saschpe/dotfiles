@@ -66,3 +66,6 @@
 
 #[credential]
 #    helper = cache
+
+[gitreview]
+    username = saschpe
