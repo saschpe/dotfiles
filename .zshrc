@@ -94,7 +94,7 @@ export JAVA_HOME="/usr/lib64/jvm/java"
 export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
 export PAGER="less -RMi"
 export PATH=/usr/sbin:/sbin:$PATH
-#export PROMPT="%n@%m:%~%# "                # Fancy prompt
+#export PROMPT="%n@%M:%~%# "                # Fancy prompt
 if [ $UID -eq 0 ] ; then
     export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;32m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
 else
@@ -185,3 +185,6 @@ if [ $TERM = "screen" ] ; then
     echo -n -e "\033k${HOST}\033\\"
 fi
 
+function tar2 () {
+    tar -cjhf $1.tar.bz2 --exclude=".*" $1
+}
