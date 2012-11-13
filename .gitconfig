@@ -13,6 +13,9 @@
 [merge]
     tool = vimdiff
 
+[push]
+    default = simple
+
 [color]
     ui = auto
 
@@ -61,11 +64,8 @@
    #smtpserverport = 465
    #smtpuser = speilicke@suse.de
 
-#[url "git@git.kde.org:"]
-#    pushInsteadOf = git://anongit.kde.org
-
-#[credential]
-#    helper = cache
+[credential]
+    helper = cache --timeout=3600
 
 [gitreview]
     username = saschpe
