@@ -13,8 +13,8 @@
 [merge]
     tool = vimdiff
 
-[push]
-    default = simple
+#[push]
+#    default = simple
 
 [color]
     ui = auto
