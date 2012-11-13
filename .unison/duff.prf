@@ -10,6 +10,7 @@ path = Downloads
 #path = Music # Maybe not
 path = Pictures
 path = Projects
+path = Software
 path = Videos
 #path = .thunderbird
 
