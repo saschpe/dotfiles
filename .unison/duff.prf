@@ -13,6 +13,9 @@ path = Projects
 # Some regexps specifying names and paths to ignore
 #ignore = Path Software
 #ignore = Path .*
+ignore = Path Projects/dotfiles/.unison/ar*
+ignore = Path Projects/dotfiles/.unison/fp*
+ignore = Path Projects/dotfiles/.unison/.unison*
 
 # Window height
 height = 37
