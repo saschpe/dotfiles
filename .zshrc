@@ -157,14 +157,6 @@ function mcd () { mkdir "$@"; cd "$@" }
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
 
-# Find all occurences of sth in files
-function find_all_in () {
-    find . -type f -name "$1" | xargs grep $2
-}
-function find_first_in () {
-    find . -type f -name "$1" | xargs grep $2 -m1
-}
-
 function osc_expand_link () {
     osc api "/source/$1/$2?rev=$3&linkrev=base&expand"
 }
