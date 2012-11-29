@@ -122,6 +122,8 @@ export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 
 ulimit -c unlimited                         # Enable 'core' dumps
 
+setterm -blength 0                          # Get rid of beeps
+
 #function easy-ssh {
 #    exec ssh-agent zsh
 #}
