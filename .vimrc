@@ -143,21 +143,21 @@ if has("autocmd")
   " Python options
   " When editing a *.py file, map <F6> to save and execute python interpreter
   "autocmd BufRead,BufNewFile *.py map <F6> :w<CR>:!python %<CR>
-  autocmd FileType python set foldmethod=indent omnifunc=pythoncomplete#Complete
+  "autocmd FileType python set foldmethod=indent omnifunc=pythoncomplete#Complete
   autocmd BufRead,BufNewFile zcml,pt setf xml
 
   " The following line sets the smartindent mode for *.py files. It means
   " that after typing lines which start with any of the keywords in the
   " list (ie. def, class, if, etc) the next line will automatically indent
   " itself to the next level of indentation:
-  autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+  "autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
   " Many people like to remove any extra whitespace from the ends of lines.
   " Here is one way to do it when saving your file.
   autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 
   " Django options
-  autocmd FileType htmldjango set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
+  "autocmd FileType htmldjango set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
   "au BufNewFile,BufRead admin.py     setlocal filetype=python.django
   "au BufNewFile,BufRead urls.py      setlocal filetype=python.django
   "au BufNewFile,BufRead models.py    setlocal filetype=python.django
@@ -167,8 +167,17 @@ if has("autocmd")
   "au BufNewFile,BufRead urls.py      setlocal nowrap
   "au BufNewFile,BufRead settings.py  normal! zR
   "au BufNewFile,BufRead dashboard.py normal! zR
+endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("autocmd")
+  " Systemd options
   autocmd BufRead,BufNewFile *.service setf desktop
+
+  " Open Build Service options
+  autocmd BufRead,BufNewFile _service setf xml
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
