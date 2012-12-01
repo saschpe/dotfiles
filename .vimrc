@@ -121,15 +121,12 @@ map tT <ESC>:%s/    /\t/g<CR>               " Convert 4 spaces to tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GNU screen
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" If Esc key doesn't work:
-"maptimeout 5
+"maptimeout 5                                " If Esc key doesn't work:
 " Fix keycodes
 map ^[[1~ <Home>
 map ^[[4~ <End>
 imap ^[[1~ <Home>
 imap ^[[4~ <End>
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python / Django options
@@ -140,44 +137,14 @@ let g:bike_progress = 1                     " Show import progress
 let g:pydoc_highlight= 1                    " Highlighting for pydoc
 
 if has("autocmd")
-  " Python options
-  " When editing a *.py file, map <F6> to save and execute python interpreter
-  "autocmd BufRead,BufNewFile *.py map <F6> :w<CR>:!python %<CR>
-  "autocmd FileType python set foldmethod=indent omnifunc=pythoncomplete#Complete
-  autocmd BufRead,BufNewFile zcml,pt setf xml
-
-  " The following line sets the smartindent mode for *.py files. It means
-  " that after typing lines which start with any of the keywords in the
-  " list (ie. def, class, if, etc) the next line will automatically indent
-  " itself to the next level of indentation:
-  "autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+  autocmd FileType python set foldmethod=indent omnifunc=pythoncomplete#Complete
+  autocmd BufRead,BufNewFile zcml,pt setf xml   " Zope
 
   " Many people like to remove any extra whitespace from the ends of lines.
   " Here is one way to do it when saving your file.
-  autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+  "autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 
-  " Django options
-  "autocmd FileType htmldjango set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
-  "au BufNewFile,BufRead admin.py     setlocal filetype=python.django
-  "au BufNewFile,BufRead urls.py      setlocal filetype=python.django
-  "au BufNewFile,BufRead models.py    setlocal filetype=python.django
-  "au BufNewFile,BufRead views.py     setlocal filetype=python.django
-  "au BufNewFile,BufRead settings.py  setlocal filetype=python.django
-  "au BufNewFile,BufRead forms.py     setlocal filetype=python.django
-  "au BufNewFile,BufRead urls.py      setlocal nowrap
-  "au BufNewFile,BufRead settings.py  normal! zR
-  "au BufNewFile,BufRead dashboard.py normal! zR
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("autocmd")
-  " Systemd options
-  autocmd BufRead,BufNewFile *.service setf desktop
-
-  " Open Build Service options
-  autocmd BufRead,BufNewFile _service setf xml
+  autocmd FileType htmldjango set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,7 +156,7 @@ set tags=./tags,tags,$QTSRCDIR/src/tags,$QTDIR/src/tags
 let c_space_errors=1                        " Show unneeded spaces as errors in C code
 
 if has("autocmd")
-  autocmd FileType c,cpp set cindent
+  autocmd FileType c,cpp set cindent omnifunc=ccomplete#Complete
 
   " Makefile options
   autocmd FileType Makefile set noexpandtab shiftwidth=8 softtabstop=8 "tabstop=8
@@ -206,34 +173,33 @@ endif
 " Ruby / Ruby on Rails options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-  autocmd BufRead,BufNewFile *.rb map <F6> :w<CR>:rubyf %<CR>
-  autocmd BufRead,BufNewFile *.rb,*.erb set foldmethod=indent shiftwidth=2 softtabstop=2 "tabstop=2
+  autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" XML options
+" XML / HTML / CSS / JavaScript options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:xml_syntax_folding = 1                " syntax folding
 
 if has("autocmd")
-  autocmd FileType xml set foldmethod=indent shiftwidth=2 softtabstop=2
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" HTML / CSS / JavaScript options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("autocmd")
   autocmd FileType html set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
-
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  " Some basic, perfectly serviceable folding:
-  au FileType javascript setlocal foldmethod=marker
-  au FileType javascript setlocal foldmarker={,}
-
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType xml set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=xmlcomplete#CompleteTags
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" (La)TeX options
+" Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
+
+if has("autocmd")
+  " Systemd options
+  autocmd BufRead,BufNewFile *.service setf desktop
+
+  " Open Build Service options
+  autocmd BufRead,BufNewFile _service setf xml
+
+  " SQL options
+  autocmd FileType sql set omnifunc=sqlcomplete#Complete
+endif
