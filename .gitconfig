@@ -53,16 +53,16 @@
 
 [sendemail]
     confirm = auto
-    from = Sascha Peilicke <saschpe@gmx.de>
-    smtpencryption = ssl
-    smtpserver = mail.gmx.net
-    smtpserverport = 465
-    smtpuser = saschpe@gmx.de
-   #from = Sascha Peilicke <saschpe@suse.de>
+   #from = Sascha Peilicke <saschpe@gmx.de>
    #smtpencryption = ssl
-   #smtpserver = imap.suse.de
+   #smtpserver = mail.gmx.net
    #smtpserverport = 465
-   #smtpuser = speilicke@suse.de
+   #smtpuser = saschpe@gmx.de
+    from = Sascha Peilicke <speilicke@suse.com>
+    smtpencryption = ssl
+    smtpserver = relay.suse.de
+    smtpserverport = 25
+    smtpuser = speilicke@suse.com
 
 [credential]
     helper = cache --timeout=3600
