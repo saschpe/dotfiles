@@ -6,6 +6,19 @@ verbose = True
 ci = commit
 df = diff
 pu = pull -u
+show = log -pr
 
 [diff]
 git = True
+
+[extensions]
+color =
+
+[merge-patterns]
+** = filemerge
+
+[merge-tools]
+filemerge.executable = gvim
+filemerge.args = -d $local $other
+filemerge.checkchanged = true
+filemerge.gui = true
