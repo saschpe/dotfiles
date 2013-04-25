@@ -137,7 +137,7 @@ let g:bike_progress = 1                     " Show import progress
 let g:pydoc_highlight= 1                    " Highlighting for pydoc
 
 if has("autocmd")
-  autocmd FileType python set foldmethod=indent omnifunc=pythoncomplete#Complete
+  autocmd FileType python set foldmethod=indent shiftwidth=4 softtabstop=4 omnifunc=pythoncomplete#Complete
   autocmd BufRead,BufNewFile zcml,pt setf xml   " Zope
 
   " Many people like to remove any extra whitespace from the ends of lines.
