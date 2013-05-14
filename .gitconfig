@@ -4,7 +4,7 @@
 
 [user]
     name = Sascha Peilicke
-    email = saschpe@suse.de
+    email = saschpe@gmx.de
     signingkey = 2AD9B755
 
 [branch]
@@ -20,6 +20,8 @@
     ui = auto
 
 [alias]
+    ama = am --abort
+    ams = am --skip
     br = branch
     co = checkout
     cp = cherry-pick
@@ -53,16 +55,16 @@
 
 [sendemail]
     confirm = auto
-   #from = Sascha Peilicke <saschpe@gmx.de>
-   #smtpencryption = ssl
-   #smtpserver = mail.gmx.net
-   #smtpserverport = 465
-   #smtpuser = saschpe@gmx.de
-    from = Sascha Peilicke <speilicke@suse.com>
+    from = Sascha Peilicke <saschpe@gmx.de>
     smtpencryption = ssl
-    smtpserver = relay.suse.de
-    smtpserverport = 25
-    smtpuser = speilicke@suse.com
+    smtpserver = mail.gmx.net
+    smtpserverport = 465
+    smtpuser = saschpe@gmx.de
+   #from = Sascha Peilicke <speilicke@suse.com>
+   #smtpencryption = ssl
+   #smtpserver = relay.suse.de
+   #smtpserverport = 25
+   #smtpuser = speilicke@suse.com
 
 [credential]
     helper = cache --timeout=3600
