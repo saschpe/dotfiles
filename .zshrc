@@ -111,7 +111,7 @@ export GOBIN=/usr/bin
 export PATH=$GOBIN:$PATH
 
 # Ruby/Rails/Rubygems settings
-export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
+#export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 
 # suse
 #export PATH=$PATH:/suse/bin
