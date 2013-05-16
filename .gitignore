@@ -1,0 +1,35 @@
+*.pid
+*~
+*.bak
+*.tmp
+.#*
+.directory
+
+# Mercurial
+.hg
+
+# Patch
+*.orig
+*.old
+*.rej
+
+# VIM
+*.vim
+.*.sw[po]
+
+# Subversion
+.svn
+
+# Java
+nbproject
+*.class
+
+# Python
+build
+dist
+*.egg/
+*.egg-info
+.coverage
+*.py[co]
+.tox
+.venv

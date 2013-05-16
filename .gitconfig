@@ -1,5 +1,6 @@
 [core]
     editor = vi
+    excludesfile = ~/.gitignore
     #autocrlf = true
 
 [user]
