@@ -33,3 +33,4 @@ dist
 *.py[co]
 .tox
 .venv
+__pycache__
