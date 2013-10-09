@@ -92,7 +92,7 @@ export JAVA_HOME="/usr/lib64/jvm/java"
 #export LC_ALL=de_DE.UTF-8
 #export LESS="-RIM"                         # Needed for git colors
 export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
-export PAGER="less -RMi"
+#export PAGER="less -RMi"
 export PATH=/usr/sbin:/sbin:$PATH
 #export PROMPT="%n@%M:%~%# "                # Fancy prompt
 if [ $UID -eq 0 ] ; then
