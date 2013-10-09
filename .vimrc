@@ -21,7 +21,7 @@ if &t_Co > 2 || has("gui_running")          " If we have colors
 endif
 
 if has("gui_running")                       " GVim or running under GUI
-  colorscheme peachpuff
+  "colorscheme peachpuff
   "colorscheme default
   "hi Normal guibg=black guifg=grey
   "hi String guifg=#FF3333
@@ -32,11 +32,11 @@ if has("gui_running")                       " GVim or running under GUI
   winpos 0 50                               " Window position
   set lines=45
 else                                        " Vim running in a terminal
-  colorscheme peachpuff
-  "colorscheme default
+  "colorscheme peachpuff
+  colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
