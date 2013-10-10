@@ -33,10 +33,10 @@ if has("gui_running")                       " GVim or running under GUI
   set lines=45
 else                                        " Vim running in a terminal
   "colorscheme peachpuff
-  colorscheme slate
+  "colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
