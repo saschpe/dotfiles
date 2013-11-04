@@ -5,6 +5,9 @@
 .#*
 .directory
 
+# Git
+.git
+
 # Mercurial
 .hg
 
@@ -14,7 +17,6 @@
 *.rej
 
 # VIM
-*.vim
 .*.sw[po]
 
 # Subversion
@@ -27,10 +29,10 @@ nbproject
 # Python
 build
 dist
-*.egg/
-*.egg-info
+*.egg*
 .coverage
+nosetests.xml
 *.py[co]
 .tox
-.venv
+.venv*
 __pycache__

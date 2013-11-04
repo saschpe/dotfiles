@@ -10,41 +10,77 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                            " Get rid of Ex-Mode
 set noexrc                                  " Potential security risk
-set history=1000
+
+" Use pathogen to easily modify the runtime path to include all plugins under
+" " the ~/.vim/bundle directory
+filetype off                                " force reloading *after* pathogen loaded
+call pathogen#infect()
+call pathogen#helptags()
 filetype plugin indent on                   " Enable all VIM's greatness
+syntax on
+
+set history=1000
+set undolevels=1000
+
+set visualbell                              " don't beep
+set noerrorbells                            " don't beep
+
+set nobackup                
+set noswapfile
+
+" change the mapleader from \ to ,
+let mapleader=","
+let maplocalleader="\\"
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if &t_Co >= 256 || has("gui_running")
+  colorscheme mustang
+endif
 if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                 " Syntax highlighting
 endif
 
 if has("gui_running")                       " GVim or running under GUI
-  colorscheme peachpuff
-  "colorscheme default
   "hi Normal guibg=black guifg=grey
   "hi String guifg=#FF3333
   "hi Statement guifg=#cf6802
   "hi Folded guibg=black guifg=grey40
   "hi FoldColumn guibg=black guifg=grey40
-  set guifont=FreeMono\ Bold\ 10            " Font for GVim
+  "set guifont=FreeMono\ Bold\ 10            " Font for GVim
   winpos 0 50                               " Window position
   set lines=45
 else                                        " Vim running in a terminal
-  colorscheme peachpuff
   "colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
   hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
+"  Hide buffers instead of closing them.
+set hidden
+
+set pastetoggle=<F2>
+
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" D'oh! Forgot sudo again, fix it with:
+cmap w!! w !sudo tee % >/dev/null
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set number                                 " Line numbers
 set mouse=a                                 " Use mouse everywhere
-set backspace=2                             " Backspace over line break
+"set backspace=2                             " Backspace over line break
+set backspace=indent,eol,start              " Allow backspacing over everything in insert mode
 set ruler                                   " Curser pos down tight
 "set rulerformat=                           " Ruler format
 "set statusline=%F%m%r%h%w\ [Format=%{&ff}]\ [Type=%Y]\ [Ascii=\%03.3b]\ [Hex=\%02.2B]\ [Pos=%04l,%04v][%p%%]\ [Len=%L]
@@ -52,6 +88,7 @@ set ruler                                   " Curser pos down tight
 set splitbelow                              " Split creates new window under old one
 set splitright                              " Vsplit creates new window right of old one
 set wildmenu                                " Menu when pressing <Tab> for ex commands
+set wildignore=*.swp,*.bak,*.pyc,*.class
 "set list                                    " Show special (non-printable) characters
 "set listchars=tab:\ \ ,eol:$
 set scrolloff=3                             " Add some breathing room at top and bottom of screen
@@ -61,10 +98,12 @@ set scrolloff=3                             " Add some breathing room at top and
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set tabstop=4                               " Tab = 4 space
 set softtabstop=4                           " Backspacing a tab removes 4 spaces
-set shiftwidth=4                            " Unify with tabstop
+set shiftwidth=4                            " number of spaces to use for autoindenting
+set shiftround                              " use multiple of shiftwidth when indenting with '<' and '>'
 set expandtab                               " Proud member of the 'tabs are evil' crew
-set smarttab
+set smarttab                                " insert tabs on the start of a line according to shiftwidth, not tabstop
 set autoindent                              " Uses the indent from the previous line
+set copyindent                              " copy the previous indentation on autoindenting
 set smartindent                             " More clever / overrides autoindent where appropriate
 set foldmethod=syntax                       " Text is folded based on syntax
 set foldlevel=1                             " Open the X level folds
@@ -78,13 +117,13 @@ set showmode                                " Display current mode ('insert', 'r
 set showcmd                                 " Display partially-typed commands in the status line
 set showmatch                               " Show matching braces
 set showfulltag
-set incsearch                               " Display search patterns while typing
 set hlsearch                                " Highlights previous seach pattern
+set incsearch                               " Display search patterns while typing
 set magic                                   " Use extended regular expressions
 set cmdheight=1                             " Vi command line height
 set modeline                                " Enable modeline search
 set modelines=5                             " Amount of lines (top, bottom) to search
-set title
+set title                                   " change the terminal's title
 set ofu=syntaxcomplete#Complete             " Turn on omnicompletion
 
 if has("autocmd") 
@@ -117,6 +156,20 @@ nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 " Some convenient keymappings
 map tt <ESC>:%s/\t/    /g<CR>               " Convert tab to 4 spaces
 map tT <ESC>:%s/    /\t/g<CR>               " Convert 4 spaces to tab
+
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
+
+" Don't jump over long wrapped lines but always jump to the next editor row
+nnoremap j gj
+nnoremap k gk
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GNU screen
