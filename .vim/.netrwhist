@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/root/Projects/web/less.js'
-let g:netrw_dirhist_2='/root/Projects/python/Lesscpy/lesscpy/plib'
-let g:netrw_dirhist_3='/root/Projects/python/Lesscpy/lesscpy'
-let g:netrw_dirhist_4='/root/Projects/python/Lesscpy/lesscpy/lib'
-let g:netrw_dirhist_5='/root/Projects/python/Lesscpy/lesscpy/test/less'
-let g:netrw_dirhist_6='/root/.vim/ftplugin'
-let g:netrw_dirhist_7='/root/.vim'
-let g:netrw_dirhist_8='/root/.vim/syntax'
-let g:netrw_dirhist_9='/root/Projects/python/rapport'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/root/Projects/python/Lesscpy/lesscpy/test'
+let g:netrw_dirhist_2='/root/Projects/suse/automation/scripts/jenkins'
+let g:netrw_dirhist_3='/home/saschpe/Projects/python/pollka/pollka/accounts'
