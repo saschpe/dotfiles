@@ -18,6 +18,7 @@
 
 # VIM
 .*.sw[po]
+Session.vim
 
 # Subversion
 .svn
