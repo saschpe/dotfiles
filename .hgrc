@@ -8,9 +8,6 @@ df = diff
 pu = pull -u
 show = log -pr
 
-[diff]
-git = True
-
 [extensions]
 color =
 
