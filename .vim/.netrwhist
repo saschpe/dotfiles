@@ -1,5 +1,11 @@
 let g:netrw_dirhistmax  =10
+<<<<<<< Updated upstream
 let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/root/Projects/python/Lesscpy/lesscpy/test'
 let g:netrw_dirhist_2='/root/Projects/suse/automation/scripts/jenkins'
 let g:netrw_dirhist_3='/home/saschpe/Projects/python/pollka/pollka/accounts'
+=======
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/root/Projects/python/Lesscpy/lesscpy/test'
+let g:netrw_dirhist_2='/root/Projects/suse/automation/scripts/jenkins'
+>>>>>>> Stashed changes
