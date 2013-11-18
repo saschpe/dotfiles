@@ -10,6 +10,8 @@ show = log -pr
 
 [extensions]
 color =
+histedit =
+record =
 
 [merge-patterns]
 ** = filemerge
