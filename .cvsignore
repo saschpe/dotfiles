@@ -19,6 +19,7 @@
 # VIM
 .*.sw[po]
 Session.vim
+.vim/.netrwhist
 
 # Subversion
 .svn
