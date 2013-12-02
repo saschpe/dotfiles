@@ -96,9 +96,9 @@ export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
 export PATH=/usr/sbin:/sbin:$PATH
 #export PROMPT="%n@%M:%~%# "                # Fancy prompt
 if [ $UID -eq 0 ] ; then
-    export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;32m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
+    export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;36m%}@%{\e[0;32m%}%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
 else
-    export PROMPT=$'%{\e[0;32m%}%n%{\e[0;32m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
+    export PROMPT=$'%{\e[0;32m%}%n%{\e[0;36m%}@%{\e[0;32m%}%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
 fi
 
 # Go language specific settings
