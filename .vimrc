@@ -40,7 +40,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co >= 256 || has("gui_running")
-  colorscheme mustang
+  colorscheme slate
 endif
 if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                 " Syntax highlighting
@@ -59,7 +59,7 @@ else                                        " Vim running in a terminal
   "colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 "  Hide buffers instead of closing them.
