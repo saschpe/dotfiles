@@ -12,6 +12,7 @@ show = log -pr
 color =
 histedit =
 record =
+convert =
 
 [merge-patterns]
 ** = filemerge
