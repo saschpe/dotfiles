@@ -14,7 +14,7 @@ vbell off                           # I like to hear the beep.
 #zombie cr                           # Keep dead windows until told to exit
 verbose on                          # Show command for windows when resurrected
 # escape ^zz                          # Escape key is C-z. 
-scrollback 20000                    # Bump up the size of the scrollback buffer
+#scrollback 20000                    # Bump up the size of the scrollback buffer
 defscrollback 20000                 # A large scrollback
 defutf8 on                          # Run everything in UTF-8.
 defnonblock on                      # Unresponsive windows don't block session
@@ -25,7 +25,7 @@ bind ^c screen 1
 bind 0 select 10
 
 # Create initial window
-screen 1
+#screen 1
 
 # 256 color xterm
 #attrcolor b ".I"
