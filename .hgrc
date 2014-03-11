@@ -1,5 +1,5 @@
 [ui]
-username = Sascha Peilicke <sasch.pe@gmx.de>
+username = Sascha Peilicke <saschpe@mailbox.org>
 verbose = True
 
 [alias]
@@ -13,12 +13,16 @@ color =
 histedit =
 record =
 convert =
+rebase =
 
-[merge-patterns]
-** = filemerge
+[ui]
+merge=internal:merge
 
-[merge-tools]
-filemerge.executable = gvim
-filemerge.args = -d $local $other
-filemerge.checkchanged = true
-filemerge.gui = true
+#[merge-patterns]
+#** = filemerge
+
+#[merge-tools]
+#filemerge.executable = gvim
+#filemerge.args = -d $local $other
+#filemerge.checkchanged = true
+#filemerge.gui = true

@@ -5,7 +5,7 @@
 
 [user]
     name = Sascha Peilicke
-    email = saschpe@gmx.de
+    email = saschpe@mailbox.org
     signingkey = 2AD9B755
 
 [branch]
@@ -56,16 +56,11 @@
 
 [sendemail]
     confirm = auto
-    from = Sascha Peilicke <saschpe@gmx.de>
+    from = Sascha Peilicke <saschpe@mailbox.org>
     smtpencryption = ssl
-    smtpserver = mail.gmx.net
-    smtpserverport = 465
-    smtpuser = saschpe@gmx.de
-   #from = Sascha Peilicke <speilicke@suse.com>
-   #smtpencryption = ssl
-   #smtpserver = relay.suse.de
-   #smtpserverport = 25
-   #smtpuser = speilicke@suse.com
+    smtpserver = smtp.mailbox.org
+    smtpserverport = 587
+    smtpuser = saschpe@mailbox.org
 
 [credential]
     helper = cache --timeout=3600
