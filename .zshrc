@@ -84,7 +84,7 @@ alias .......="cd ../../../../../.."
 
 export BROWSER="/usr/bin/firefox"
 export DEBFULLNAME="Sascha Peilicke"        # Useful Debian packaging stuff
-export DEBEMAIL="saschpe@gmx.de"
+export DEBEMAIL="saschpe@mailbox.org"
 export EDITOR="/usr/bin/vim"                # Default editor
 export JAVA_HOME="/usr/lib64/jvm/jre"
 #export LANG=de_DE.UTF-8
