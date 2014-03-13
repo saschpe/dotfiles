@@ -1,0 +1,14 @@
+#!/bin/sh
+
+OBS_DIR=/home/saschpe/Projects/suse/packaging
+IBS_DIR=/home/saschpe/Projects/suse/packaging-ibs
+
+CUR_DIR=$PWD
+
+cd $OBS_DIR
+eachdir "osc up *"
+
+cd $IBS_DIR
+eachdir "osc up *"
+
+cd $CUR_DIR

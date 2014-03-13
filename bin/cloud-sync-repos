@@ -1,0 +1,52 @@
+#!/bin/bash
+
+NFS_REPOS=/srv/nfs/repos
+EUKLID=/mnt/euklid/mirror/SuSE/zypp-patches.suse.de/x86_64/update
+YOU=/mnt/you/http/download/x86_64/update
+
+
+function rsync_repo() {
+    echo "rsync_repo: Sync $EUKLID/$1 to $NFS_REPOS/$2"
+    rsync --exclude=\*.src.rpm -av -H $EUKLID/$1/ $NFS_REPOS/$2/
+}
+
+function rsync_cloud_repo() {
+    echo "rsync_cloud_repo: Sync SUSE Cloud $1 repositories"
+    rsync --exclude=\*.src.rpm -av -H $EUKLID/SUSE-CLOUD/$1-POOL/ $NFS_REPOS/SUSE-Cloud-$1-Pool/
+    rsync --delete-after --exclude=\*.src.rpm -av -H $EUKLID/SUSE-CLOUD/$1/ $NFS_REPOS/SUSE-Cloud-$1-Updates/
+    rsync -a --delete-after --exclude=\*.src.rpm $YOU/SUSE-CLOUD/$1/ $NFS_REPOS/SUSE-Cloud-$1-Updates-Test/
+}
+
+
+declare -A repos
+#repos["SLE-SERVER/11-SP1-POOL"]="SLES11-SP1-Pool"
+#repos["SLE-SERVER/11-SP1"]="SLES11-SP1-Updates"
+#repos["SLE-SERVER/11-SP2-CORE"]="SLES11-SP2-Core"
+#repos["SLE-SERVER/11-SP2"]="SLES11-SP2-Updates"
+repos["SLE-SERVER/11-SP3-POOL"]="SLES11-SP3-Pool"
+repos["SLE-SERVER/11-SP3"]="SLES11-SP3-Updates"
+
+# devel
+#repos["SLE-SDK/11-SP1-POOL"]="SLES11-SP1-Pool-SDK"
+#repos["SLE-SDK/11-SP1"]="SLES11-SP1-Updates-SDK"
+#repos["SLE-SDK/11-SP2-CORE"]="SLES11-SP2-Core-SDK"
+#repos["SLE-SDK/11-SP2"]="SLES11-SP2-Updates-SDK"
+repos["SLE-SDK/11-SP3-POOL"]="SLES11-SP3-Pool-SDK"
+repos["SLE-SDK/11-SP3"]="SLES11-SP3-Updates-SDK"
+
+# debuginfo
+#repos["SLE-DEBUGINFO/11-SP1-POOL"]="SLES11-SP1-Pool-Debug"
+#repos["SLE-DEBUGINFO/11-SP1"]="SLES11-SP1-Updates-Debug"
+#repos["SLE-DEBUGINFO/11-SP2-CORE"]="SLES11-SP2-Core-Debug"
+#repos["SLE-DEBUGINFO/11-SP2"]="SLES11-SP2-Updates-Debug"
+repos["SLE-DEBUGINFO/11-SP3-POOL"]="SLES11-SP3-Pool-Debug"
+repos["SLE-DEBUGINFO/11-SP3"]="SLES11-SP3-Updates-Debug"
+
+
+for repo in ${!repos[@]} ; do
+    rsync_repo "$repo" "${repos[$repo]}"
+done
+
+for version in 2.0 3; do
+    rsync_cloud_repo $version
+done

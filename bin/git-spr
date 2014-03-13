@@ -1,0 +1,8 @@
+#!/bin/sh
+
+old_branch=$(git branch | grep \* | cut -d" " -f2)
+git stash
+git checkout --force master
+git pull --rebase
+git checkout $old_branch
+git stash pop

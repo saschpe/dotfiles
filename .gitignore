@@ -1,1 +1,40 @@
-.cvsignore
+*.pid
+*~
+*.bak
+*.tmp
+.#*
+.directory
+
+# Git
+.git
+
+# Mercurial
+.hg
+
+# Patch
+*.orig
+*.old
+*.rej
+
+# VIM
+.*.sw[po]
+Session.vim
+.vim/.netrwhist
+
+# Subversion
+.svn
+
+# Java
+nbproject
+*.class
+
+# Python
+build
+dist
+*.egg*
+.coverage
+nosetests.xml
+*.py[co]
+.tox
+.venv*
+__pycache__

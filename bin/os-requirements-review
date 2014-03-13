@@ -1,0 +1,59 @@
+#!/bin/sh
+
+if [ ! -d .git/ ] ; then
+    echo "Not a git repository, skipping..."
+    exit 1
+fi
+
+OLD_BRANCH=$(git branch --no-color | cut -d" " -f2)
+REQ_BRANCH="master-requirements"
+COMMIT_MSG="Sync with global requirements"
+
+git stash
+git checkout master
+git pull --rebase  # Can't hurt to update
+
+review_pending=0
+new_branch=0
+
+if git branch --all | grep -q $REQ_BRANCH ; then
+    git checkout $REQ_BRANCH
+    # Check if previous review got upstreamed already
+    git pull --rebase
+else
+    git checkout -b $REQ_BRANCH
+    new_branch=1
+fi
+
+echo "Updating requirements..."
+os-requirements-update
+
+if git status | grep -q "Changes not staged " ; then
+    review_pending=0
+    HEAD_MSG=$(git show -s --format=%s)
+    #echo "XX${COMMIT_MSG}XX${HEAD_MSG}XX"
+    if [ "$COMMIT_MSG" = "$HEAD_MSG" ] ; then
+        echo "Review pending, amending changes..."
+        review_pending=1
+    fi
+    git add *requirements*.txt
+    if [ $review_pending -eq 1 ] ; then
+        git commit --amend --no-edit
+    else
+        git commit -m "$COMMIT_MSG"
+    fi
+    git review
+else
+    echo "No changes"
+    if [ $new_branch -eq 1 ] ; then
+        new_branch=2
+    fi
+fi
+
+git checkout $OLD_BRANCH
+git stash pop
+
+if [ $new_branch -eq 2 ] ; then
+    echo "Removing stale branch $REQ_BRANCH..."
+    git branch -D $REQ_BRANCH
+fi

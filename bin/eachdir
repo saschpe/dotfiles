@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for d in $(lsd) ; do
+    pushd $d
+    $@
+    popd
+done

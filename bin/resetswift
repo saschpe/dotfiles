@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Sascha Peilicke <saschpe@suse.de>
+#
+# Setup swift probe/functest temporary storage, check
+# http://docs.openstack.org/developer/swift/development_saio.html
+#
+
+swift-init all stop
+find /var/log/swift -type f -exec rm -f {} \;
+
+LVM_VG=swift-sdb
+LVM_LV1=swift-sdb1
+LVM_LV1_PATH=/dev/$LVM_VG/$LVM_LV1
+LOOP_DEV=/dev/loop1
+LOOP_FILE=/tmp/$LVM_VG
+MOUNTPOINT=/mnt/sdb1
+modprobe loop
+
+umount /mnt/sdb1
+if vgscan | grep -q $LVM_VG ; then
+    echo "Removing existing $LVM_VG volume group"
+    vgchange -an $LVM_VG
+    vgremove -f $LVM_VG
+    losetup -d $LOOP_DEV
+fi
+
+echo "Creating $LVM_VG volume group with logical volume $LVM_LV1" 
+truncate --size=1025M $LOOP_FILE
+losetup $LOOP_DEV $LOOP_FILE
+pvcreate $LOOP_DEV
+vgcreate $LVM_VG $LOOP_DEV
+vgchange -ay $LVM_VG
+lvcreate -L 1024M -n $LVM_LV1 $LVM_VG
+lvchange -ay $LVM_VG
+
+echo "Create XFS filesystem on logical volume $LVM_LV1"
+mkfs.xfs -f -i size=1024 $LVM_LV1_PATH
+
+echo "Mounting logical volume $LVM_LV1 to $MOUNTPOINT"
+sudo mount $LVM_LV1_PATH $MOUNTPOINT
+sudo mkdir -p $MOUNTPOINT/1 $MOUNTPOINT/2 $MOUNTPOINT/3 $MOUNTPOINT/4
+# sudo service rsyslog restart
+sudo service memcached restart

@@ -1,0 +1,5 @@
+README.md skip
+.unison recurse
+.bazaar recurse
+.subversion recurse
+.wireshark recurse
