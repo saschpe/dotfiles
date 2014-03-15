@@ -1,6 +1,7 @@
 README.rst skip
 .unison recurse
 .bazaar recurse
+.irssi recurse
 .ssh recurse
 .subversion recurse
 .wireshark recurse
