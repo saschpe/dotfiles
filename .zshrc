@@ -93,7 +93,7 @@ export JAVA_HOME="/usr/lib64/jvm/jre"
 #export LESS="-RIM"                         # Needed for git colors
 export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
 #export PAGER="less -RMi"
-export PATH=/usr/sbin:/sbin:$PATH
+export PATH=/usr/sbin:/sbin:$HOME/.dotfiles/bin:$PATH
 #export PROMPT="%n@%M:%~%# "                # Fancy prompt
 if [ $UID -eq 0 ] ; then
     export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;36m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
