@@ -59,7 +59,7 @@ else                                        " Vim running in a terminal
   "colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 "  Hide buffers instead of closing them.
