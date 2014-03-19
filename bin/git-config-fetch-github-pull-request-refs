@@ -21,6 +21,7 @@ usage () {
 Usage: $me [options] REMOTE
 Options:
   -h, --help        Show this help and exit
+  -f, --fetch       Fetch from REMOTE
 
 Enables fetching of Github-style pull-request refs from REMOTE by adding a
 'fetch = ..' line to the to the local git config file (.git/config).
@@ -33,6 +34,13 @@ parse_opts () {
         case "$1" in
             -h|--help)
                 usage 0
+                ;;
+            -f|--fetch)
+                fetch="$1"
+                shift
+                ;;
+            -*)
+                usage "Unrecognised option: $1"
                 ;;
             *)
                 break
@@ -62,8 +70,11 @@ safe_run () {
 main () {
     parse_opts "$@"
 
-    if ! git config --get-all remote.origin.fetch | grep -q "refs\/pull"; then
+    if ! safe_run git config --get-all remote.origin.fetch | grep -q "refs\/pull"; then
         safe_run git config --add remote.${remote}.fetch "+refs/pull/*/head:refs/remotes/${remote}/pr/*"
+    fi
+    if [ -n "$fetch" ]; then
+        safe_run git fetch
     fi
 }
 
