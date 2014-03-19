@@ -83,7 +83,7 @@ extra-pkgs = vim gdb strace
 # print call traces in case of errors
 #traceback = 1
 # use KDE/Gnome/MacOS/Windows keyring for credentials if available
-use_keyring = 1
+#use_keyring = 1
 # check for unversioned/removed files before commit
 #check_filelist = 1
 # check for pending requests after executing an action (e.g. checkout, update, commit)
