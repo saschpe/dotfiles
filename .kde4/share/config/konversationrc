@@ -1,0 +1,515 @@
+Height 1080=500
+State=AAAA/wAAAAD9AAAAAAAAArwAAAHLAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+Width 1920=700
+
+[$Version]
+update_info=konversation.upd:1.1-rememberline,konversation.upd:1.1-markerlines,konversation.upd:0.20-customfonts,konversation.upd:0.20-quickbuttons,konversation.upd:0.19-notifylists,konversation.upd:0.19-appearance,konversation.upd:0.19-browser,konversation.upd:0.19-flags,konversation.upd:0.19-highlightcolors,konversation.upd:0.19-osdcolors,konversation.upd:0.19-sortorder,konversation.upd:0.19-colors,konversation.upd:0.19-generaloptions,konversation.upd:0.19-cleanup-themes,konversation.upd:0.19-cleanup-notifylist,konversation.upd:0.19-cleanup-dcc,konversation.upd:0.19-cleanup-colors,konversation.upd:0.19-cleanup-hilightlist,konversation.upd:0.19-cleanup-notificationmessages,konversation.upd:0.19-cleanup-ledcolors,konversation.upd:0.19-cleanup-kmditaskbar,konversation.upd:0.19-channelsplitter
+
+[Aliases]
+AliasList=sayclip /exec sayclip,mail /exec mail,bug /exec bug,media /exec media,audio /exec media audio,video /exec media video,tinyurl /exec tinyurl,uptime /exec uptime,gauge /exec gauge,fortune /exec fortune,cmd /exec cmd,sysinfo /exec sysinfo
+
+[Appearance]
+ChannelSplitterSizes=1085,162
+CustomTextFont=true
+TextFont=Monospace,9,-1,5,50,0,0,0,0,0
+TopicSplitterSizes=24,830
+TreeSplitterSizes=183,1250
+
+[Autoreplace List]
+Direction0=o
+Direction1=o
+Pattern0=\\[\\[([^\\s]+)\\]\\]#
+Pattern1=(BUG:|bug:)([0-9]+)#
+Regex0=1
+Regex1=1
+Replace0=http://en.wikipedia.org/wiki/Special:Search?go=Go&search=%1#
+Replace1=https://bugs.kde.org/show_bug.cgi?id=%2#
+
+[BanList ViewSettings]
+ColumnSortDescending=false
+ColumnSorted=0
+ColumnWidths=100,100,266
+
+[Button List]
+Button0=Op,/OP %u%n
+Button1=DeOp,/DEOP %u%n
+Button2=WhoIs,/WHOIS %s,%%u%n
+Button3=Version,/CTCP %s,%%u VERSION%n
+Button4=Kick,/KICK %u%n
+Button5=Ban,/BAN %u%n
+Button6=Part,/PART %c Leaving...%n
+Button7=Quit,/QUIT Leaving...%n
+
+[Channel 0]
+Name=#crowbar
+Password=
+
+[Channel 1]
+Name=#jenkins
+Password=
+
+[Channel 10]
+Name=#openstack-swift
+Password=
+
+[Channel 11]
+Name=#opensuse-buildservice
+Password=
+
+[Channel 12]
+Name=#opensuse-cloud
+Password=
+
+[Channel 13]
+Name=#opensuse-factory
+Password=
+
+[Channel 14]
+Name=#opensuse-kde
+Password=
+
+[Channel 15]
+Name=#opensuse-project
+Password=
+
+[Channel 16]
+Name=#python
+Password=
+
+[Channel 17]
+Name=#suse
+Password=
+
+[Channel 18]
+EnableNotifications=true
+Name=#crowbar
+Password=
+
+[Channel 19]
+EnableNotifications=true
+Name=#jenkins
+Password=
+
+[Channel 2]
+Name=#openstack
+Password=
+
+[Channel 20]
+EnableNotifications=true
+Name=#openstack
+Password=
+
+[Channel 21]
+EnableNotifications=true
+Name=#openstack-chef
+Password=
+
+[Channel 22]
+EnableNotifications=true
+Name=#openstack-dev
+Password=
+
+[Channel 23]
+EnableNotifications=true
+Name=#openstack-horizon
+Password=
+
+[Channel 24]
+EnableNotifications=true
+Name=#openstack-infra
+Password=
+
+[Channel 25]
+EnableNotifications=true
+Name=#openstack-meeting
+Password=
+
+[Channel 26]
+EnableNotifications=true
+Name=#openstack-nova
+Password=
+
+[Channel 27]
+EnableNotifications=true
+Name=#openstack-packaging
+Password=
+
+[Channel 28]
+EnableNotifications=true
+Name=#openstack-swift
+Password=
+
+[Channel 29]
+EnableNotifications=true
+Name=#opensuse-buildservice
+Password=
+
+[Channel 3]
+Name=#openstack-chef
+Password=
+
+[Channel 30]
+EnableNotifications=true
+Name=#opensuse-cloud
+Password=
+
+[Channel 31]
+EnableNotifications=true
+Name=#opensuse-factory
+Password=
+
+[Channel 32]
+EnableNotifications=true
+Name=#opensuse-kde
+Password=
+
+[Channel 33]
+EnableNotifications=true
+Name=#opensuse-project
+Password=
+
+[Channel 34]
+EnableNotifications=true
+Name=#kde
+Password=
+
+[Channel 35]
+EnableNotifications=true
+Name=#python
+Password=
+
+[Channel 36]
+EnableNotifications=true
+Name=#python-unregistered
+Password=
+
+[Channel 37]
+EnableNotifications=true
+Name=#suse
+Password=
+
+[Channel 38]
+EnableNotifications=true
+Name=#suse
+Password=
+
+[Channel 39]
+EnableNotifications=true
+Name=#jenkins
+Password=
+
+[Channel 4]
+Name=#openstack-dev
+Password=
+
+[Channel 40]
+EnableNotifications=true
+Name=#opensuse-buildservice
+Password=
+
+[Channel 41]
+EnableNotifications=true
+Name=#python-unregistered
+Password=
+
+[Channel 42]
+EnableNotifications=true
+Name=#kde
+Password=
+
+[Channel 43]
+EnableNotifications=true
+Name=#openstack
+Password=
+
+[Channel 44]
+EnableNotifications=true
+Name=#openstack-chef
+Password=
+
+[Channel 45]
+EnableNotifications=true
+Name=#openstack-dev
+Password=
+
+[Channel 46]
+EnableNotifications=true
+Name=#openstack-infra
+Password=
+
+[Channel 47]
+EnableNotifications=true
+Name=#openstack-nova
+Password=
+
+[Channel 48]
+EnableNotifications=true
+Name=#openstack-swift
+Password=
+
+[Channel 49]
+EnableNotifications=true
+Name=#opensuse-kde
+Password=
+
+[Channel 5]
+Name=#openstack-horizon
+Password=
+
+[Channel 50]
+EnableNotifications=true
+Name=#opensuse-project
+Password=
+
+[Channel 51]
+EnableNotifications=true
+Name=#opensuse-factory
+Password=
+
+[Channel 52]
+EnableNotifications=true
+Name=#opensuse-cloud
+Password=
+
+[Channel 53]
+EnableNotifications=true
+Name=#openstack-packaging
+Password=
+
+[Channel 54]
+EnableNotifications=true
+Name=#openstack-meeting
+Password=
+
+[Channel 55]
+EnableNotifications=true
+Name=#python
+Password=
+
+[Channel 56]
+Name=#cloud
+Password=
+
+[Channel 57]
+Name=#dist
+Password=
+
+[Channel 58]
+Name=#infra
+Password=
+
+[Channel 59]
+Name=#maintenance
+Password=
+
+[Channel 6]
+Name=#openstack-infra
+Password=
+
+[Channel 60]
+Name=#security
+Password=
+
+[Channel 61]
+Name=#suse
+Password=
+
+[Channel 62]
+EnableNotifications=true
+Name=#cloud
+Password=
+
+[Channel 63]
+EnableNotifications=true
+Name=#dist
+Password=
+
+[Channel 64]
+EnableNotifications=true
+Name=#infra
+Password=
+
+[Channel 65]
+EnableNotifications=true
+Name=#maintenance
+Password=
+
+[Channel 66]
+EnableNotifications=true
+Name=#security
+Password=
+
+[Channel 67]
+EnableNotifications=true
+Name=#suse
+Password=
+
+[Channel 7]
+Name=#openstack-meeting
+Password=
+
+[Channel 8]
+Name=#openstack-nova
+Password=
+
+[Channel 9]
+Name=#openstack-packaging
+Password=
+
+[ChannelList ViewSettings]
+ColumnSortDescending=false
+ColumnSorted=0
+ColumnWidths=115,75,957
+
+[ChannelOptionsDialog]
+Size=510,419
+SplitterSizes=218,106
+
+[DCC Settings]
+ColumnWidths=47,90,103,173,70,87,157,87,96,237
+IPv4FallbackIface=0
+PanelSplitter=AAAA/wAAAAAAAAACAAAFQAAAANABAAAAAwEAAAAC
+
+[Flags]
+BringToFront=true
+ShowServerList=false
+TabPlacement=Left
+
+[General Options]
+AndAppMsgToStatusPane=
+TrayNotify=true
+UseClickableNicks=
+
+[Identity 0]
+AuthType=nickserv
+AutomaticAway=false
+AutomaticUnaway=false
+AwayInactivity=10
+AwayMessage=
+AwayNick=
+AwayReason=Gone away for now
+Bot=nickserv
+Codec=UTF-8
+Ident=saschpe
+InsertRememberLineOnAway=false
+KickReason=User terminated!
+Name=Default Identity
+Nicknames=saschpe,saschpe_,saschpe__
+NickservCommand=identify
+PartReason=Konversation terminated!
+Password=
+PemClientCertFile=
+PreShellCommand=
+QuitReason=Konversation terminated!
+Realname=Sascha Peilicke
+ReturnMessage=
+SaslAccount=
+ShowAwayMessage=false
+
+[MainWindow]
+Height 1080=905
+State=AAAA/wAAAAD9AAAAAAAABZwAAAN1AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+StatusBar=Disabled
+ToolBarsMovable=Disabled
+Width 1920=1436
+
+[Nick Completion]
+CaseSensitive=true
+
+[NicksOnline ViewSettings]
+ColumnSortDescending=false
+ColumnSorted=0
+ColumnWidths=287,957
+
+[Notification Messages]
+ChannelListNoServerSelected=1
+ChannelListWarning=0
+ClearLogfileQuestion=1
+CloseQueryAfterIgnore=1
+HideMenuBarWarning=1
+HideOnCloseInfo=1
+IgnoreNick=1
+Invitation=0
+QuitChannelTab=0
+QuitDCCChatTab=1
+QuitQueryTab=0
+QuitServerTab=0
+QuitWithActiveDccTransfers=1
+ReconnectWithDifferentServer=1
+ReuseExistingConnection=1
+SaveLogfileNote=1
+UnignoreNick=1
+WarnEncodingConflict=1
+systemtrayquitKonversation=0
+
+[Notify List]
+OnStartup=true
+
+[Server 0]
+Password=
+Port=6697
+SSLEnabled=true
+Server=chat.freenode.net
+
+[Server 1]
+Password=
+Port=7000
+SSLEnabled=true
+Server=chat.freenode.net
+
+[Server 2]
+Password=sascha/FreeNode:C1sioQVR40
+Port=8251
+SSLEnabled=true
+Server=peilicke.me
+
+[Server 3]
+Password=
+Port=6697
+SSLEnabled=true
+Server=irc.suse.de
+
+[ServerGroup 0]
+AutoConnect=false
+AutoJoinChannels=Channel 0,Channel 1,Channel 2,Channel 3,Channel 4,Channel 5,Channel 6,Channel 7,Channel 8,Channel 9,Channel 10,Channel 11,Channel 12,Channel 13,Channel 14,Channel 15,Channel 16,Channel 17
+ChannelHistory=Channel 18,Channel 19,Channel 20,Channel 21,Channel 22,Channel 23,Channel 24,Channel 25,Channel 26,Channel 27,Channel 28,Channel 29,Channel 30,Channel 31,Channel 32,Channel 33,Channel 34,Channel 35,Channel 36,Channel 37
+ConnectCommands=
+EnableNotifications=false
+Expanded=true
+Identity=Default Identity
+Name=Freenode
+NotifyList=coolo darix henne AJaeger tittiatcoke mosez DimStar bmwiedemann mordred
+ServerList=Server 0,Server 1
+
+[ServerGroup 1]
+AutoConnect=true
+AutoJoinChannels=
+ChannelHistory=Channel 38,Channel 39,Channel 40,Channel 41,Channel 42,Channel 43,Channel 44,Channel 45,Channel 46,Channel 47,Channel 48,Channel 49,Channel 50,Channel 51,Channel 52,Channel 53,Channel 54,Channel 55
+ConnectCommands=
+EnableNotifications=false
+Expanded=true
+Identity=Default Identity
+Name=FreeNode (ZNC)
+NotifyList=coolo darix AJaeger mosez mordred DimStar
+ServerList=Server 2
+
+[ServerGroup 2]
+AutoConnect=true
+AutoJoinChannels=Channel 56,Channel 57,Channel 58,Channel 59,Channel 60,Channel 61
+ChannelHistory=Channel 62,Channel 63,Channel 64,Channel 65,Channel 66,Channel 67
+ConnectCommands=
+EnableNotifications=false
+Expanded=false
+Identity=Default Identity
+Name=SUSE
+NotifyList=darix vuntz aspiers rhafer rsimai mili bmwiedemann iartarisi
+ServerList=Server 3
+
+[ServerListDialog]
+ServerListHeaderState=\x00\x00\x00ˇ\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03]\x00\x00\x00\x03\x00\x01\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00»ˇˇˇˇ\x00\x00\x00Å\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00π\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00s\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x021\x00\x00\x00\x01\x00\x00\x00\x00
+Size=960,432
+
+[UrlCatcher ViewSettings]
+ColumnSortDescending=true
+ColumnSorted=2
+ColumnWidths=100,507,540

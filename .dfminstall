@@ -2,6 +2,7 @@ README.rst skip
 .unison recurse
 .bazaar recurse
 .irssi recurse
+.kde4 recurse
 .pip recurse
 .ssh recurse
 .subversion recurse
