@@ -9,11 +9,11 @@ update_info=konversation.upd:1.1-rememberline,konversation.upd:1.1-markerlines,k
 AliasList=sayclip /exec sayclip,mail /exec mail,bug /exec bug,media /exec media,audio /exec media audio,video /exec media video,tinyurl /exec tinyurl,uptime /exec uptime,gauge /exec gauge,fortune /exec fortune,cmd /exec cmd,sysinfo /exec sysinfo
 
 [Appearance]
-ChannelSplitterSizes=1085,162
+ChannelSplitterSizes=1119,128
 CustomTextFont=true
-TextFont=Monospace,9,-1,5,50,0,0,0,0,0
-TopicSplitterSizes=24,830
-TreeSplitterSizes=183,1250
+TextFont=Monospace,8,-1,5,50,0,0,0,0,0
+TopicSplitterSizes=25,825
+TreeSplitterSizes=183,1253
 
 [Autoreplace List]
 Direction0=o
@@ -378,6 +378,7 @@ TabPlacement=Left
 [General Options]
 AndAppMsgToStatusPane=
 TrayNotify=true
+TrayNotifyOnlyOwnNick=true
 UseClickableNicks=
 
 [Identity 0]
