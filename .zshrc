@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="saschpe"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often to auto-update? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -48,13 +48,13 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(command-not-found common-aliases dirhistory git mercurial pep8 pip python screen ssh-agent suse web-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -72,3 +72,23 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+export DEBFULLNAME="Sascha Peilicke"        # Useful Debian packaging stuff
+export DEBEMAIL="saschpe@mailbox.org"
+export JAVA_HOME="/usr/lib64/jvm/jre"
+
+ulimit -c unlimited                         # Enable 'core' dumps
+
+setterm -blength 0                          # Get rid of beeps
+
+# Go language specific settings
+export GOARCH=amd64
+export GOOS=linux
+export GOROOT=/usr/lib64/go
+export GOBIN=/usr/bin
+#
+# Convenience and human-readable format printing
+alias open="xdg-open 2> /dev/null > /dev/null"
+
+# Create a temporary directory and cd in it
+function tmpcd () { cd $(mktemp -d) }
