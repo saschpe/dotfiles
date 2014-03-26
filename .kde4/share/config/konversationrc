@@ -9,11 +9,14 @@ update_info=konversation.upd:1.1-rememberline,konversation.upd:1.1-markerlines,k
 AliasList=sayclip /exec sayclip,mail /exec mail,bug /exec bug,media /exec media,audio /exec media audio,video /exec media video,tinyurl /exec tinyurl,uptime /exec uptime,gauge /exec gauge,fortune /exec fortune,cmd /exec cmd,sysinfo /exec sysinfo
 
 [Appearance]
+BacklogLines=20
 ChannelSplitterSizes=1119,128
 CustomTextFont=true
+ShowDate=true
 TextFont=Monospace,8,-1,5,50,0,0,0,0,0
-TopicSplitterSizes=25,825
-TreeSplitterSizes=183,1253
+TopicSplitterSizes=25,827
+TreeSplitterSizes=183,1250
+UseBoldNicks=true
 
 [Autoreplace List]
 Direction0=o
@@ -315,32 +318,32 @@ Name=#suse
 Password=
 
 [Channel 62]
-EnableNotifications=true
+EnableNotifications=false
 Name=#cloud
 Password=
 
 [Channel 63]
-EnableNotifications=true
+EnableNotifications=false
 Name=#dist
 Password=
 
 [Channel 64]
-EnableNotifications=true
+EnableNotifications=false
 Name=#infra
 Password=
 
 [Channel 65]
-EnableNotifications=true
+EnableNotifications=false
 Name=#maintenance
 Password=
 
 [Channel 66]
-EnableNotifications=true
+EnableNotifications=false
 Name=#security
 Password=
 
 [Channel 67]
-EnableNotifications=true
+EnableNotifications=false
 Name=#suse
 Password=
 
@@ -372,6 +375,7 @@ PanelSplitter=AAAA/wAAAAAAAAACAAAFQAAAANABAAAAAwEAAAAC
 
 [Flags]
 BringToFront=true
+Log=false
 ShowServerList=false
 TabPlacement=Left
 
@@ -409,9 +413,11 @@ ShowAwayMessage=false
 
 [MainWindow]
 Height 1080=905
-State=AAAA/wAAAAD9AAAAAAAABZwAAAN1AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+Height 768=769
+State=AAAA/wAAAAD9AAAAAAAABVYAAALAAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
 StatusBar=Disabled
 ToolBarsMovable=Disabled
+Width 1366=1367
 Width 1920=1436
 
 [Nick Completion]
@@ -509,6 +515,10 @@ ServerList=Server 3
 [ServerListDialog]
 ServerListHeaderState=\x00\x00\x00ˇ\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03]\x00\x00\x00\x03\x00\x01\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00»ˇˇˇˇ\x00\x00\x00Å\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00π\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00s\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x021\x00\x00\x00\x01\x00\x00\x00\x00
 Size=960,432
+
+[Tab Notifications]
+TabNotificationsLeds=false
+TabNotificationsOverride=true
 
 [UrlCatcher ViewSettings]
 ColumnSortDescending=true

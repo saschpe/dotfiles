@@ -20,28 +20,42 @@ Logfile=
 Sound=
 
 [Event/highlight]
-Action=Popup
+Action=Popup|Taskbar
 Execute=
 KTTS=
 Logfile=
 Sound=
 
 [Event/kick]
-Action=Popup
+Action=Popup|Taskbar
+Execute=
+KTTS=
+Logfile=
+Sound=
+
+[Event/message]
+Action=
+Execute=
+KTTS=
+Logfile=
+Sound=
+
+[Event/notify]
+Action=
 Execute=
 KTTS=
 Logfile=
 Sound=
 
 [Event/query]
-Action=Popup
+Action=Popup|Taskbar
 Execute=
 KTTS=
 Logfile=
 Sound=
 
 [Event/queryMessage]
-Action=Popup
+Action=Popup|Taskbar
 Execute=
 KTTS=
 Logfile=
