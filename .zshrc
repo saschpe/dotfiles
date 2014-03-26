@@ -1,217 +1,74 @@
-##  vi:ft=sh:
-##
-## Zsh custom configuration file
-## Created by Sascha Peilicke <saschpe@gmx.de>
-##
-## This file is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt autocd extendedglob
-#setopt correct                              # Correct command spelling
-setopt inc_append_history                   # Append every command immediatly
-setopt share_history                        # Import new commands immediatly
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#bindkey -v                                 # Vi key bindings
-bindkey -e                                  # Emacs key bindings
+# Set this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# Turn on full featured completion
-zstyle :compinstall filename "/home/lastmohican/.zshrc"
-autoload -U zsh/zutils
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-zstyle ':completion:*:processes' command 'ps x -o pid,pcpu,tt,args'
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[white]=$color[red]"
-zstyle ':completion:*:*:rm:*' file-patterns '*.o:object-files %p:all-files'
-zstyle ':completion:*:*:wine:*' file-patterns '*.exe:executables *(-/):directories'
-zstyle ':completion:*:*:(*pdf*|acroread|rm):*' file-sort time
-zstyle ':completion:*' menu select=2
-#  scrolling in completition list
-local LISTPROMPT=
+# Uncomment this to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+# Uncomment to change how often to auto-update? (in days)
+# export UPDATE_ZSH_DAYS=13
 
-# Enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
-    alias ls="ls -h --color=auto"
-    #alias dir="ls --color=auto --format=vertical"
-    #alias vdir="ls --color=auto --format=long"
-    alias grep="grep --color=auto --exclude-dir=.svn --exclude-dir=.git"
-    alias fgrep="fgrep --color=auto --exclude-dir=.svn --exclude-dir=.git"
-    alias egrep="egrep --color=auto --exclude-dir=.svn --exclude-dir=.git"
-fi
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# Convenience and human-readable format printing
-alias v="ls -lha"
-alias d="ls -ah"
-alias h="history"
-alias ssi="ssh -T -o UserKnownHostsFile=/dev/null"
-alias top="top -d 1 -u $USER"
-alias dosbox="dosbox -conf /home/saschpe/.dosbox/dosbox.conf"
-alias df="df -h"
-alias du="du -h"
-alias free="free -m"
-alias rgrep="wcgrep -r"
-alias j="ps ax"
-alias open="kde-open 2> /dev/null > /dev/null"
-alias iosc="osc -A ibs"
-alias psc='ps xawf -eo pid,user,cgroup,args'
-alias virshduff='virsh -c qemu+ssh://root@duff.suse.de/system'
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# Global aliases
-alias -g "\&"="&> /dev/null &|"
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
 
-# Fast directory change
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias .......="cd ../../../../../.."
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-export BROWSER="/usr/bin/firefox"
-export DEBFULLNAME="Sascha Peilicke"        # Useful Debian packaging stuff
-export DEBEMAIL="saschpe@mailbox.org"
-export EDITOR="/usr/bin/vim"                # Default editor
-export JAVA_HOME="/usr/lib64/jvm/jre"
-#export LANG=de_DE.UTF-8
-#export LANGUAGE=en_US
-#export LC_ALL=de_DE.UTF-8
-#export LESS="-RIM"                         # Needed for git colors
-export MAKEFLAGS="-j3"                      # Parallel compiling (SMP)
-#export PAGER="less -RMi"
-export PATH=/usr/sbin:/sbin:/usr/bin:/bin:$HOME/bin:$HOME/.dotfiles/bin
-#export PROMPT="%n@%M:%~%# "                # Fancy prompt
-if [ $UID -eq 0 ] ; then
-    export PROMPT=$'%{\e[0;1;31m%}%n%{\e[0;36m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
-else
-    export PROMPT=$'%{\e[0;32m%}%n%{\e[0;36m%}@%m%{\e[0m%}:%{\e[0;33m%}%3~%{\e[0m%}%% '
-fi
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Go language specific settings
-export GOARCH=amd64
-export GOOS=linux
-export GOROOT=/usr/lib64/go
-export GOBIN=/usr/bin
-#export GOROOT=$HOME/projects/go/golang
-#export GOBIN=$GOROOT/bin
-export PATH=$GOBIN:$PATH
+# Uncomment following line if you want to the command execution time stamp shown 
+# in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
 
-# Ruby/Rails/Rubygems settings
-#export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# suse
-#export PATH=$PATH:/suse/bin
-# Set generic HTTP proxy for applications which honor http_proxy
-#http_proxy=http://127.0.0.1:8118/
-#HTTP_PROXY=$http_proxy
-#export http_proxy HTTP_PROXY
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
 
-ulimit -c unlimited                         # Enable 'core' dumps
+source $ZSH/oh-my-zsh.sh
 
-setterm -blength 0                          # Get rid of beeps
+# User configuration
 
-#function easy-ssh {
-#    exec ssh-agent zsh
-#}
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Override cd() to change environment based on the current working dir by
-# searching for the ".my_setup" file.
-#function cd() {
-#    if test -z "$1"; then
-#        builtin cd
-#    elif test -z "$2"; then
-#        builtin cd "$1"
-#    else
-#        builtin cd "$1" "$2"
-#    fi
-#    _f=`findup .my-setup`
-#    if test -n "$_f" -a "$_lastf" != "$_f"; then
-#        echo "Loading $_f"
-#        _lastf="$_f"
-#        source "$_f"
-#    fi
-#}
-# Execute our new cd() function once
-#cd .
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# Display processes tree in less
-pst () {
-    pstree -p $* | less -S
-}
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# mkdir && cd
-function mcd () { mkdir "$@"; cd "$@" }
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-# Create a temporary directory and cd in it
-function tmpcd () { cd $(mktemp -d) }
-
-function osc_expand_link () {
-    osc api "/source/$1/$2?rev=$3&linkrev=base&expand"
-}
-
-function silent () {
-    $@ > /dev/null 2>&1
-}
-
-if [ $TERM = "screen" ] ; then
-    # Set/reset hostname in screen window title SSH'd machine:
-    function ssh () {
-        args=$@
-        echo -n -e "\033k${args##* }\033\\"
-        command ssh "$@";
-        echo -n -e "\033k${HOST}\033\\"
-    }
-    # Set it initially for new windows:
-    echo -n -e "\033k${HOST}\033\\"
-fi
-
-function tar2 () {
-    tar -cjhf $1.tar.bz2 --exclude=".*" $1
-}
-
-# pip zsh completion start
-function _pip_completion {
-    local words cword
-    read -Ac words
-    read -cn cword
-    reply=( $( COMP_WORDS="$words[*]" \
-               COMP_CWORD=$(( cword-1 )) \
-               PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
-# See http://mah.everybody.org/docs/ssh
-SSH_ENV="$HOME/.ssh/environment"
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
