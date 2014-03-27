@@ -43,7 +43,7 @@ function admin_allocate()
   echo "Waiting for nodes to come up..."
   while ! crowbar machines list | grep ^d ; do sleep 10 ; done
   echo "Found one node"
-  while test $(crowbar machines list | grep ^d|wc -l) -lt $CLOUD_NODES ; do sleep 10 ; done
+  while [ $(crowbar machines list | grep ^d|wc -l) -lt $CLOUD_NODES ] ; do sleep 10 ; done
   nodes=$(crowbar machines list | grep ^d)
   for n in $nodes ; do
           wait_for 100 2 "knife node show -a state $n | grep discovered" "node to enter discovered state"
