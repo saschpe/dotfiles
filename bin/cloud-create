@@ -34,6 +34,10 @@ zypper -n ref
 zypper -n patch
 zypper -n install -l -t pattern cloud_admin
 
+echo "Add SUSE nameservers to dns barclamp data_bag"
+json-edit -a attributes.dns.nameservers -r -v '["10.120.2.88", "10.120.0.1"]' /opt/dell/chef/data_bags/crowbar/bc-template-dns.json
+
+echo "Run install-suse-cloud..."
 screen install-suse-cloud -v
 
 # Make CROWBAR_KEY available now:
@@ -58,18 +62,18 @@ echo "Waiting for nodes..."
 waitnodes nodes
 
 echo "Create proposals..."
-for service in database rabbitmq keystone ; do
-  echo "Create proposal $service"
-  crowbar $service proposal create default
-  crowbar $service proposal commit default
+for barclamp in database rabbitmq keystone ; do
+  echo "Create proposal ${barclamp}..."
+  crowbar $barclamp proposal create default
+  crowbar $barclamp proposal commit default
   echo $?
-  waitnodes proposal $service
+  waitnodes proposal $barclamp
   sleep 10
   ret=$?
   echo "exitcode: $ret"
   if [ $ret != 0 ] ; then
     tail -n 90 /opt/dell/crowbar_framework/log/d*.log /var/log/crowbar/chef-client/d*.log
-    echo "Error: commiting the crowbar proposal for '$service' failed ($ret)."
+    echo "Error: commiting the crowbar proposal for '$barclamp' failed ($ret)."
     exit 73
   fi
 done
