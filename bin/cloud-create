@@ -6,6 +6,7 @@ source $DIR/cloud-lib.sh
 ADMIN_OS=${ADMIN_OS:-11sp3}
 CLOUD_VER=${CLOUD_VER:-3}
 CLOUD_NODES=${CLOUD_NODES:-3}
+CROWBAR_PREP_PARAMS=${CROWBAR_PREP_PARAMS:-}
 DESTROY=${DESTROY:-1}
 
 if [ $DESTROY -ge 1 ] ; then
@@ -27,7 +28,7 @@ echo "Creating cloud admin.."
 scp -q $DIR/{crowbar-prep.sh,cloud-lib.sh} root@$ADMIN_IP:
 
 admin_script=$(cat <<EOS
-HOST_MIRROR=/srv/nfs/repos ./crowbar-prep.sh -p $CLOUD_VER host-nfs
+HOST_MIRROR=/srv/nfs/repos ./crowbar-prep.sh -p $CLOUD_VER $CROWBAR_PREP_PARAMS host-nfs
 
 zypper -n ref
 zypper -n patch
