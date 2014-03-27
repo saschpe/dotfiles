@@ -62,18 +62,18 @@ echo "Waiting for nodes..."
 waitnodes nodes
 
 echo "Create proposals..."
-for barclamp in database rabbitmq keystone ; do
-  echo "Create proposal ${barclamp}..."
-  crowbar $barclamp proposal create default
-  crowbar $barclamp proposal commit default
+for bc in database rabbitmq keystone ; do
+  echo "Create proposal ${bc}..."
+  crowbar_$bc proposal create default
+  crowbar_$bc proposal commit default
   echo $?
-  waitnodes proposal $barclamp
+  waitnodes proposal $bc
   sleep 10
   ret=$?
   echo "exitcode: $ret"
   if [ $ret != 0 ] ; then
     tail -n 90 /opt/dell/crowbar_framework/log/d*.log /var/log/crowbar/chef-client/d*.log
-    echo "Error: commiting the crowbar proposal for '$barclamp' failed ($ret)."
+    echo "Error: commiting the crowbar proposal for '$bc' failed ($ret)."
     exit 73
   fi
 done
