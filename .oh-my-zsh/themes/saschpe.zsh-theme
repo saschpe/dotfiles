@@ -4,7 +4,8 @@ if [ $UID -eq 0 ] ; then
 else
     local uid_color="%{$fg[green]%}"
 fi
-PROMPT='${uid_color}%n%{$fg[cyan]%}@%m%{$reset_color%}:%{$fg[magenta]%}%3~%{$reset_color%}$(git_prompt_info)$(hg_prompt_info)$(svn_prompt_info) '
+PROMPT='${uid_color}%n%{$fg[cyan]%}@%m%{$reset_color%}:%{$fg[magenta]%}%3~%{$reset_color%} '
+RPROMPT='$(git_prompt_info)$(hg_prompt_info)$(svn_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" git:%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
