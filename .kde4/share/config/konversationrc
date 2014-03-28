@@ -10,12 +10,12 @@ AliasList=sayclip /exec sayclip,mail /exec mail,bug /exec bug,media /exec media,
 
 [Appearance]
 BacklogLines=20
-ChannelSplitterSizes=1119,128
+ChannelSplitterSizes=1049,128
 CustomTextFont=true
 ShowDate=true
 TextFont=Monospace,8,-1,5,50,0,0,0,0,0
-TopicSplitterSizes=25,827
-TreeSplitterSizes=183,1250
+TopicSplitterSizes=25,646
+TreeSplitterSizes=183,1180
 UseBoldNicks=true
 
 [Autoreplace List]
@@ -290,19 +290,20 @@ Name=#python
 Password=
 
 [Channel 56]
-Name=#cloud
+EnableNotifications=true
+Name=#openstack-translation
 Password=
 
 [Channel 57]
-Name=#dist
+Name=#cloud
 Password=
 
 [Channel 58]
-Name=#infra
+Name=#dist
 Password=
 
 [Channel 59]
-Name=#maintenance
+Name=#infra
 Password=
 
 [Channel 6]
@@ -310,39 +311,44 @@ Name=#openstack-infra
 Password=
 
 [Channel 60]
-Name=#security
+Name=#maintenance
 Password=
 
 [Channel 61]
-Name=#suse
+Name=#security
 Password=
 
 [Channel 62]
-EnableNotifications=false
-Name=#cloud
+EnableNotifications[$d]
+Name=#suse
 Password=
 
 [Channel 63]
 EnableNotifications=false
-Name=#dist
+Name=#cloud
 Password=
 
 [Channel 64]
 EnableNotifications=false
-Name=#infra
+Name=#dist
 Password=
 
 [Channel 65]
 EnableNotifications=false
-Name=#maintenance
+Name=#infra
 Password=
 
 [Channel 66]
 EnableNotifications=false
-Name=#security
+Name=#maintenance
 Password=
 
 [Channel 67]
+EnableNotifications=false
+Name=#security
+Password=
+
+[Channel 68]
 EnableNotifications=false
 Name=#suse
 Password=
@@ -491,7 +497,7 @@ ServerList=Server 0,Server 1
 [ServerGroup 1]
 AutoConnect=true
 AutoJoinChannels=
-ChannelHistory=Channel 38,Channel 39,Channel 40,Channel 41,Channel 42,Channel 43,Channel 44,Channel 45,Channel 46,Channel 47,Channel 48,Channel 49,Channel 50,Channel 51,Channel 52,Channel 53,Channel 54,Channel 55
+ChannelHistory=Channel 38,Channel 39,Channel 40,Channel 41,Channel 42,Channel 43,Channel 44,Channel 45,Channel 46,Channel 47,Channel 48,Channel 49,Channel 50,Channel 51,Channel 52,Channel 53,Channel 54,Channel 55,Channel 56
 ConnectCommands=
 EnableNotifications=false
 Expanded=true
@@ -502,8 +508,8 @@ ServerList=Server 2
 
 [ServerGroup 2]
 AutoConnect=true
-AutoJoinChannels=Channel 56,Channel 57,Channel 58,Channel 59,Channel 60,Channel 61
-ChannelHistory=Channel 62,Channel 63,Channel 64,Channel 65,Channel 66,Channel 67
+AutoJoinChannels=Channel 57,Channel 58,Channel 59,Channel 60,Channel 61,Channel 62
+ChannelHistory=Channel 63,Channel 64,Channel 65,Channel 66,Channel 67,Channel 68
 ConnectCommands=
 EnableNotifications=false
 Expanded=false
