@@ -10,6 +10,8 @@ ZSH_THEME="saschpe"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias grc "git ci -C HEAD --amend"
+alias open="xdg-open 2> /dev/null > /dev/null"
 
 # Set this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -35,12 +37,12 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment following line if you want to the command execution time stamp shown 
 # in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -86,9 +88,6 @@ export GOARCH=amd64
 export GOOS=linux
 export GOROOT=/usr/lib64/go
 export GOBIN=/usr/bin
-#
-# Convenience and human-readable format printing
-alias open="xdg-open 2> /dev/null > /dev/null"
 
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
