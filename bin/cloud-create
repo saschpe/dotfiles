@@ -28,7 +28,7 @@ echo "Creating cloud admin.."
 scp -q $DIR/{crowbar-prep.sh,cloud-lib.sh} root@$ADMIN_IP:
 
 admin_script=$(cat <<EOS
-HOST_MIRROR=/srv/nfs/repos ./crowbar-prep.sh -p $CLOUD_VER $CROWBAR_PREP_PARAMS host-nfs
+HOST_MIRROR=/srv/nfs/repos ./crowbar-prep.sh -p $CLOUD_VER $CROWBAR_PREP_PARAMS nue-host-nfs
 
 zypper -n ref
 zypper -n patch
