@@ -38,3 +38,8 @@ nosetests.xml
 .tox
 .venv*
 __pycache__
+
+# btsync
+.SyncArchive
+.SyncID
+.SyncIgnore
