@@ -1,6 +1,7 @@
 README.rst skip
 .unison recurse
 .bazaar recurse
+.crawl recurse
 .irssi recurse
 .kde4 recurse
 .pip recurse
