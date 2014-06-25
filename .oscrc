@@ -11,7 +11,7 @@ apiurl = https://api.opensuse.org
 # extracted from currently used apiurl) for replacement, e.g.
 # /srv/oscbuild/%(repo)s-%(arch)s or
 # /srv/oscbuild/%(repo)s-%(arch)s-%(project)s-%(package)s
-build-root = /var/tmp/build-root/%(repo)s-%(arch)s-%(project)s-%(package)s
+#build-root = /var/tmp/build-root/%(repo)s-%(arch)s-%(project)s-%(package)s
 # compile with N jobs (default: "getconf _NPROCESSORS_ONLN")
 #build-jobs = N
 # build-type to use - values can be (depending on the capabilities of the 'build' script)
