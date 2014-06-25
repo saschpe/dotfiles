@@ -474,3 +474,7 @@ macro_dir = /home/saschpe/.crawl/settings
 #
 # Override the vi movement keys with a non-command.
 # include = no_vi_command_keys.txt
+##
+## Modification inserted by regen.sh Tue Jun 24 10:17:56 CEST 2014
+##
+restart_after_game = false
