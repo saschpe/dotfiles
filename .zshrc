@@ -81,7 +81,7 @@ export JAVA_HOME="/usr/lib64/jvm/jre"
 
 ulimit -c unlimited                         # Enable 'core' dumps
 
-setterm -blength 0                          # Get rid of beeps
+#setterm -blength 0                          # Get rid of beeps
 
 # Go language specific settings
 export GOARCH=amd64
