@@ -84,10 +84,10 @@ ulimit -c unlimited                         # Enable 'core' dumps
 #setterm -blength 0                          # Get rid of beeps
 
 # Go language specific settings
-export GOARCH=amd64
-export GOOS=linux
-export GOROOT=/usr/lib64/go
-export GOBIN=/usr/bin
+#export GOARCH=amd64
+#export GOOS=linux
+#export GOROOT=/usr/lib64/go
+#export GOBIN=/usr/bin
 
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
