@@ -77,7 +77,7 @@ export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH
 
 export DEBFULLNAME="Sascha Peilicke"        # Useful Debian packaging stuff
 export DEBEMAIL="saschpe@mailbox.org"
-export JAVA_HOME="/usr/lib64/jvm/jre"
+#export JAVA_HOME="/usr/lib64/jvm/jre"
 
 ulimit -c unlimited                         # Enable 'core' dumps
 
