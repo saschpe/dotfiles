@@ -1,7 +1,7 @@
 [core]
     editor = vi
     excludesfile = ~/.gitignore
-    #autocrlf = true
+    autocrlf = input
 
 [user]
     name = Sascha Peilicke
