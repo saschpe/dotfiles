@@ -75,13 +75,16 @@ export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-export DEBFULLNAME="Sascha Peilicke"        # Useful Debian packaging stuff
-export DEBEMAIL="saschpe@mailbox.org"
 #export JAVA_HOME="/usr/lib64/jvm/jre"
 
 ulimit -c unlimited                         # Enable 'core' dumps
 
 #setterm -blength 0                          # Get rid of beeps
+
+# Debian packaging stuff
+export DEBFULLNAME="Sascha Peilicke"
+export DEBEMAIL="saschpe@mailbox.org"
+export DEB_BUILD_ARCH=amd64
 
 # Go language specific settings
 #export GOARCH=amd64
