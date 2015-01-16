@@ -11,11 +11,12 @@
 set nocompatible                            " Get rid of Ex-Mode
 set noexrc                                  " Potential security risk
 
-" Use pathogen to easily modify the runtime path to include all plugins under
-" " the ~/.vim/bundle directory
-filetype off                                " force reloading *after* pathogen loaded
-call pathogen#infect()
-call pathogen#helptags()
+if exists("pathogen")
+    " Use pathogen to easily modify the runtime path to include all\
+    " plugins under the ~/.vim/bundle directory
+    execute pathogen#infect()
+    "execute pathogen#helptags()
+endif
 filetype plugin indent on                   " Enable all VIM's greatness
 syntax on
 
@@ -40,7 +41,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co >= 256 || has("gui_running")
-  colorscheme slate
+  colorscheme default
 endif
 if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                 " Syntax highlighting
@@ -59,7 +60,7 @@ else                                        " Vim running in a terminal
   "colorscheme slate
   "hi Folded ctermfg=grey ctermbg=darkgrey
   "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
 "  Hide buffers instead of closing them.
