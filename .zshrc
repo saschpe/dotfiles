@@ -86,6 +86,11 @@ export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="saschpe@mailbox.org"
 export DEB_BUILD_ARCH=amd64
 
+# Android stuff
+export ANDROID_HOME=$HOME/.android/sdk
+
+export CHROME_BIN=chromium-browser
+
 # Go language specific settings
 #export GOARCH=amd64
 #export GOOS=linux
