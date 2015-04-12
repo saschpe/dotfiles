@@ -6,26 +6,35 @@
 " MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible                            " be iMproved, required
+filetype off                                " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"call vundle#begin('~/some/path/here')      " alternatively, pass a path where Vundle should install plugins
+Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
+
+Plugin 'pangloss/vim-javascript'            " github.com/pangloss/vim-javascript
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'claco/jasmine.vim'                  " github.com/claco/jasmine.vim
+Plugin 'scrooloose/syntastic.git'           " github.com/scrooloose/syntastic
+Plugin 'burnettk/vim-angular'
+
+call vundle#end()                           " required
+filetype plugin indent on                   " required
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                            " Get rid of Ex-Mode
 set noexrc                                  " Potential security risk
-
-if exists("pathogen")
-    " Use pathogen to easily modify the runtime path to include all\
-    " plugins under the ~/.vim/bundle directory
-    execute pathogen#infect()
-    "execute pathogen#helptags()
-endif
-filetype plugin indent on                   " Enable all VIM's greatness
 syntax on
-
 set history=1000
 set undolevels=1000
-
 set visualbell                              " don't beep
 set noerrorbells                            " don't beep
-
 set nobackup                
 set noswapfile
 
@@ -74,7 +83,6 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim UI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,7 +121,9 @@ set foldcolumn=1                            " Left column for fold control
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other / custom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autowrite
+set autowrite                               " Writes on make / shell commands
+set autoread
+set clipboard+=unnamed                      " Yanks go on clipboard instead
 set showmode                                " Display current mode ('insert', 'replace', ...)
 set showcmd                                 " Display partially-typed commands in the status line
 set showmatch                               " Show matching braces
