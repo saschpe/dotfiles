@@ -87,7 +87,11 @@ export DEBEMAIL="saschpe@mailbox.org"
 export DEB_BUILD_ARCH=amd64
 
 # Android stuff
-export ANDROID_HOME=$HOME/.android/sdk
+if [ $TERM_PROGRAM = "Apple_Terminal" ] ; then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+else
+    export ANDROID_HOME=$HOME/.android/sdk
+fi
 export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:${PATH}
 
 export CHROME_BIN=chromium-browser
