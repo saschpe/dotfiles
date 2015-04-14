@@ -7,6 +7,6 @@ Includes oh-my-zsh, dotfilemanager, no fuzz and personal taste.
 Update
 ------
 
-To update the oh-my-zsh git subtree, type::
+To update the oh-my-zsh and vim bundle git subtrees, type::
 
-    git subtree pull --prefix .oh-my-zsh https://github.com/robbyrussell/oh-my-zsh.git master --squash
+    ./bin/dotfiles-update
