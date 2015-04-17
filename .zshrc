@@ -87,7 +87,7 @@ export DEBEMAIL="saschpe@mailbox.org"
 export DEB_BUILD_ARCH=amd64
 
 # Android stuff
-if [ $TERM_PROGRAM = "Apple_Terminal" ] ; then
+if [ "$TERM_PROGRAM" = "Apple_Terminal" ] ; then
     export ANDROID_HOME=$HOME/Library/Android/sdk
 else
     export ANDROID_HOME=$HOME/.android/sdk
@@ -103,7 +103,9 @@ export CHROME_BIN=chromium-browser
 #export GOBIN=/usr/bin
 
 # Rubygems
-export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION")/bin/:${PATH}
+if [ -e /usr/bin/ruby ] ; then
+  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION")/bin/:${PATH}
+fi
 
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
