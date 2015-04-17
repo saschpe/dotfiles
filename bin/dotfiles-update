@@ -8,6 +8,8 @@ SUBTREES=(
 .vim/bundle/syntastic https://github.com/scrooloose/syntastic.git
 .vim/bundle/vim-angular https://github.com/burnettk/vim-angular.git
 .vim/bundle/vim-javascript https://github.com/pangloss/vim-javascript.git
+.vim/bundle/vim-gradle https://github.com/tfnico/vim-gradle.git
+.vim/bundle/vim-less https://github.com/groenewege/vim-less.git
 )
 
 for ((i = 0; i <= ${#SUBTREES[@]}; i += 2)) ; do
