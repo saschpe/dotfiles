@@ -1,7 +1,6 @@
 README.rst skip
 .unison recurse
 .bazaar recurse
-.crawl recurse
 .irssi recurse
 .pip recurse
 .ssh recurse
