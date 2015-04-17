@@ -31,6 +31,8 @@
     df = diff
     ds = diff --stat
     fa = fetch --all
+    fp = fetch --prune
+    fap = fetch --all --prune
     fo = fetch origin
     fp = format-patch
     lo = log --pretty=oneline --abbrev-commit

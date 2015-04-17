@@ -102,5 +102,8 @@ export CHROME_BIN=chromium-browser
 #export GOROOT=/usr/lib64/go
 #export GOBIN=/usr/bin
 
+# Rubygems
+export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION")/bin/:${PATH}
+
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
