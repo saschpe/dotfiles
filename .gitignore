@@ -1,15 +1,10 @@
+# Unix / Linux
 *.pid
 *~
 *.bak
 *.tmp
 .#*
 .directory
-
-# Git
-.git
-
-# Mercurial
-.hg
 
 # Patch
 *.orig
@@ -21,12 +16,20 @@
 Session.vim
 .vim/.netrwhist
 
+# Git
+.git
+
+# Mercurial
+.hg
+
 # Subversion
 .svn
 
 # Java
-nbproject
 *.class
+
+# Netbeans
+nbproject
 
 # Python
 build
@@ -39,7 +42,50 @@ nosetests.xml
 .venv*
 __pycache__
 
-# btsync
+# BTSync
 .SyncArchive
 .SyncID
 .SyncIgnore
+
+# Gradle
+.gradle/
+build/
+local.properties
+
+# IntelliJ / Android Studio
+*.iml
+.idea/.name
+# User-specific stuff:
+.idea/dictionaries
+.idea/find.xml
+.idea/misc.xml
+.idea/workspace.xml
+.idea/tasks.xml
+# Sensitive or high-churn files:
+## .idea/dataSources.ids
+## .idea/dataSources.xml
+## .idea/sqlDataSources.xml
+## .idea/dynamic.xml
+## .idea/uiDesigner.xml
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+.idea/modules.xml
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+# JIRA plugin
+atlassian-ide-plugin.xml
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+# Eclipse
+.classpath
+.project
+
+# Windows
+Thumbs.db
+
+# Mac OS X
+.DS_Store
