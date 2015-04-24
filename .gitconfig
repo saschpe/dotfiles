@@ -2,6 +2,7 @@
     editor = vim
     excludesfile = ~/.gitignore
     autocrlf = input
+    savecrlf = true
 
 [user]
     name = Sascha Peilicke
