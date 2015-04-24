@@ -104,7 +104,7 @@ export CHROME_BIN=chromium-browser
 
 # Rubygems
 if [ -e /usr/bin/ruby ] ; then
-  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION")/bin/:${PATH}
+  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin/:${PATH}
 fi
 
 # Create a temporary directory and cd in it
