@@ -97,14 +97,12 @@ export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:${PATH}
 export CHROME_BIN=chromium-browser
 
 # Go language specific settings
-#export GOARCH=amd64
-#export GOOS=linux
-#export GOROOT=/usr/lib64/go
-#export GOBIN=/usr/bin
+export GOPATH=$HOME/.go
+export PATH=${GOPATH//://bin:}/bin:$PATH
 
 # Rubygems
 if [ -e /usr/bin/ruby ] ; then
-  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin/:${PATH}
+  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${PATH}
 fi
 
 # Create a temporary directory and cd in it
