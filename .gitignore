@@ -25,12 +25,6 @@ Session.vim
 # Subversion
 .svn
 
-# Java
-*.class
-
-# Netbeans
-nbproject
-
 # Python
 build
 dist
@@ -46,6 +40,16 @@ __pycache__
 .SyncArchive
 .SyncID
 .SyncIgnore
+
+# Java
+*.class
+
+# Android
+*.apk
+*.dex
+
+# Netbeans
+nbproject
 
 # Gradle
 .gradle/
