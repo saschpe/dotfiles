@@ -105,5 +105,8 @@ if [ -e /usr/bin/ruby ] ; then
   export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${PATH}
 fi
 
+# Jenkins CLI
+export JENKINS_URL="http://jenkins"
+
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
