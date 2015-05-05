@@ -10,8 +10,13 @@ SUBTREES=(
 .vim/bundle/vim-javascript https://github.com/pangloss/vim-javascript.git
 .vim/bundle/vim-gradle https://github.com/tfnico/vim-gradle.git
 .vim/bundle/vim-less https://github.com/groenewege/vim-less.git
+.vim/bundle/typescript-vim https://github.com/leafgarland/typescript-vim
 )
 
 for ((i = 0; i <= ${#SUBTREES[@]}; i += 2)) ; do
-    git subtree pull --prefix ${SUBTREES[i]} ${SUBTREES[i+1]} master --squash -m "Merge subtree for '${SUBTREES[i]}'"
+    if [ ! -d "${SUBTREES[i]}" ] ; then
+        git subtree add --prefix ${SUBTREES[i]} ${SUBTREES[i+1]} master --squash
+    else
+        git subtree pull --prefix ${SUBTREES[i]} ${SUBTREES[i+1]} master --squash -m "Merge subtree for '${SUBTREES[i]}'"
+    fi
 done
