@@ -155,20 +155,39 @@ endfunction
 function! s:Alternate(cmd) abort
   let l:currentpath = expand('%')
   let l:possiblepathsforalternatefile = []
+
   for possiblenewpath in [s:SubStr(l:currentpath, ".js", "_test.js"), s:SubStr(l:currentpath, "_test.js", ".js")]
     if possiblenewpath != l:currentpath
-      let l:possiblepathsforalternatefile = [possiblenewpath]
+      let l:possiblepathsforalternatefile = l:possiblepathsforalternatefile + [possiblenewpath]
     endif
   endfor
 
+  " handle a test subdirectory just above the leaf node
+  let l:possiblenewpath = s:SubStr(l:currentpath, "/test/", "/")
+  if possiblenewpath != l:currentpath
+    let l:possiblepathsforalternatefile = l:possiblepathsforalternatefile + [s:SubStr(possiblenewpath, '.spec.js', '.js')]
+  else
+    let l:lastslashindex = strridx(l:currentpath, '/')
+    let l:possibletestpath = strpart(l:currentpath, 0, l:lastslashindex) . '/test' . s:SubStr(strpart(l:currentpath, l:lastslashindex), '.js', '.spec.js')
+    let l:possiblepathsforalternatefile = l:possiblepathsforalternatefile + [l:possibletestpath]
+  endif
+
   if exists('g:angular_source_directory')
-    let l:possiblesrcpaths = [g:angular_source_directory]
+    if type(g:angular_source_directory) == type([])
+      let l:possiblesrcpaths = g:angular_source_directory
+    else
+      let l:possiblesrcpaths = [g:angular_source_directory]
+    endif
   else
     let l:possiblesrcpaths = ['app/src', 'app/js', 'app/scripts', 'public/js', 'frontend/src']
   endif
 
   if exists('g:angular_test_directory')
-    let l:possibletestpaths = [g:angular_test_directory]
+    if type(g:angular_test_directory) == type([])
+      let l:possibletestpaths = g:angular_test_directory
+    else
+      let l:possibletestpaths = [g:angular_test_directory]
+    endif
   else
     let l:possibletestpaths = ['test/unit', 'test/spec', 'test/karma/unit', 'tests/frontend']
   endif
@@ -217,26 +236,36 @@ function! s:AngularRunSpecOrBlock(jasminekeyword) abort
   cal s:SearchUpForPattern(a:jasminekeyword . '(')
 
   let l:wordundercursor = expand('<cword>')
-  let l:firstletter = s:FirstLetterOf(a:jasminekeyword)
+  let l:jasmine1 = exists('g:angular_jasmine_version') && g:angular_jasmine_version == 1
+  if l:jasmine1
+    let l:additionalletter = s:FirstLetterOf(a:jasminekeyword)
+  else
+    let l:additionalletter = 'f'
+  end
 
   if l:wordundercursor == a:jasminekeyword
     " if there was a spec (anywhere in the file) highlighted with "iit" before, revert it to "it"
     let l:positionofspectorun = getpos('.')
 
     " this can move the cursor, hence setting the cursor back
-    %s/ddescribe/describe/ge
-    %s/iit/it/ge
+    if l:jasmine1
+      %s/ddescribe(/describe(/ge
+      %s/iit(/it(/ge
+    else
+      %s/fdescribe(/describe(/ge
+      %s/fit(/it(/ge
+    end
 
     " move cursor back to the spec we want to run
     call setpos('.', l:positionofspectorun)
 
     " either change the current spec to "iit" or
     " the current block to "ddescribe"
-    execute 'silent normal! cw' . l:firstletter . a:jasminekeyword
-  elseif l:wordundercursor == l:firstletter . a:jasminekeyword
-    " either delete the second i in "iit" or
-    " the second d in "ddescribe"
-    execute 'silent normal! x'
+    execute 'silent normal! cw' . l:additionalletter . a:jasminekeyword
+  elseif l:wordundercursor == l:additionalletter . a:jasminekeyword
+    " either delete the first i in "iit" or
+    " the first d in "ddescribe"
+    execute 'silent normal! hx'
   endif
 
   update " write the file if modified
