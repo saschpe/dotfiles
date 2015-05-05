@@ -96,6 +96,9 @@ export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:${PATH}
 
 export CHROME_BIN=chromium-browser
 
+# User-local prefix binaries
+export PATH=$HOME/.local/bin:$PATH
+
 # Go language specific settings
 export GOPATH=$HOME/.go
 export PATH=${GOPATH//://bin:}/bin:$PATH
