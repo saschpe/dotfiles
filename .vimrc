@@ -24,6 +24,7 @@ Plugin 'scrooloose/syntastic.git'           " github.com/scrooloose/syntastic
 Plugin 'burnettk/vim-angular'
 Plugin 'tfnico/vim-gradle'
 Plugin 'groenewege/vim-less'
+Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-vim
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -270,3 +271,7 @@ if has("autocmd")
   " SQL options
   autocmd FileType sql set omnifunc=sqlcomplete#Complete
 endif
+
+" Quick fix window
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
