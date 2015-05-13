@@ -7,11 +7,11 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="saschpe"
 
-# Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grc "git ci -C HEAD --amend"
 alias open="xdg-open 2> /dev/null > /dev/null"
+alias find="noglob find"
 
 # Set this to use case-sensitive completion
 CASE_SENSITIVE="true"
