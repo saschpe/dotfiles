@@ -12,6 +12,7 @@ ZSH_THEME="saschpe"
 alias grc "git ci -C HEAD --amend"
 alias open="xdg-open 2> /dev/null > /dev/null"
 alias find="noglob find"
+alias psc="ps xawf -eo pid,user,cgroup,args"
 
 # Set this to use case-sensitive completion
 CASE_SENSITIVE="true"
