@@ -25,6 +25,7 @@
     ama = am --abort
     ams = am --skip
     br = branch
+    ba = branch -a
     co = checkout
     cp = cherry-pick
     ci = commit
