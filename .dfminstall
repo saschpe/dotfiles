@@ -6,4 +6,3 @@ README.rst skip
 .ssh recurse
 .subversion recurse
 .wireshark recurse
-.config recurse

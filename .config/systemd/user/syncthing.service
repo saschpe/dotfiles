@@ -1,8 +1,0 @@
-[Unit]
-Description=Syncthing
-
-[Service]
-ExecStart=/usr/bin/syncthing
-
-[Install]
-WantedBy=network-online.target
