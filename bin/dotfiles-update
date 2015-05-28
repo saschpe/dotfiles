@@ -11,6 +11,7 @@ SUBTREES=(
 .vim/bundle/vim-gradle https://github.com/tfnico/vim-gradle.git
 .vim/bundle/vim-less https://github.com/groenewege/vim-less.git
 .vim/bundle/typescript-vim https://github.com/leafgarland/typescript-vim
+.vim/bundle/vim-go https://github.com/fatih/vim-go.git
 )
 
 for ((i = 0; i <= ${#SUBTREES[@]}; i += 2)) ; do
