@@ -26,6 +26,7 @@ Plugin 'tfnico/vim-gradle'
 Plugin 'groenewege/vim-less'
 Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-vim
 Plugin 'fatih/vim-go'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required

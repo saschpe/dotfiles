@@ -12,6 +12,7 @@ SUBTREES=(
 .vim/bundle/vim-less https://github.com/groenewege/vim-less.git
 .vim/bundle/typescript-vim https://github.com/leafgarland/typescript-vim
 .vim/bundle/vim-go https://github.com/fatih/vim-go.git
+.vim/bundle/editorconfig-vim https://github.com/editorconfig/editorconfig-vim.git
 )
 
 for ((i = 0; i <= ${#SUBTREES[@]}; i += 2)) ; do
