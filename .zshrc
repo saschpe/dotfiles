@@ -87,8 +87,8 @@ export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="saschpe@mailbox.org"
 export DEB_BUILD_ARCH=amd64
 
-# Android stuff
-if [ "$TERM_PROGRAM" = "Apple_Terminal" ] ; then
+# Android
+if [ `uname` = "Darwin" ] ; then
     export ANDROID_HOME=$HOME/Library/Android/sdk
 else
     export ANDROID_HOME=$HOME/.android/sdk
@@ -111,6 +111,15 @@ fi
 
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
+
+# Mac OS X
+if [ `uname` = "Darwin" ] ; then
+    # Macports
+    if [ -d /opt/local ] ; then
+        export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+        export MANPATH=/opt/local/share/man:$MANPATH
+    fi
+fi
 
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
