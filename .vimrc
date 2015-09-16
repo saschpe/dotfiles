@@ -1,5 +1,5 @@
-" Vim / GVim custom configuration file
-" Created by Sascha Peilicke <saschpe@gmx.de>
+" Vim / GVim / MacVim custom configuration file
+" Created by Sascha Peilicke <sascha@peilicke.de>
 "
 " This file is distributed in the hope that it will be useful,
 " but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -55,7 +55,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co >= 256 || has("gui_running")
-  colorscheme default
+    if (system('uname') =~ "Darwin")
+    	colorscheme desert
+    else
+        colorscheme default
+    endif
 endif
 if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                 " Syntax highlighting
