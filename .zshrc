@@ -10,7 +10,6 @@ ZSH_THEME="saschpe"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grc "git ci -C HEAD --amend"
-alias open="xdg-open 2> /dev/null > /dev/null"
 alias find="noglob find"
 alias psc="ps xawf -eo pid,user,cgroup,args"
 
@@ -119,6 +118,8 @@ if [ `uname` = "Darwin" ] ; then
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
         export MANPATH=/opt/local/share/man:$MANPATH
     fi
+else
+alias open="xdg-open 2> /dev/null > /dev/null"
 fi
 
 # Create a temporary directory and cd in it
