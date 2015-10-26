@@ -93,6 +93,7 @@ else
     export ANDROID_HOME=$HOME/.android/sdk
 fi
 export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:${PATH}
+export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 
 export CHROME_BIN=chromium-browser
 
