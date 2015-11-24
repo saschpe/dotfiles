@@ -92,9 +92,11 @@ if [ `uname` = "Darwin" ] ; then
 else
     export ANDROID_HOME=$HOME/.android/sdk
 fi
-export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:${PATH}
+ANDROID_BUILD_TOOLS_VERSION="23.0.2"
+export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:${PATH}
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 
+# Chrome
 export CHROME_BIN=chromium-browser
 
 # User-local prefix binaries
