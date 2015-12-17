@@ -1,5 +1,4 @@
 README.rst skip
-.unison recurse
 .bazaar recurse
 .irssi recurse
 .pip recurse
