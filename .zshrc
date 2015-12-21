@@ -89,12 +89,16 @@ export DEB_BUILD_ARCH=amd64
 # Android
 if [ `uname` = "Darwin" ] ; then
     export ANDROID_HOME=$HOME/Library/Android/sdk
+    # AOSP want's JDK 1.7.x, make sure we use that:
+    jdk7_ver=$(ls /Library/Java/JavaVirtualMachines/ | grep "1.7" | tail -n 1)
+    export ANDROID_JAVA_HOME=/Library/Java/JavaVirtualMachines/$jdk7_ver/Contents/Home/
 else
     export ANDROID_HOME=$HOME/.android/sdk
 fi
 ANDROID_BUILD_TOOLS_VERSION="23.0.2"
 export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:${PATH}
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
+alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 
 # Chrome
 export CHROME_BIN=chromium-browser

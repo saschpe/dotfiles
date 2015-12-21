@@ -1,0 +1,42 @@
+#!/bin/sh
+# Android Open Source Project bootstrap script
+#
+# You may want to source this script rather than execute it. You can simplify
+# this slightly by putting this line into your ~/.zshrc or ~/.bashrc
+#
+#   alias aosp-env="source $HOME/bin/aosp-env"
+#
+# Find more details at https://source.android.com/source/initializing.html
+
+ANDROID_USER_ROOT=$HOME/.android
+
+if [ `uname` = "Darwin" ] ; then
+    disk_image="$ANDROID_USER_ROOT/aosp.dmg.sparseimage"
+    mount_point="/Volumes/android"
+
+    if ! test -f $disk_image ; then
+        echo "Creating sparse disk image: $disk_image..."
+        hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g $disk_image
+    fi
+    if ! mount | grep -q $mount_point ; then
+        echo "Mounting sparse disk image..."
+        hdiutil attach $disk_image -mountpoint $mount_point
+    fi
+    cd $mount_point
+else
+    mount_point="$ANDROID_USER_ROOT/aosp"
+    mkdir -p $mount_point
+    cd $mount_point
+fi
+
+repo init -u https://android.googlesource.com/platform/manifest
+repo sync
+
+# AOSP want's JDK 1.7.x, assuming we have ANDROID_JAVA_HOME correctly set in
+# either ~/.bashrc or ~/.zshrc, we also have to add it to PATH here. We
+# just don't want to do this globally.
+export PATH=$ANDROID_JAVA_HOME/bin:$PATH
+
+source build/envsetup.sh
+
+# Now you can enter "lunch aosp_arm-eng" and then "make -j4"...
