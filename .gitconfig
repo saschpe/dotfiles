@@ -24,6 +24,7 @@
 [alias]
     ama = am --abort
     ams = am --skip
+    can = commit --amend --no-edit
     br = branch
     ba = branch -a
     co = checkout
