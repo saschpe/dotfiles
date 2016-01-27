@@ -144,18 +144,15 @@ set modelines=5                             " Amount of lines (top, bottom) to s
 set title                                   " change the terminal's title
 set ofu=syntaxcomplete#Complete             " Turn on omnicompletion
 
-if has("autocmd") 
-  if exists("+omnifunc")
-    autocmd Filetype *
-    \ if &omnifunc == "" |
-    \   setlocal omnifunc=syntaxcomplete#Complete |
-    \ endif
-  endif
-
-  autocmd BufRead,BufNewFile *.json setf js
-  autocmd BufRead,BufNewFile *.m setf objc
-  autocmd BufRead,BufNewFile *.go setf go
+if exists("+omnifunc")
+autocmd Filetype *
+\ if &omnifunc == "" |
+\   setlocal omnifunc=syntaxcomplete#Complete |
+\ endif
 endif
+
+autocmd BufRead,BufNewFile *.json setf js
+autocmd BufRead,BufNewFile *.m setf objc
 
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position
@@ -207,16 +204,12 @@ let g:bike_exceptions = 1                   " Show tracebacks on exceptions
 let g:bike_progress = 1                     " Show import progress
 let g:pydoc_highlight= 1                    " Highlighting for pydoc
 
-if has("autocmd")
-  autocmd FileType python set foldmethod=indent shiftwidth=4 softtabstop=4 omnifunc=pythoncomplete#Complete
-  autocmd BufRead,BufNewFile zcml,pt setf xml   " Zope
-
-  " Many people like to remove any extra whitespace from the ends of lines.
-  " Here is one way to do it when saving your file.
-  "autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-
-  autocmd FileType htmldjango set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
-endif
+autocmd FileType python set foldmethod=indent shiftwidth=4 softtabstop=4 omnifunc=pythoncomplete#Complete
+autocmd BufRead,BufNewFile zcml,pt setf xml   " Zope
+" Many people like to remove any extra whitespace from the ends of lines.
+" Here is one way to do it when saving your file.
+"autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+autocmd FileType htmldjango set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C / C++ options and related
@@ -226,40 +219,31 @@ set path=,$QTSRCDIR/src/**,$QTDIR/src/**
 set tags=./tags,tags,$QTSRCDIR/src/tags,$QTDIR/src/tags
 let c_space_errors=1                        " Show unneeded spaces as errors in C code
 
-if has("autocmd")
-  autocmd FileType c,cpp set cindent omnifunc=ccomplete#Complete
-
-  " Makefile options
-  autocmd FileType Makefile set noexpandtab shiftwidth=8 softtabstop=8 "tabstop=8
-
-  " CMake options
-  autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
-  autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in setf cmake
-
-  " Qt options
-  autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
-endif
+autocmd FileType c,cpp set cindent omnifunc=ccomplete#Complete
+" Makefile options
+autocmd FileType Makefile set noexpandtab shiftwidth=8 softtabstop=8 "tabstop=8
+" CMake options
+autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
+autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in,*.ctest,*.ctest.in setf cmake
+" Qt options
+autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ruby / Ruby on Rails options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("autocmd")
-  autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
-  autocmd FIleType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
-endif
+autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
+autocmd FIleType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " XML / HTML / CSS / JavaScript options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:xml_syntax_folding = 1                " syntax folding
 
-if has("autocmd")
-  autocmd FileType html set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType xml set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=xmlcomplete#CompleteTags
-  autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-endif
+autocmd FileType html set foldmethod=syntax shiftwidth=2 softtabstop=2 omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType xml set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=xmlcomplete#CompleteTags
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
@@ -278,21 +262,19 @@ let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
 
-if has("autocmd")
-  " Systemd options
-  autocmd BufRead,BufNewFile *.service setf desktop
+" Systemd options
+autocmd BufRead,BufNewFile *.service setf desktop
 
-  " Open Build Service options
-  autocmd BufRead,BufNewFile _service setf xml
+" Open Build Service options
+autocmd BufRead,BufNewFile _service setf xml
 
-  " SQL options
-  autocmd FileType sql set omnifunc=sqlcomplete#Complete
+" SQL options
+autocmd FileType sql set omnifunc=sqlcomplete#Complete
 
-  " Quick fix window
-  autocmd QuickFixCmdPost [^l]* nested cwindow
-  autocmd QuickFixCmdPost    l* nested lwindow
+" Quick fix window
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
-  autocmd BufRead,BufNewFile *.conf setf config
-  " nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
-  autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setfiletype nginx
-endif
+autocmd BufRead,BufNewFile *.conf setf config
+" nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
+autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setf nginx
