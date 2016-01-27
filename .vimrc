@@ -28,6 +28,7 @@ Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-
 Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
+Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required

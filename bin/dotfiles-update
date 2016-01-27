@@ -14,6 +14,7 @@ SUBTREES=(
 .vim/bundle/vim-go https://github.com/fatih/vim-go.git
 .vim/bundle/editorconfig-vim https://github.com/editorconfig/editorconfig-vim.git
 .vim/bundle/nginx.vim https://github.com/vim-scripts/nginx.vim.git
+.vim/bundle/Dockerfile.vim https://github.com/ekalinin/Dockerfile.vim.git
 )
 
 for ((i = 0; i <= ${#SUBTREES[@]}; i += 2)) ; do
