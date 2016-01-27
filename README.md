@@ -2,7 +2,7 @@ javascript-libraries-syntax.vim
 ===============================
 
 Syntax file for JavaScript libraries. Supports JavaScript libraries I am using (patches welcome).
-Should works well with other JavaScript syntax file. [SyntaxComplete][] also works well on all 
+Should work well with other JavaScript syntax files. [SyntaxComplete][] also works well on all 
 supported languages.
 
 [SyntaxComplete]:http://www.vim.org/scripts/script.php?script_id=3172
@@ -17,6 +17,7 @@ Libraries
 * [prelude.ls](http://gkz.github.com/prelude-ls/)
 * [AngularJS](http://angularjs.org/)
 * [AngularUI](http://angular-ui.github.io)
+* [AngularUI Router](http://angular-ui.github.io/ui-router/)
 * [React](https://facebook.github.io/react/)
 * [Flux](https://facebook.github.io/flux/)
 * [RequireJS](http://requirejs.org/)
@@ -48,7 +49,9 @@ Config
 
 You can use g:used_javascript_libs to setup used libraries, ex:
 
-    let g:used_javascript_libs = 'underscore,backbone'
+```viml
+let g:used_javascript_libs = 'underscore,backbone'
+```
 
 Support libs id:
 
@@ -59,6 +62,7 @@ Support libs id:
 * prelude.ls: prelude
 * AngularJS: angularjs
 * AngularUI: angularui
+* AngularUI Router: angularuirouter
 * React: react
 * Flux: flux
 * RequireJS: requirejs
@@ -71,11 +75,13 @@ Default lib set is: `jquery,underscore,backbone`
 
 You can use [local vimrc][] to setup libraries used in project. Sample code for local vimrc:
 
-    autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
-    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
+```viml
+autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
+autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
+```
 
 [local vimrc]:https://github.com/MarcWeber/vim-addon-local-vimrc
 
