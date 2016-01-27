@@ -44,8 +44,7 @@ set noerrorbells                            " don't beep
 set nobackup                
 set noswapfile
 
-" change the mapleader from \ to ,
-let mapleader=","
+let mapleader=","                           " change the mapleader from \ to ,
 let maplocalleader="\\"
 
 " Quickly edit/reload the vimrc file
@@ -82,11 +81,8 @@ else                                        " Vim running in a terminal
   "hi Comment ctermfg=darkcyan ctermbg=darkgrey
 endif
 
-"  Hide buffers instead of closing them.
-set hidden
-
+set hidden                                  "  Hide buffers instead of closing them.
 set pastetoggle=<F2>
-
 nmap <silent> <leader>/ :nohlsearch<CR>
 
 " D'oh! Forgot sudo again, fix it with:
@@ -265,6 +261,18 @@ if has("autocmd")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
@@ -278,8 +286,12 @@ if has("autocmd")
 
   " SQL options
   autocmd FileType sql set omnifunc=sqlcomplete#Complete
-endif
 
-" Quick fix window
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+  " Quick fix window
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+
+  autocmd BufRead,BufNewFile *.conf setf config
+  " nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
+  autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setfiletype nginx
+endif
