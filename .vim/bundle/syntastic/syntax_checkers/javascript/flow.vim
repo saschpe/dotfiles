@@ -29,12 +29,12 @@ function! SyntaxCheckers_javascript_flow_IsAvailable() dict
 endfunction
 
 function! SyntaxCheckers_javascript_flow_GetLocList() dict
-    if findfile('.flowconfig', '.;') ==# ''
+    if syntastic#util#findFileInParent('.flowconfig', expand('%:p:h', 1)) ==# ''
         return []
     endif
 
     let makeprg = self.makeprgBuild({
-        \ 'exe': self.getExecEscaped() . ' status',
+        \ 'exe': self.getExecEscaped() . ' check',
         \ 'args_after': '--show-all-errors --json' })
 
     let errorformat =
