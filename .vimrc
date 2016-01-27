@@ -27,6 +27,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-vim
 Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
