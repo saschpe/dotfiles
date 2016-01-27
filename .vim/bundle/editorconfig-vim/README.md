@@ -22,6 +22,12 @@ To install this plugin, you can use either of the following ways:
 - Use [pathogen][] (the git repository of this plugin is
   https://github.com/editorconfig/editorconfig-vim.git)
 
+- Use [Vundle][] by adding to your `.vimrc` Vundle plugins section:
+
+        Plugin 'editorconfig/editorconfig-vim'
+  
+  Then remember to call `:PluginInstall`.
+
 
 ## Supported properties
 
@@ -32,14 +38,14 @@ The EditorConfig Vim plugin supports the following EditorConfig [properties][]:
 * `tab_width`
 * `end_of_line`
 * `charset`
-* `insert_final_newline` ([PreserveNoEOL][] is required for this property)
+* `insert_final_newline` (Feature +fixendofline (available on Vim 7.4.785+) or [PreserveNoEOL][] is required for this property)
 * `trim_trailing_whitespace`
 * `max_line_length`
 * `root` (only used by EditorConfig core)
 
 ## Recommended Options
 
-All of the options which are supported are documented in [editorConfig.txt][]
+All of the options which are supported are documented in [editorconfig.txt][]
 and can be viewed by executing the following: `:help editorconfig`.
 
 #### Excluded patterns.
@@ -67,14 +73,17 @@ your |vimrc| like this:
 ## Bugs and Feature Requests
 
 Feel free to submit bugs, feature requests, and other issues to the
-[issue tracker][].
+[issue tracker][]. Be sure you have read the [contribution guideline][]!
 
-[EditorConfig]: http://editorconfig.org
 [EditorConfig core]: https://github.com/editorconfig/editorconfig-core
+[EditorConfig]: http://editorconfig.org
 [GitHub]: https://github.com/editorconfig/editorconfig-vim
+[PreserveNoEOL]: http://www.vim.org/scripts/script.php?script_id=4550
+[Tim Pope's fugitive]: https://github.com/tpope/vim-fugitive
+[Vim online]: http://www.vim.org/scripts/script.php?script_id=3934
+[Vundle]: https://github.com/gmarik/Vundle.vim
+[contribution guideline]: https://github.com/editorconfig/editorconfig/blob/master/CONTRIBUTING.md#submitting-an-issue
 [issue tracker]: https://github.com/editorconfig/editorconfig-vim/issues
 [pathogen]: https://github.com/tpope/vim-pathogen
 [properties]: http://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
-[Vim online]: http://www.vim.org/scripts/script.php?script_id=3934
-[PreserveNoEOL]: http://www.vim.org/scripts/script.php?script_id=4550
-[Tim Pope's fugitive]: https://github.com/tpope/vim-fugitive
+[editorconfig.txt]: https://github.com/editorconfig/editorconfig-vim/blob/master/doc/editorconfig.txt
