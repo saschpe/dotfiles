@@ -62,7 +62,7 @@
 
 [sendemail]
     confirm = auto
-    from = Sascha Peilicke <saschpe@mailbox.org>
+    from = Sascha Peilicke <sascha@peilicke.de>
     smtpencryption = ssl
     smtpserver = smtp.mailbox.org
     smtpserverport = 587
@@ -71,14 +71,18 @@
 [credential]
     helper = cache --timeout=3600
 
+[http]
+    cookiefile = ~/.gitcookies
+
 [gitreview]
     username = saschpe
+
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 
 [url "git://anongit.kde.org/"]
     insteadOf = kde:
 [url "git@git.kde.org:"]
     pushInsteadOf = kde:
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
