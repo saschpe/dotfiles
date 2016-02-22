@@ -1,5 +1,6 @@
 README.rst skip
 .bazaar recurse
+.gradle recurse
 .irssi recurse
 .pip recurse
 .ssh recurse
