@@ -97,7 +97,7 @@ else
     export ANDROID_HOME=$HOME/.android/sdk
 fi
 ANDROID_BUILD_TOOLS_VERSION="23.0.2"
-export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:${PATH}
+export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:${PATH}:${ANDROID_HOME}/ndk-bundle/
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 
