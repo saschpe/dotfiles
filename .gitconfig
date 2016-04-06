@@ -76,6 +76,7 @@
 
 [gitreview]
     username = saschpe
+    remote = origin
 
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -86,3 +87,6 @@
     insteadOf = kde:
 [url "git@git.kde.org:"]
     pushInsteadOf = kde:
+
+[review "gerrit.it.here.com"]
+    username = peilicke
