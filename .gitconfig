@@ -40,7 +40,7 @@
     fp = format-patch
     lo = log --pretty=oneline --abbrev-commit
     lol = log --decorate --stat
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --branches
     pr = pull --rebase
     prom = pull --rebase origin master
     # Summary of what to push
