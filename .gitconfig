@@ -11,6 +11,7 @@
 
 [branch]
     autosetupmerge = true
+    autoretuprebase = true
 
 [merge]
     tool = vimdiff
