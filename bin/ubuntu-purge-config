@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dpkg -l | grep -e "^rc" | cut -d" " -f3 | xargs sudo apt-get purge -y
