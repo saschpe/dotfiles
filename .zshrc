@@ -76,15 +76,13 @@ export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-#export JAVA_HOME="/usr/lib64/jvm/jre"
-
 ulimit -c unlimited                         # Enable 'core' dumps
 
 #setterm -blength 0                          # Get rid of beeps
 
 # Debian packaging stuff
 export DEBFULLNAME="Sascha Peilicke"
-export DEBEMAIL="saschpe@mailbox.org"
+export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
 
 # Android
@@ -95,9 +93,18 @@ if [ `uname` = "Darwin" ] ; then
     export ANDROID_JAVA_HOME=/Library/Java/JavaVirtualMachines/$jdk7_ver/Contents/Home/
 else
     export ANDROID_HOME=$HOME/.android/sdk
+    case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
+        'opensuse')
+            export JAVA_HOME=/usr/lib64/jvm/jre
+            ;;
+        'ubuntu'|*)
+            export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+            ;;
+    esac
 fi
-export NDK_ROOT=$ANDROID_HOME/ndk-bundle
 ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_HOME/build-tools | tail -n1)
+export NDK_ROOT=$ANDROID_HOME/ndk-bundle
+export SDK_ROOT=$ANDROID_HOME
 export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
