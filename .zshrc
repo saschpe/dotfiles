@@ -98,7 +98,7 @@ else
             export JAVA_HOME=/usr/lib64/jvm/jre
             ;;
         'ubuntu'|*)
-            export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+            export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))
             ;;
     esac
 fi
