@@ -20,7 +20,7 @@ Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
 Plugin 'pangloss/vim-javascript'            " github.com/pangloss/vim-javascript
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'claco/jasmine.vim'                  " github.com/claco/jasmine.vim
-Plugin 'scrooloose/syntastic.git'           " github.com/scrooloose/syntastic
+"Plugin 'scrooloose/syntastic.git'           " github.com/scrooloose/syntastic
 Plugin 'burnettk/vim-angular'
 Plugin 'tfnico/vim-gradle'
 Plugin 'groenewege/vim-less'
