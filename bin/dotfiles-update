@@ -5,7 +5,6 @@ SUBTREES=(
 .vim/bundle/Vundle.vim https://github.com/gmarik/Vundle.vim
 .vim/bundle/jasmine.vim https://github.com/claco/jasmine.vim.git
 .vim/bundle/javascript-libraries-syntax.vim https://github.com/othree/javascript-libraries-syntax.vim
-.vim/bundle/syntastic https://github.com/scrooloose/syntastic.git
 .vim/bundle/vim-angular https://github.com/burnettk/vim-angular.git
 .vim/bundle/vim-javascript https://github.com/pangloss/vim-javascript.git
 .vim/bundle/vim-gradle https://github.com/tfnico/vim-gradle.git
