@@ -14,7 +14,7 @@ filetype off                                " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"call vundle#begin('~/some/path/here')      " alternatively, pass a path where Vundle should install plugins
+
 Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
 
 Plugin 'pangloss/vim-javascript'            " github.com/pangloss/vim-javascript
@@ -28,6 +28,7 @@ Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
+Plugin 'r0mai/vim-djinni'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
