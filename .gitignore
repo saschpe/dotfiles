@@ -93,3 +93,6 @@ Thumbs.db
 
 # Mac OS X
 .DS_Store
+
+# Vim bundles
+.vim/bundle/*

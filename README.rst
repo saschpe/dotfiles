@@ -4,9 +4,9 @@ Sascha's UNIX/Linux shell environment (aka dotfiles)
 Includes oh-my-zsh, dotfilemanager, no fuzz and personal taste.
 
 
-Update
+Vundle
 ------
 
-To update the oh-my-zsh and vim bundle git subtrees, type::
+Vim plugins are managed with Vundle. Set it up by running::
 
-    ./bin/dotfiles-update
+    $ ./bin/vundle
