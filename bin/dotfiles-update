@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Update all git subtree's installed in this repo.
+
+git subtree pull --prefix .oh-my-zsh https://github.com/robbyrussell/oh-my-zsh.git master --squash
+git subtree pull --prefix .oh-my-zsh/custom/plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions.git master --squash
