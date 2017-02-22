@@ -266,3 +266,5 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufRead,BufNewFile *.conf setf config
 " nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
 autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setf nginx
+
+autocmd BufRead,BufNewFile *.spdx setf yaml " SPDX
