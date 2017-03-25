@@ -94,6 +94,9 @@ if [ `uname` = "Darwin" ] ; then
 else
     export ANDROID_HOME=$HOME/.android/sdk
     case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
+        'fedora')
+            export JAVA_HOME=$(readlink /etc/alternatives/java_sdk)
+            ;;
         'opensuse')
             export JAVA_HOME=/usr/lib64/jvm/jre
             ;;
