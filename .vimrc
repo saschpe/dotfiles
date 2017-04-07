@@ -231,7 +231,7 @@ autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ruby / Ruby on Rails options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
+autocmd FileType rb,ruby,eruby,Fastfile set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
 autocmd FIleType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
