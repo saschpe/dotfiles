@@ -18,6 +18,7 @@ verbose on                          # Show command for windows when resurrected
 defscrollback 20000                 # A large scrollback
 defutf8 on                          # Run everything in UTF-8.
 defnonblock on                      # Unresponsive windows don't block session
+defwrap on                          # Line wrapping
 
 # Get rid of screen 0
 bind c screen 1
