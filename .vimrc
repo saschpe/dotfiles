@@ -59,7 +59,7 @@ if &t_Co >= 256 || has("gui_running")
     if (system('uname') =~ "Darwin")
     	colorscheme desert
     else
-        colorscheme default
+        colorscheme peachpuff
     endif
 endif
 if &t_Co > 2 || has("gui_running")          " If we have colors
