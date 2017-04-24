@@ -49,27 +49,26 @@ bell "%c bell -> %n%f %t^G"
 vbell_msg " *beep* "
 
 # Use the function keys to switch among windows.
-bindkey -k k1 select 1
-bindkey -k k2 select 2
-bindkey -k k3 select 3
-bindkey -k k4 select 4
-bindkey -k k5 select 5
-bindkey -k k6 select 6
-bindkey -k k7 select 7
-bindkey -k k8 select 8
-bindkey -k k9 select 9
-bindkey -k k; select 10
-bindkey -k F1 select 11
-bindkey -k F2 select 12
-# windows 13-24 are Shift-Fn.  May not work in all terminals.
-bindkey -k F3 select 13
-bindkey -k F4 select 14
-bindkey -k F5 select 15
-bindkey -k F6 select 16
-bindkey -k F7 select 17
-bindkey -k F8 select 18
-bindkey -k F9 select 19
-bindkey -k FA select 20
+bindkey -k k2 select 0
+bindkey -k k3 select 1
+bindkey -k k4 select 2
+bindkey -k k5 select 3
+bindkey -k k6 select 4
+bindkey -k k7 select 5
+bindkey -k k8 select 6
+bindkey -k k9 select 7
+bindkey -k k; select 8
+bindkey -k F1 select 9
+bindkey -k F2 select 10
+# windows 11-24 are Shift-Fn.  May not work in all terminals.
+bindkey -k F3 select 11
+bindkey -k F4 select 12
+bindkey -k F5 select 13
+bindkey -k F6 select 14
+bindkey -k F7 select 15
+bindkey -k F8 select 16
+bindkey -k F9 select 17
+bindkey -k FA select 18
 # screen only seems to understand up to FA.
 #bindkey -k FB select 21
 #bindkey -k FC select 22
