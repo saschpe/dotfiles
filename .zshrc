@@ -127,6 +127,13 @@ if [ -e /usr/bin/ruby ] ; then
   export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${PATH}
 fi
 
+# Qt5
+case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
+    'fedora')
+        export PATH=/usr/lib64/qt5/bin/:${PATH}
+        ;;
+esac
+
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
 
