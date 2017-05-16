@@ -29,6 +29,13 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 Plugin 'r0mai/vim-djinni'
+Plugin 'Yggdroot/indentLine'                " github.com/Yggdroot/indentLine
+Plugin 'ervandew/supertab'                  " github.com/ervandew/supertab
+Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
+"Plugin 'scrooloose/nerdtree'                " github.com/scrooloose/nerdtree
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'kien/ctrlp.vim'
+Plugin 'airblade/vim-rooter.git'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -45,7 +52,7 @@ set noerrorbells                            " don't beep
 set nobackup                
 set noswapfile
 
-let mapleader=","                           " change the mapleader from \ to ,
+"let mapleader=","                           " change the mapleader from \ to ,
 let maplocalleader="\\"
 
 " Quickly edit/reload the vimrc file
@@ -248,7 +255,7 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/n
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
 
 " Systemd options
@@ -281,3 +288,40 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+""""""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
+" IndentLine plugin
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#09AA08'
+let g:indentLine_char = '│'
+
+" DelimitMate plugin
+let delimitMate_expand_cr = 1
+
+" NERDTree
+" Open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nmap <leader>d :NERDTreeToggle<CR>
+
+" CtrlP
+let g:ctrlp_map = '<leader>t'   " Use <leader>t to open ctrlp
+set wildignore+=*/build/**      " Ignore these directories
+let g:ctrlp_use_caching=0       " disable caching
+
+" NetRW
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
