@@ -35,6 +35,7 @@ Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-rooter.git'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -320,7 +321,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
+"augroup ProjectDrawer
+""  autocmd!
+""  autocmd VimEnter * :Vexplore
+"augroup END
