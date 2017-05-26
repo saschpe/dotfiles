@@ -21,7 +21,6 @@ Plugin 'pangloss/vim-javascript'            " github.com/pangloss/vim-javascript
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'claco/jasmine.vim'                  " github.com/claco/jasmine.vim
 Plugin 'burnettk/vim-angular'
-Plugin 'tfnico/vim-gradle'
 Plugin 'groenewege/vim-less'
 Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-vim
 Plugin 'fatih/vim-go'
@@ -29,7 +28,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 Plugin 'r0mai/vim-djinni'
-Plugin 'Yggdroot/indentLine'                " github.com/Yggdroot/indentLine
+"Plugin 'Yggdroot/indentLine'                " github.com/Yggdroot/indentLine
 Plugin 'ervandew/supertab'                  " github.com/ervandew/supertab
 Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
 "Plugin 'scrooloose/nerdtree'                " github.com/scrooloose/nerdtree
@@ -295,20 +294,20 @@ vnoremap <silent> # :<C-U>
 " Plugins
 """"""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
 " IndentLine plugin
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#09AA08'
-let g:indentLine_char = '│'
+"let g:indentLine_color_term = 239
+"let g:indentLine_color_gui = '#09AA08'
+"let g:indentLine_char = '│'
 
 " DelimitMate plugin
 let delimitMate_expand_cr = 1
 
 " NERDTree
 " Open a NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nmap <leader>d :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"nmap <leader>d :NERDTreeToggle<CR>
 
 " CtrlP
 let g:ctrlp_map = '<leader>t'   " Use <leader>t to open ctrlp
