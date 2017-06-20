@@ -145,7 +145,7 @@ if [ `uname` = "Darwin" ] ; then
         export MANPATH=/opt/local/share/man:$MANPATH
     fi
 else
-alias open="xdg-open 2> /dev/null > /dev/null"
+alias open="xdg-open"
 fi
 
 # Create a temporary directory and cd in it
