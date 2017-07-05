@@ -128,11 +128,15 @@ if [ -e /usr/bin/ruby ] ; then
 fi
 
 # Qt5
-case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
-    'fedora')
-        export PATH=/usr/lib64/qt5/bin/:${PATH}
-        ;;
-esac
+if [ `uname` = "Darwin" ] ; then
+    # Nothing yet..
+else
+    case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
+        'fedora')
+            export PATH=/usr/lib64/qt5/bin/:${PATH}
+            ;;
+    esac
+fi
 
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
