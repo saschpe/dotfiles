@@ -148,6 +148,7 @@ if [ `uname` = "Darwin" ] ; then
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
         export MANPATH=/opt/local/share/man:$MANPATH
     fi
+    export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 else
 alias open="xdg-open"
 fi
