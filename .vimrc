@@ -36,6 +36,7 @@ Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-rooter.git'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'keith/swift.vim'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
