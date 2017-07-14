@@ -28,14 +28,12 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 Plugin 'r0mai/vim-djinni'
-"Plugin 'Yggdroot/indentLine'                " github.com/Yggdroot/indentLine
 Plugin 'ervandew/supertab'                  " github.com/ervandew/supertab
 Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
-"Plugin 'scrooloose/nerdtree'                " github.com/scrooloose/nerdtree
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'keith/swift.vim'
+Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -294,21 +292,8 @@ vnoremap <silent> # :<C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
-" IndentLine plugin
-"let g:indentLine_color_term = 239
-"let g:indentLine_color_gui = '#09AA08'
-"let g:indentLine_char = '│'
-
 " DelimitMate plugin
 let delimitMate_expand_cr = 1
-
-" NERDTree
-" Open a NERDTree automatically when vim starts up if no files were specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Close vim if the only window left open is a NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"nmap <leader>d :NERDTreeToggle<CR>
 
 " CtrlP
 let g:ctrlp_map = '<leader>t'   " Use <leader>t to open ctrlp
@@ -325,3 +310,16 @@ let g:netrw_liststyle = 3
 ""  autocmd!
 ""  autocmd VimEnter * :Vexplore
 "augroup END
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_java_checkers = ['checkstyle']
+let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_python_checkers = ['flake8']
