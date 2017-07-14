@@ -34,7 +34,6 @@ Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
 "Plugin 'scrooloose/nerdtree'                " github.com/scrooloose/nerdtree
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
-Plugin 'airblade/vim-rooter.git'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'keith/swift.vim'
 
