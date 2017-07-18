@@ -14,26 +14,17 @@ filetype off                                " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
 
-Plugin 'pangloss/vim-javascript'            " github.com/pangloss/vim-javascript
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'claco/jasmine.vim'                  " github.com/claco/jasmine.vim
-Plugin 'burnettk/vim-angular'
-Plugin 'groenewege/vim-less'
-Plugin 'leafgarland/typescript-vim'         " github.com/leafgarland/typescript-vim
-Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
-Plugin 'r0mai/vim-djinni'
-Plugin 'ervandew/supertab'                  " github.com/ervandew/supertab
-Plugin 'Raimondi/delimitMate'               " github.com/Raimondi/delimitMate
-Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
+Plugin 'groenewege/vim-less'
 Plugin 'keith/swift.vim'
+Plugin 'r0mai/vim-djinni'
+Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'vim-syntastic/syntastic'
+"Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -42,7 +33,6 @@ filetype plugin indent on                   " required
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noexrc                                  " Potential security risk
-syntax on
 set history=1000
 set undolevels=1000
 set visualbell                              " don't beep
@@ -117,7 +107,7 @@ set scrolloff=3                             " Add some breathing room at top and
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text formatting / layout
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set tabstop=4                               " Tab = 4 space
+set tabstop=4                               " Tab = 4 space
 set softtabstop=4                           " Backspacing a tab removes 4 spaces
 set shiftwidth=4                            " number of spaces to use for autoindenting
 set shiftround                              " use multiple of shiftwidth when indenting with '<' and '>'
@@ -292,24 +282,9 @@ vnoremap <silent> # :<C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
-" DelimitMate plugin
-let delimitMate_expand_cr = 1
-
-" CtrlP
-let g:ctrlp_map = '<leader>t'   " Use <leader>t to open ctrlp
-set wildignore+=*/build/**      " Ignore these directories
-let g:ctrlp_use_caching=0       " disable caching
-
 " NetRW
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-"augroup ProjectDrawer
-""  autocmd!
-""  autocmd VimEnter * :Vexplore
-"augroup END
 
 " Syntastic
 set statusline+=%#warningmsg#
