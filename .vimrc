@@ -246,6 +246,9 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/n
 """"""""""""""""""""""""""""V"""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
 
+" Android
+autocmd BufReadCmd *.aar call zip#Browse(expand("<amatch>"))
+
 " Systemd options
 autocmd BufRead,BufNewFile *.service setf desktop
 
