@@ -57,8 +57,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin:$HOME/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -80,7 +79,7 @@ ulimit -c unlimited                         # Enable 'core' dumps
 
 #setterm -blength 0                          # Get rid of beeps
 
-# Debian packaging stuff
+# Debian packaging
 export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
@@ -115,9 +114,6 @@ alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 # Chrome
 export CHROME_BIN=chromium-browser
 
-# User-local prefix binaries
-export PATH=$HOME/.local/bin:$PATH
-
 # Go language specific settings
 export GOPATH=$HOME/.go
 export PATH=${GOPATH//://bin:}/bin:$PATH
@@ -137,6 +133,9 @@ else
             ;;
     esac
 fi
+
+# Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
+export CCACHE_PREFIX=icecc
 
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
