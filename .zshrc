@@ -57,7 +57,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=/usr/sbin:/sbin:$HOME/bin:/usr/local/bin:$PATH:$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=/usr/sbin:/sbin:/usr/local/bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -123,17 +123,6 @@ if [ -e /usr/bin/ruby ] ; then
   export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${PATH}
 fi
 
-# Qt5
-if [ `uname` = "Darwin" ] ; then
-    # Nothing yet..
-else
-    case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
-        'fedora')
-            export PATH=/usr/lib64/qt5/bin/:${PATH}
-            ;;
-    esac
-fi
-
 # Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
 export CCACHE_PREFIX=icecc
 
@@ -142,11 +131,7 @@ export JENKINS_URL="http://jenkins"
 
 # Mac OS X
 if [ `uname` = "Darwin" ] ; then
-    # Macports
-    if [ -d /opt/local ] ; then
-        export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-        export MANPATH=/opt/local/share/man:$MANPATH
-    fi
+    # Official CMake.app
     export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 else
 alias open="xdg-open"
