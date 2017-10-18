@@ -124,7 +124,7 @@ if [ -e /usr/bin/ruby ] ; then
 fi
 
 # Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
-export CCACHE_PREFIX=icecc
+#export CCACHE_PREFIX=icecc
 
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
