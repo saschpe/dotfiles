@@ -266,6 +266,7 @@ autocmd BufRead,BufNewFile *.conf setf config
 " nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
 autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setf nginx
 
+autocmd FIleType yaml set foldmethod=indent shiftwidth=2 softtabstop=2
 autocmd BufRead,BufNewFile *.spdx setf yaml " SPDX
 
 " Search for selected text, forwards or backwards.
