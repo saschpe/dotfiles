@@ -22,6 +22,7 @@ Plugin 'fatih/vim-go'
 Plugin 'groenewege/vim-less'
 Plugin 'keith/swift.vim'
 Plugin 'r0mai/vim-djinni'
+Plugin 'udalov/kotlin-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'vim-syntastic/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
