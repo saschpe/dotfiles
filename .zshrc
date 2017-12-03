@@ -86,12 +86,12 @@ export DEB_BUILD_ARCH=amd64
 
 # Android
 if [ `uname` = "Darwin" ] ; then
-    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
     # AOSP want's JDK 1.7.x, make sure we use that:
     jdk7_ver=$(ls /Library/Java/JavaVirtualMachines/ | grep "1.7" | tail -n 1)
     export ANDROID_JAVA_HOME=/Library/Java/JavaVirtualMachines/$jdk7_ver/Contents/Home/
 else
-    export ANDROID_HOME=$HOME/.android/sdk
+    export ANDROID_SDK_ROOT=$HOME/.android/sdk
     case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
         'fedora')
             export JAVA_HOME=/usr/lib/jvm/java
@@ -104,10 +104,10 @@ else
             ;;
     esac
 fi
-ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_HOME/build-tools | tail -n1)
-export NDK_ROOT=$ANDROID_HOME/ndk-bundle
-export SDK_ROOT=$ANDROID_HOME
-export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/tools/proguard/bin:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
+ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
+export NDK_ROOT=$ANDROID_SDK_ROOT/ndk-bundle
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/tools/proguard/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 
