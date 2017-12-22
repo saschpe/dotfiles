@@ -1,5 +1,5 @@
 # GNU screen custom configuration file
-# Created by Sascha Peilicke <saschpe@gmx.de>
+# Created by Sascha Peilicke <sascha@peilicke.de>
 #
 # This file is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,14 +20,6 @@ defutf8 on                          # Run everything in UTF-8.
 defnonblock on                      # Unresponsive windows don't block session
 defwrap on                          # Line wrapping
 
-# Get rid of screen 0
-bind c screen 1
-bind ^c screen 1
-bind 0 select 10
-
-# Create initial window
-#screen 1
-
 # 256 color xterm
 #attrcolor b ".I"
 #defbce "on"
@@ -43,50 +35,21 @@ hardstatus off
 #caption always "%w%=%m/%d %c"
 caption always '%{= wk}[ %{k}%H %{k}][%= %{= wk}%?%-Lw%?%{r}(%{r}%n*%f%t%?(%u)%?%{r})%{k}%?%+Lw%?%?%= %{k}][%{b} %d/%m %{k}%c %{k}]' # good looking window bar
 
-# Variants on Sven's custom messages.
+# Custom messages.
 activity "%c activity -> %n%f %t"
 bell "%c bell -> %n%f %t^G"
 vbell_msg " *beep* "
 
-# Use the function keys to switch among windows.
-bindkey -k k2 select 0
-bindkey -k k3 select 1
-bindkey -k k4 select 2
-bindkey -k k5 select 3
-bindkey -k k6 select 4
-bindkey -k k7 select 5
-bindkey -k k8 select 6
-bindkey -k k9 select 7
-bindkey -k k; select 8
-bindkey -k F1 select 9
-bindkey -k F2 select 10
-# windows 11-24 are Shift-Fn.  May not work in all terminals.
-bindkey -k F3 select 11
-bindkey -k F4 select 12
-bindkey -k F5 select 13
-bindkey -k F6 select 14
-bindkey -k F7 select 15
-bindkey -k F8 select 16
-bindkey -k F9 select 17
-bindkey -k FA select 18
-# screen only seems to understand up to FA.
-#bindkey -k FB select 21
-#bindkey -k FC select 22
-#bindkey -k FD select 23
-#bindkey -k FE select 24
-
 # select works on window names, too. This gives me the first window with a free shell
 bind s select zsh
-#bind 'F' screen ssh saschpe@festor
 
 # make split autofocus and display next free shell
-bind S eval "split" "focus" "select zsh"
+#bind S eval "split" "focus" "select zsh"
 
 bind j focus down               # vi like focus changing
 bind k focus up
 bind t focus top
 bind b focus bottom
-bind K kill                     # rebind 'k' to 'K'
 
 # Make shift-PgUp and shift-PgDn work like they do in xterm.  (Note that this
 # requires xterm to be configured to pass those keys through, and not try to
@@ -95,8 +58,3 @@ bindkey "^[[5;2~" eval "copy" "stuff ^u"
 bindkey -m "^[[5;2~" stuff ^u
 bindkey -m "^[[6;2~" stuff ^d
 termcapinfo xterm* ti@:te@      # scrolling in xterm
-
-# default applications to start
-#screen 0 zsh
-#screen 1 vim ~/.zshrc
-#screen 2 ssh saschpe@festor -e pine
