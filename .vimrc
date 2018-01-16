@@ -26,6 +26,7 @@ Plugin 'udalov/kotlin-vim'
 Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
 Plugin 'vim-syntastic/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
+Plugin 'tomlion/vim-solidity'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
