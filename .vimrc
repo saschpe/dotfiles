@@ -39,7 +39,7 @@ set history=1000
 set undolevels=1000
 set visualbell                              " don't beep
 set noerrorbells                            " don't beep
-set nobackup                
+set nobackup
 set noswapfile
 
 "let mapleader=","                           " change the mapleader from \ to ,
@@ -54,7 +54,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &t_Co >= 256 || has("gui_running")
     if (system('uname') =~ "Darwin")
-    	colorscheme desert
+        colorscheme desert
     else
         colorscheme peachpuff
     endif
@@ -148,29 +148,27 @@ autocmd Filetype *
 \ endif
 endif
 
-autocmd BufRead,BufNewFile *.json setf js
-autocmd BufRead,BufNewFile *.m setf objc
-
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
-nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
-"autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+
+nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 " Some convenient keymappings
 map tt <ESC>:%s/\t/    /g<CR>               " Convert tab to 4 spaces
 map tT <ESC>:%s/    /\t/g<CR>               " Convert 4 spaces to tab
 
 " Use Q for formatting the current paragraph (or selection)
-vmap Q gq
+vmap Q gQ
 nmap Q gqap
 
 " Don't jump over long wrapped lines but always jump to the next editor row
@@ -182,6 +180,10 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Shortcut to toggle `set list`
+nmap <leader>l :set list!<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GNU screen
@@ -239,6 +241,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=xmlcomplete#CompleteTags
 autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+autocmd BufRead,BufNewFile *.json setf js
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
@@ -267,6 +270,9 @@ autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setf 
 
 autocmd FIleType yaml set foldmethod=indent shiftwidth=2 softtabstop=2
 autocmd BufRead,BufNewFile *.spdx setf yaml " SPDX
+
+" Objective-C
+autocmd BufRead,BufNewFile *.m setf objc
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
