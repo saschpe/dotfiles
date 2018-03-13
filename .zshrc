@@ -27,6 +27,9 @@ export PATH=/usr/sbin:/sbin:/usr/local/bin:$HOME/.local/bin:$HOME/bin:$PATH
 ulimit -c unlimited                         # Enable 'core' dumps
 #setterm -blength 0                          # Get rid of beeps
 
+# Aliases
+alias find="noglob find"
+
 # Debian packaging
 export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="sascha@peilicke.de"
