@@ -16,6 +16,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
 
+Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 Plugin 'fatih/vim-go'
@@ -309,3 +310,8 @@ let g:syntastic_sh_checkers = ['bashate']
 let g:syntastic_java_checkers = ['checkstyle']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_python_checkers = ['flake8']
+
+" Dart
+let dart_html_in_string=v:true
+let dart_style_guide = 2
+"let dart_format_on_save = 1
