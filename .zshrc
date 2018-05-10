@@ -62,6 +62,9 @@ export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SD
 export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
 alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 
+# Flutter
+export PATH=$HOME/Projects/Flutter/flutter/bin:$PATH
+
 # Chrome
 export CHROME_BIN=chromium-browser
 
