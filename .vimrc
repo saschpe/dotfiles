@@ -185,6 +185,8 @@ map <C-l> <C-w>l
 " Shortcut to toggle `set list`
 nmap <leader>l :set list!<CR>
 
+" Auto-source .vimrc upon changes
+autocmd bufwritepost .vimrc source $HOME/.vimrc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GNU screen
