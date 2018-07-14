@@ -221,7 +221,7 @@ let c_space_errors=1                        " Show unneeded spaces as errors in 
 
 autocmd FileType c,cpp set cindent omnifunc=ccomplete#Complete
 " Makefile options
-autocmd FileType Makefile set noexpandtab shiftwidth=8 softtabstop=8 "tabstop=8
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=8 tabstop=8
 " Qt options
 autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
 
