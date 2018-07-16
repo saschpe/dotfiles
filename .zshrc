@@ -26,6 +26,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/sbin:/sbin:/usr/local/bin:$HOME/.local/bin:$HOME/bin:$PATH
 ulimit -c unlimited                         # Enable 'core' dumps
 #setterm -blength 0                          # Get rid of beeps
+export EDITOR=vim
 
 # Aliases
 alias find="noglob find"
