@@ -3,5 +3,4 @@ README.rst skip
 .irssi recurse
 .pip recurse
 .ssh recurse
-.subversion recurse
 .wireshark recurse
