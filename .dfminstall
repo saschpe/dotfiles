@@ -1,6 +1,5 @@
 README.rst skip
 .bazaar recurse
-.gimp-2.8 recurse
 .gradle recurse
 .irssi recurse
 .pip recurse
