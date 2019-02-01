@@ -39,9 +39,7 @@ export DEB_BUILD_ARCH=amd64
 # Android
 if [ `uname` = "Darwin" ] ; then
     export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-    # AOSP want's JDK 1.7.x, make sure we use that:
-    jdk7_ver=$(ls /Library/Java/JavaVirtualMachines/ | grep "1.7" | tail -n 1)
-    export ANDROID_JAVA_HOME=/Library/Java/JavaVirtualMachines/$jdk7_ver/Contents/Home/
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 else
     export ANDROID_SDK_ROOT=$HOME/.android/sdk
     case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
