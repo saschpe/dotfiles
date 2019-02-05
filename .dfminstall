@@ -1,6 +1,5 @@
 README.rst skip
 .gradle recurse
-.irssi recurse
 .pip recurse
 .ssh recurse
 .wireshark recurse
