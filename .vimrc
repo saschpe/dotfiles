@@ -21,6 +21,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
 Plugin 'fatih/vim-go'
 Plugin 'groenewege/vim-less'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'keith/swift.vim'
 Plugin 'r0mai/vim-djinni'
 Plugin 'udalov/kotlin-vim'
