@@ -50,16 +50,20 @@ else
             export JAVA_HOME=/usr/lib64/jvm/jre
             ;;
         'ubuntu'|*)
-            export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))
+            if command -v javac >/dev/null ; then
+                export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))
+            fi
             ;;
     esac
 fi
+if [ -d "${ANDROID_HOME}" ] ; then
 ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
-export NDK_ROOT=$ANDROID_SDK_ROOT/ndk-bundle
-export ANDROID_HOME=$ANDROID_SDK_ROOT
-export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/tools/proguard/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
-export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
-alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
+    export NDK_ROOT=$ANDROID_SDK_ROOT/ndk-bundle
+    export ANDROID_HOME=$ANDROID_SDK_ROOT
+    export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/tools/proguard/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
+    export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
+    alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
+fi
 
 # Flutter
 export PATH=$HOME/Projects/Flutter/flutter/bin:$PATH
