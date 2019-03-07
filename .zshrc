@@ -65,6 +65,13 @@ ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
     alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 fi
 
+# Google Cloud SDK
+if [ `uname` = "Darwin" ] ; then
+    export PATH=${PATH}:${HOME}/Applications/google-cloud-sdk/bin
+else
+    export PATH=${PATH}:${HOME}/Software/google-cloud-sdk/bin
+fi
+
 # Flutter
 export PATH=$HOME/Projects/Flutter/flutter/bin:$PATH
 
