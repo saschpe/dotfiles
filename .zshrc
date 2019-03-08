@@ -56,7 +56,7 @@ else
             ;;
     esac
 fi
-if [ -d "${ANDROID_HOME}" ] ; then
+if [ -d "${ANDROID_SDK_ROOT}" ] ; then
 ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
     export NDK_ROOT=$ANDROID_SDK_ROOT/ndk-bundle
     export ANDROID_HOME=$ANDROID_SDK_ROOT
