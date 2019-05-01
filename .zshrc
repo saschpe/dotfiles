@@ -101,3 +101,7 @@ fi
 
 # Create a temporary directory and cd in it
 function tmpcd () { cd $(mktemp -d) }
+
+# SDKMAN!
+export SDKMAN_DIR="/home/saschpe/.sdkman"
+[[ -s "/home/saschpe/.sdkman/bin/sdkman-init.sh" ]] && source "/home/saschpe/.sdkman/bin/sdkman-init.sh"
