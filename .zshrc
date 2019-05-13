@@ -105,3 +105,6 @@ function tmpcd () { cd $(mktemp -d) }
 # SDKMAN!
 export SDKMAN_DIR="/home/saschpe/.sdkman"
 [[ -s "/home/saschpe/.sdkman/bin/sdkman-init.sh" ]] && source "/home/saschpe/.sdkman/bin/sdkman-init.sh"
+
+# Node.JS / NPM
+export PATH="${PATH}:${HOME}/.npm/global/bin"
