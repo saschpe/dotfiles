@@ -82,7 +82,7 @@ export PATH=${GOPATH//://bin:}/bin:$PATH
 
 # Rubygems
 if [ -e /usr/bin/ruby ] ; then
-  export PATH=$HOME/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${PATH}
+    export PATH=${PATH}:${HOME}/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${HOME}/.gem/ruby/bin
 fi
 
 # Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
