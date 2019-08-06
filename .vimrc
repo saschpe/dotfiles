@@ -233,7 +233,7 @@ autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
 autocmd FIleType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
-autocmd BufRead,BufNewFile Fastfile,Podfile setf ruby
+autocmd BufRead,BufNewFile Fastfile,Podfile,podspec setf ruby
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " XML / HTML / CSS / JavaScript options
