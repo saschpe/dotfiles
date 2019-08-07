@@ -1,6 +1,5 @@
 README.rst skip
 .gradle recurse
-.npm recurse
 .pip recurse
 .ssh recurse
 .sdkman recurse
