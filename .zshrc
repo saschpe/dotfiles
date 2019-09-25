@@ -71,7 +71,7 @@ gcloud_sdk_root=${HOME}/Applications/google-cloud-sdk
 [ -f "${gcloud_sdk_root}/completion.zsh.inc" ] && . "${gcloud_sdk_root}/completion.zsh.inc"
 
 # Flutter
-export PATH=$HOME/Projects/Flutter/flutter/bin:$PATH
+export PATH=$HOME/Applications/flutter/bin:$PATH
 
 # Chrome
 export CHROME_BIN=chromium-browser
