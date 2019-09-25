@@ -1,9 +1,0 @@
-#!/bin/sh
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $DIR/cloud-lib.sh
-
-for vm in $(virsh list --name | grep "cloud-") ; do
-    virsh destroy $vm
-done
-wait_for 300 1 "$CLOUD_OFFLINE_COND" 'virsh destroy'
