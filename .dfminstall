@@ -1,4 +1,5 @@
 README.rst skip
+.gnupg recurse
 .gradle recurse
 .pip recurse
 .ssh recurse
