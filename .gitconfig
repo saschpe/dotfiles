@@ -7,7 +7,7 @@
 [user]
     name = Sascha Peilicke
     email = sascha@peilicke.de
-    signingkey = 2AD9B755
+    signingkey = D3AD34FD
 
 [branch]
     autosetupmerge = true
