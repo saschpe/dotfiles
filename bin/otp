@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+#
+# Copyright 2019 Sascha Peilicke <sascha@peilicke.de>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Implementation of the "Mobile" OTP algorithm using secret and PIN
+# as described at http://motp.sourceforge.net
+
+import argparse
+import hashlib
+import math
+import os.path
+import sys
+import time
+
+CONFIG_FILE=os.path.expanduser("~/.otprc")
+# The config file is a regular INI file, just add the following contents
+#
+#   [my-conf]
+#   secret=abcdfedfg
+#   pin=1234
+#
+# And invoke the script with `otp --config my-conf`, to avoid pasting
+# secret and PIN on the command-line.
+
+def get_one_time_password(secret: str, pin: str):
+    timestamp = int(math.floor(time.time() / 10))
+    frob = str(timestamp) + secret + pin
+    m = hashlib.md5()
+    m.update(bytes(frob, "utf-8"))
+    return m.hexdigest()[:6]
+
+def copy_to_clipboard(token: str):
+    from tkinter import Tk
+    t = Tk()
+    t.withdraw()
+    t.clipboard_clear()
+    t.clipboard_append(token)
+    t.update()
+
+def load_credentials_from(config_file: str, env: str):
+    import configparser
+    config = configparser.ConfigParser()
+    config.read(config_file)
+    secret = config[env]["secret"]
+    pin = config[env]["pin"]
+    return (secret, pin)
+
+def main():
+    parser = argparse.ArgumentParser(prog="otp", description="generates an OTP token using secret and PIN as described at http://motp.sourceforge.net")
+    parser.add_argument("--secret", help="secret (16 characters)")
+    parser.add_argument("--pin", help="PIN (4 digits)") 
+    parser.add_argument("--config", help="load secret and pin from {} instead".format(CONFIG_FILE))
+    parser.add_argument("--clipboard", action="store_true", help="copy generated token to clipboard")
+    args = parser.parse_args()
+    
+    if ((not args.secret or not args.pin) and not args.config):
+        print("please provide either '--secret' and '--pin' or '--config'")
+        parser.print_help()
+        sys.exit(1)
+    if (args.config):
+        if (not os.path.isfile(CONFIG_FILE)): 
+            print("please create configuration file '{}' first".format(CONFIG_FILE))
+            sys.exit(1)
+        print("loading secret and PIN from '{}'...".format(CONFIG_FILE))
+        args.secret, args.pin = load_credentials_from(CONFIG_FILE, args.config)
+
+    token = get_one_time_password(args.secret, args.pin)
+    if (args.clipboard):
+        copy_to_clipboard(token)
+    else:
+        print(token)
+
+if __name__ == "__main__":
+    sys.exit(main())
