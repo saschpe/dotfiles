@@ -72,6 +72,7 @@ def main():
     parser.add_argument("--pin", help="PIN (4 digits)")
     parser.add_argument("--config", help="load secret and pin from {} instead".format(CONFIG_FILE))
     parser.add_argument("--clipboard", action="store_true", help="copy generated token to clipboard")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbosity level (-v or -vv)")
     args = parser.parse_args()
 
     if (not args.secret or not args.pin) and not args.config:
@@ -82,7 +83,8 @@ def main():
         if not os.path.isfile(CONFIG_FILE):
             print("please create configuration file '{}' first".format(CONFIG_FILE))
             sys.exit(1)
-        print("loading secret and PIN from '{}'...".format(CONFIG_FILE))
+        if args.verbose:
+            print("loading secret and PIN from '{}'...".format(CONFIG_FILE))
         args.secret, args.pin = load_credentials_from(CONFIG_FILE, args.config)
 
     token = get_one_time_password(args.secret, args.pin)
