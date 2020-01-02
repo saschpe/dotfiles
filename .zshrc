@@ -18,7 +18,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew chucknorris command-not-found common-aliases dirhistory dnf docker gem git kubectl lol npm pep8 pip python screen sdk vundle web-search zsh-autosuggestions)
+plugins=(brew command-not-found common-aliases dirhistory dnf docker gem git kubectl lol npm pep8 pip python screen sdk vundle web-search zsh-autosuggestions)
 # ssh-agent
 source $ZSH/oh-my-zsh.sh
 
