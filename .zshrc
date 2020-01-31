@@ -64,6 +64,7 @@ ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
     export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
     alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
 fi
+alias emulator="$ANDROID_HOME/emulator/emulator"
 
 # Google Cloud SDK
 gcloud_sdk_root=${HOME}/Applications/google-cloud-sdk
