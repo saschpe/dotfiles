@@ -51,11 +51,14 @@ __pycache__
 
 # Custom or large scripts and binaries
 bin/bfg-*.jar
+bin/clion
 bin/ethminer
+bin/idea
 bin/gactions
 bin/geth
-bin/idea
-bin/studio
+bin/goland
+bin/pycharm
+bin/studio*
 bin/topgrade
 bin/webstorm
 bin/winetricks
