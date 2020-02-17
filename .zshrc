@@ -73,9 +73,7 @@ gcloud_sdk_root=${HOME}/Applications/google-cloud-sdk
 
 # Flutter
 export PATH=$HOME/Applications/flutter/bin:$PATH
-
-# Chrome
-export CHROME_BIN=chromium-browser
+export CHROME_EXECUTABLE=brave-browser
 
 # Golang
 export GOPATH=$HOME/.go
