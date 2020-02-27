@@ -50,6 +50,7 @@ __pycache__
 .vim/bundle/*
 
 # Custom or large scripts and binaries
+bin/appcode
 bin/bfg-*.jar
 bin/clion
 bin/ethminer
