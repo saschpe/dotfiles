@@ -38,10 +38,10 @@ export DEB_BUILD_ARCH=amd64
 
 # Android
 if [ `uname` = "Darwin" ] ; then
-    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+    export ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk
     export JAVA_HOME=`/usr/libexec/java_home -v 11`
 else
-    export ANDROID_SDK_ROOT=$HOME/.android/sdk
+    export ANDROID_SDK_ROOT=${HOME}/.android/sdk
     case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
         'fedora')
             export JAVA_HOME=/usr/lib/jvm/java
@@ -51,20 +51,20 @@ else
             ;;
         'ubuntu'|*)
             if command -v javac >/dev/null ; then
-                export JAVA_HOME=$(dirname $(dirname $(update-alternatives --list javac)))
+                export JAVA_HOME="$(dirname $(dirname $(alternatives --list javac)))"
             fi
             ;;
     esac
 fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
-ANDROID_BUILD_TOOLS_VERSION=$(ls $ANDROID_SDK_ROOT/build-tools | tail -n1)
-    export NDK_ROOT=$ANDROID_SDK_ROOT/ndk-bundle
-    export ANDROID_HOME=$ANDROID_SDK_ROOT
-    export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/tools/proguard/bin:$ANDROID_SDK_ROOT/build-tools/$ANDROID_BUILD_TOOLS_VERSION:$NDK_ROOT:$PATH
-    export ANDROID_HVPROTO=ddm                  # Hierarchy viewer variable
-    alias aosp-env="source $HOME/bin/aosp-env"  # auto-source AOSP env setup script
+    ANDROID_BUILD_TOOLS_VERSION=$(ls ${ANDROID_SDK_ROOT}/build-tools | tail -n1)
+    ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
+    ANDROID_CMDLINE_TOOLS_VERSION=$(ls ${ANDROID_SDK_ROOT}/cmdline-tools | tail -n1)
+    ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/${ANDROID_CMDLINE_TOOLS_VERSION}/bin"
+    ANDROID_NDK_VERSION=$(ls ${ANDROID_SDK_ROOT}/ndk | tail -n1)
+    export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
+    export PATH=${ANDROID_SDK_ROOT}/emulator:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/tools:${ANDROID_BUILD_TOOLS_ROOT}:${ANDROID_CMDLINE_TOOLS_ROOT}:${NDK_ROOT}:${PATH}
 fi
-alias emulator="$ANDROID_HOME/emulator/emulator"
 
 # Google Cloud SDK
 gcloud_sdk_root=${HOME}/Applications/google-cloud-sdk
