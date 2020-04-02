@@ -30,6 +30,7 @@ export EDITOR=vim
 
 # Aliases
 alias find="noglob find"
+alias grep="grep -In"
 
 # Debian packaging
 export DEBFULLNAME="Sascha Peilicke"
