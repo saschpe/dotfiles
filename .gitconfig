@@ -70,7 +70,7 @@
     smtpencryption = ssl
     smtpserver = smtp.mailbox.org
     smtpserverport = 587
-    smtpuser = saschpe@mailbox.org
+    smtpuser = sascha@peilicke.de
 
 [credential]
     helper = cache --timeout=3600
