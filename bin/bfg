@@ -2,9 +2,9 @@
 
 BFG_VERSION="1.13.0"
 BFG_JAR="bfg-${BFG_VERSION}.jar"
-BFG_URL="http://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/${BFG_JAR}"
-BFG_PATH=$HOME/bin/${BFG_JAR}
+BFG_URL="https://repo1.maven.org/maven2/com/madgag/bfg/${BFG_VERSION}/${BFG_JAR}"
+BFG_PATH="$HOME/bin/${BFG_JAR}"
 
-[ -f ${BFG_PATH} ] || wget -q -c ${BFG_URL} -O ${BFG_PATH}
+[ -f "${BFG_PATH}" ] || wget -q -c ${BFG_URL} -O "${BFG_PATH}"
 
-java -jar ${BFG_PATH} $@
+java -jar "${BFG_PATH}" $@
