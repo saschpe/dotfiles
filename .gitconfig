@@ -17,7 +17,7 @@
     tool = vimdiff
 
 [pull]
-	rebase = true
+    rebase = true
 
 [push]
     default = simple
@@ -73,6 +73,8 @@
     smtpuser = sascha@peilicke.de
 
 [credential]
+    helper = osxkeychain
+    helper = store
     helper = cache --timeout=3600
 
 [http]
