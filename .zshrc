@@ -58,12 +58,14 @@ else
     esac
 fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
-    ANDROID_BUILD_TOOLS_VERSION=$(ls ${ANDROID_SDK_ROOT}/build-tools | tail -n1)
+    ANDROID_BUILD_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)
     ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
-    ANDROID_CMDLINE_TOOLS_VERSION=$(ls ${ANDROID_SDK_ROOT}/cmdline-tools | tail -n1)
+    ANDROID_CMDLINE_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)
     ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/${ANDROID_CMDLINE_TOOLS_VERSION}/tools/bin"
-    ANDROID_NDK_VERSION=$(ls ${ANDROID_SDK_ROOT}/ndk | tail -n1)
-    export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
+    if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
+        ANDROID_NDK_VERSION=$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)
+        export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
+    fi
     export PATH=${ANDROID_SDK_ROOT}/emulator:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/tools:${ANDROID_BUILD_TOOLS_ROOT}:${ANDROID_CMDLINE_TOOLS_ROOT}:${NDK_ROOT}:${PATH}
 fi
 
