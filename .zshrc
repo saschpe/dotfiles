@@ -71,21 +71,22 @@ if [ -d "${ANDROID_SDK_ROOT}" ] ; then
 fi
 
 # Google Cloud SDK
-gcloud_sdk_root=${HOME}/Applications/google-cloud-sdk
+gcloud_sdk_root="${HOME}/Applications/google-cloud-sdk"
 [ -f "${gcloud_sdk_root}/path.zsh.inc" ] && . "${gcloud_sdk_root}/path.zsh.inc"
 [ -f "${gcloud_sdk_root}/completion.zsh.inc" ] && . "${gcloud_sdk_root}/completion.zsh.inc"
 
-# Flutter
-export PATH=$HOME/Applications/flutter/bin:$PATH
+# Dart and Flutter
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH":"$HOME/Applications/flutter/bin"
 export CHROME_EXECUTABLE=`command -v brave-browser`
 
 # Golang
-export GOPATH=$HOME/.go
-export PATH=${GOPATH//://bin:}/bin:$PATH
+export GOPATH="$HOME/.go"
+export PATH="${PATH}":"${GOPATH//://bin:}/bin"
 
 # Rubygems
 if [ -e /usr/bin/ruby ] ; then
-    export PATH=${PATH}:${HOME}/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${HOME}/.gem/ruby/bin
+    export PATH="${PATH}":"${HOME}/.gem/ruby/$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")/bin:${HOME}/.gem/ruby/bin"
 fi
 
 # Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
@@ -97,7 +98,7 @@ export JENKINS_URL="http://jenkins"
 # macOS
 if [ `uname` = "Darwin" ] ; then
     # Official CMake.app
-    export PATH="/Applications/CMake.app/Contents/bin":"$PATH"
+    export PATH="${PATH}":"/Applications/CMake.app/Contents/bin"
 else
     alias open="xdg-open"
 fi
@@ -110,4 +111,4 @@ export SDKMAN_DIR="/home/saschpe/.sdkman"
 [[ -s "/home/saschpe/.sdkman/bin/sdkman-init.sh" ]] && source "/home/saschpe/.sdkman/bin/sdkman-init.sh"
 
 # Node.JS / NPM
-export PATH="${PATH}:${HOME}/.npm/global/bin"
+export PATH="${PATH}":"${HOME}/.npm/global/bin"
