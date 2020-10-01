@@ -8,7 +8,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(brew command-not-found common-aliases dirhistory dnf docker gem git kubectl lol npm pep8 pip python screen sdk vundle web-search zsh-autosuggestions)
+plugins=(command-not-found common-aliases dirhistory zsh-autosuggestions)
 # ssh-agent
 source $ZSH/oh-my-zsh.sh
 
