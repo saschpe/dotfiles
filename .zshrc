@@ -27,6 +27,8 @@ function tmpcd () { cd $(mktemp -d) }
 alias find="noglob find"
 alias grep="grep -I"
 alias ip="ip --color=auto"
+alias df1='df --type btrfs --type ext4 --type ext3 --type ext2 --type vfat --type iso9660'
+alias mount1="mount | /bin/grep -E '^/'"
 
 # Debian packaging
 export DEBFULLNAME="Sascha Peilicke"
