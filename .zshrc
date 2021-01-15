@@ -94,3 +94,6 @@ export JENKINS_URL="http://jenkins"
 
 # NodeJS / NPM
 export PATH="${PATH}":"${HOME}/.npm/global/bin"
+
+# Java
+[ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
