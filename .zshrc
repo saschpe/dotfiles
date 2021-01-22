@@ -64,7 +64,7 @@ if [ -d "${ANDROID_SDK_ROOT}" ] ; then
         ANDROID_NDK_VERSION=`ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1`
         export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
     fi
-    export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_SDK_ROOT}/tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${NDK_ROOT}"
+    export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${NDK_ROOT}"
 fi
 
 # Google Cloud SDK
