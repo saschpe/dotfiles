@@ -16,19 +16,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
 
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ekalinin/Dockerfile.vim'            " github.com/ekalinin/Dockerfile.vim
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'fatih/vim-go'
 Plugin 'groenewege/vim-less'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'keith/swift.vim'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'r0mai/vim-djinni'
-Plugin 'udalov/kotlin-vim'
-Plugin 'vim-scripts/nginx.vim'              " github.com/vim-scripts/nginx.vim
-Plugin 'vim-syntastic/syntastic'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'tomlion/vim-solidity'
+Plugin 'udalov/kotlin-vim'
+Plugin 'vim-scripts/nginx.vim'
+Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()                           " required
 filetype plugin indent on                   " required
@@ -54,31 +54,22 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if &t_Co >= 256 || has("gui_running")
-    if (system('uname') =~ "Darwin")
-        colorscheme desert
-    else
-        colorscheme peachpuff
-    endif
-endif
-if &t_Co > 2 || has("gui_running")          " If we have colors
+"if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                 " Syntax highlighting
-endif
-
+  colorscheme desert
+  if (system('uname') =~ "Darwin")
+    " Only for MacVim, which doesn't have VIM's auto detection
+    if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+      set background=dark
+    else
+      set background=light
+    endif
+  endif
+"endif
 if has("gui_running")                       " GVim or running under GUI
-  "hi Normal guibg=black guifg=grey
-  "hi String guifg=#FF3333
-  "hi Statement guifg=#cf6802
-  "hi Folded guibg=black guifg=grey40
-  "hi FoldColumn guibg=black guifg=grey40
-  "set guifont=FreeMono\ Bold\ 10            " Font for GVim
-  winpos 0 50                               " Window position
-  set lines=45
-else                                        " Vim running in a terminal
-  "colorscheme slate
-  "hi Folded ctermfg=grey ctermbg=darkgrey
-  "hi FoldColumn ctermfg=grey ctermbg=darkgrey
-  "hi Comment ctermfg=darkcyan ctermbg=darkgrey
+  set columns=100
+  set lines=40
+  set guifont=JetBrainsMono-Regular:h11,Menlo-Regular:h11
 endif
 
 set hidden                                  "  Hide buffers instead of closing them.
