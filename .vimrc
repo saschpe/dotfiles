@@ -11,26 +11,26 @@
 set nocompatible                            " be iMproved, required
 filetype off                                " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'                  " let Vundle manage Vundle, required
+if version >= 801
+  " Include Vundle and initialize (run ./bin/vundle once)
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
+  Plugin 'dart-lang/dart-vim-plugin'
+  Plugin 'editorconfig/editorconfig-vim'
+  Plugin 'ekalinin/Dockerfile.vim'
+  Plugin 'fatih/vim-go'
+  Plugin 'groenewege/vim-less'
+  Plugin 'keith/swift.vim'
+  Plugin 'leafgarland/typescript-vim'
+  Plugin 'r0mai/vim-djinni'
+  Plugin 'tomlion/vim-solidity'
+  Plugin 'udalov/kotlin-vim'
+  Plugin 'vim-scripts/nginx.vim'
+  Plugin 'vim-syntastic/syntastic'
+  call vundle#end()                         " required
+endif
 
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'dart-lang/dart-vim-plugin'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'fatih/vim-go'
-Plugin 'groenewege/vim-less'
-Plugin 'keith/swift.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'r0mai/vim-djinni'
-Plugin 'tomlion/vim-solidity'
-Plugin 'udalov/kotlin-vim'
-Plugin 'vim-scripts/nginx.vim'
-Plugin 'vim-syntastic/syntastic'
-
-call vundle#end()                           " required
 filetype plugin indent on                   " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,8 +55,10 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Theme / colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if &t_Co > 2 || has("gui_running")          " If we have colors
-  syntax on                                 " Syntax highlighting
-  colorscheme desert
+  syntax on                                  " Syntax highlighting
+  if version >= 801
+    colorscheme desert
+  endif
   if (system('uname') =~ "Darwin")
     " Only for MacVim, which doesn't have VIM's auto detection
     if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
@@ -306,6 +308,6 @@ let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_python_checkers = ['flake8']
 
 " Dart
-let dart_html_in_string=v:true
+let dart_html_in_string = 1
 let dart_style_guide = 2
 "let dart_format_on_save = 1
