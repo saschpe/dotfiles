@@ -246,7 +246,7 @@ autocmd BufRead,BufNewFile *.json setf js
 let g:tex_fold_enabled = 1                  " syntax-based folding for (La)Tex
 
 " Android
-autocmd BufReadCmd *.aar call zip#Browse(expand("<amatch>"))
+autocmd BufReadCmd *.aar,*.aab call zip#Browse(expand("<amatch>"))
 
 " Systemd options
 autocmd BufRead,BufNewFile *.service setf desktop
