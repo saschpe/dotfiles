@@ -93,8 +93,11 @@ fi
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
 
-# NodeJS / NPM
+# NodeJS, NPM, Ionic
 export PATH="${PATH}":"${HOME}/.npm/global/bin"
+androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
+androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
+export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
 
 # Java
 [ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
