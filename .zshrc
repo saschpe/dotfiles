@@ -15,6 +15,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export EDITOR=vim
+export LANG=en_US.UTF-8
 export PATH=/usr/sbin:/sbin:/usr/local/bin:"${HOME}/.local/bin":"${HOME}/bin":"${PATH}"
 ulimit -c unlimited # Enable core dumps
 
