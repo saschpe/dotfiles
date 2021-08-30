@@ -104,3 +104,7 @@ export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudio
 
 # Java
 [ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
+
+# Homebrew
+export PATH="/usr/local/sbin:${PATH}"
+
