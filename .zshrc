@@ -99,10 +99,10 @@ export JENKINS_URL="http://jenkins"
 # NodeJS 14 LTS, NPM, Ionic
 if [ `uname` = "Darwin" ] ; then
     export PATH="/usr/local/opt/node@14/bin:$PATH"
+    androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
+    androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
+    export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
 fi
-androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
-androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
-export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
 
 # Java
 [ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
