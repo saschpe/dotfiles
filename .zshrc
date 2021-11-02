@@ -18,11 +18,12 @@ export EDITOR=vim
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH=/usr/sbin:/sbin:/usr/local/bin:"${HOME}/.local/bin":"${HOME}/bin":"${PATH}"
+export PATH=/usr/sbin:/sbin:"${HOME}/.local/bin":"${HOME}/bin":"${PATH}"
 ulimit -c unlimited # Enable core dumps
 
 if [ `uname` != "Darwin" ] ; then
     alias open="xdg-open"
+    export PATH="${PATH}:/usr/local/bin" # Avoid Brew x86 on M1
 fi
 
 function tmpcd () { cd $(mktemp -d) }
@@ -108,5 +109,17 @@ fi
 [ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
 
 # Homebrew
-export PATH="/usr/local/sbin:${PATH}"
+if [ `uname` = "Darwin" ] ; then
+    if [ `uname -m` = "arm64" ] ; then
+        export HOMEBREW_PREFIX="/opt/homebrew";
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+        export HOMEBREW_REPOSITORY="/opt/homebrew";
+        export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew";
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+        export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+        export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+    else
+        export PATH="/usr/local/sbin:${PATH}"
+    fi
+fi
 
