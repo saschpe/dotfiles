@@ -97,14 +97,6 @@ fi
 # Jenkins CLI
 export JENKINS_URL="http://jenkins"
 
-# NodeJS 14 LTS, NPM, Ionic
-if [ `uname` = "Darwin" ] ; then
-    export PATH="/usr/local/opt/node@14/bin:$PATH"
-    androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
-    androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
-    export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
-fi
-
 # Java
 [ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
 
@@ -123,3 +115,14 @@ if [ `uname` = "Darwin" ] ; then
     fi
 fi
 
+# NodeJS 14 LTS, NPM, Ionic
+if [ `uname` = "Darwin" ] ; then
+    if [ `uname -m` = "arm64" ] ; then
+        export PATH="/opt/homebrew/opt/node@14/bin:${PATH}"
+    else
+        export PATH="/usr/local/opt/node@14/bin:${PATH}"
+    fi
+    androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
+    androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
+    export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
+fi
