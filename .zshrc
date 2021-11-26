@@ -98,7 +98,7 @@ fi
 export JENKINS_URL="http://jenkins"
 
 # Java
-[ -s "/Users/saschpe/.jabba/jabba.sh" ] && source "/Users/saschpe/.jabba/jabba.sh"
+[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Homebrew
 if [ `uname` = "Darwin" ] ; then
