@@ -61,12 +61,12 @@ else
     esac
 fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
-    ANDROID_BUILD_TOOLS_VERSION=`ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1`
+    ANDROID_BUILD_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)
     ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
-    ANDROID_CMDLINE_TOOLS_VERSION=`ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1`
+    ANDROID_CMDLINE_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)
     ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/${ANDROID_CMDLINE_TOOLS_VERSION}/bin"
     if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
-        ANDROID_NDK_VERSION=`ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1`
+        ANDROID_NDK_VERSION=$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)
         export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
     fi
     export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${NDK_ROOT}"
@@ -79,7 +79,7 @@ gcloud_sdk_root="${HOME}/Applications/google-cloud-sdk"
 
 # Dart and Flutter
 export PATH="${PATH}":"${HOME}/.pub-cache/bin":"${HOME}/Applications/flutter/bin"
-export CHROME_EXECUTABLE=`command -v brave-browser`
+export CHROME_EXECUTABLE=$(command -v brave-browser)
 
 # Golang
 export GOPATH="${HOME}/.go"
@@ -87,7 +87,7 @@ export PATH="${PATH}":"${GOPATH//://bin:}/bin"
 
 # Rubygems
 if [ -e /usr/bin/ruby ] ; then
-    ruby_version=`ruby -e "puts RUBY_VERSION[0,3] + \".0\""`
+    ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
     export PATH="${PATH}":"${HOME}/.gem/ruby/${ruby_version}/bin":"${HOME}/.gem/ruby/bin"
 fi
 
@@ -101,8 +101,8 @@ export JENKINS_URL="http://jenkins"
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Homebrew
-if [ `uname` = "Darwin" ] ; then
-    if [ `uname -m` = "arm64" ] ; then
+if [ $(uname) = "Darwin" ] ; then
+    if [ $(uname -m) = "arm64" ] ; then
         export HOMEBREW_PREFIX="/opt/homebrew";
         export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
         export HOMEBREW_REPOSITORY="/opt/homebrew";
@@ -116,13 +116,13 @@ if [ `uname` = "Darwin" ] ; then
 fi
 
 # NodeJS 14 LTS, NPM, Ionic
-if [ `uname` = "Darwin" ] ; then
-    if [ `uname -m` = "arm64" ] ; then
-        export PATH="/opt/homebrew/opt/node@14/bin:${PATH}"
+if [ $(uname) = "Darwin" ] ; then
+    if [ $(uname -m) = "arm64" ] ; then
+        export PATH="/opt/homebrew/opt/node@16/bin:${PATH}"
     else
-        export PATH="/usr/local/opt/node@14/bin:${PATH}"
+        export PATH="/usr/local/opt/node@16/bin:${PATH}"
     fi
-    androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
-    androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
-    export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
+    #androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
+    #androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
+    #export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
 fi
