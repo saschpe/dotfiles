@@ -85,12 +85,6 @@ export CHROME_EXECUTABLE=$(command -v brave-browser)
 export GOPATH="${HOME}/.go"
 export PATH="${PATH}":"${GOPATH//://bin:}/bin"
 
-# Rubygems
-if [ -e /usr/bin/ruby ] ; then
-    ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-    export PATH="${PATH}":"${HOME}/.gem/ruby/${ruby_version}/bin":"${HOME}/.gem/ruby/bin"
-fi
-
 # Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
 #export CCACHE_PREFIX=icecc
 
@@ -110,9 +104,16 @@ if [ $(uname) = "Darwin" ] ; then
         export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
         export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
         export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+        export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
     else
         export PATH="/usr/local/sbin:${PATH}"
     fi
+fi
+
+# Rubygems
+if command -v ruby >/dev/null ; then
+    ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
+    export PATH="${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
 # NodeJS 14 LTS, NPM, Ionic
