@@ -225,8 +225,8 @@ autocmd BufRead,BufNewFile *.qrc, *.rc setf xml
 " Ruby / Ruby on Rails options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType rb,ruby,eruby set foldmethod=indent shiftwidth=2 softtabstop=2 omnifunc=rubycomplete#Complete
-autocmd FIleType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
-autocmd BufRead,BufNewFile Fastfile,Podfile,podspec setf ruby
+autocmd FileType cucumber set foldmethod=indent shiftwidth=2 softtabstop=2
+autocmd BufRead,BufNewFile Fastfile,Podfile,*.podspec setf ruby
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " XML / HTML / CSS / JavaScript options
@@ -265,7 +265,7 @@ autocmd BufRead,BufNewFile *.conf setf config
 " nginx.vim - https://github.com/vim-scripts/nginx.vim see bundle
 autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,nginx.conf setf nginx
 
-autocmd FIleType yaml set foldmethod=indent shiftwidth=2 softtabstop=2
+autocmd FileType yaml set foldmethod=indent shiftwidth=2 softtabstop=2
 autocmd BufRead,BufNewFile *.spdx setf yaml " SPDX
 
 " Objective-C
