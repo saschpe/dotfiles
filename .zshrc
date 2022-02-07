@@ -104,7 +104,7 @@ if [ $(uname) = "Darwin" ] ; then
         export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
         export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
         export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-        #export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
+        export PATH="/opt/homebrew/opt/ruby@2/bin:${PATH}"
     else
         export PATH="/usr/local/sbin:${PATH}"
     fi
@@ -113,7 +113,7 @@ fi
 # Rubygems
 if command -v ruby >/dev/null ; then
     ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-    export PATH="${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
+    export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
 # NodeJS 14 LTS, NPM, Ionic
