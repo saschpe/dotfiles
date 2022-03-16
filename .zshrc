@@ -113,7 +113,7 @@ fi
 # Rubygems
 if command -v ruby >/dev/null ; then
     ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-    export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${PATH}"
+    export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
 # NodeJS 14 LTS, NPM, Ionic
