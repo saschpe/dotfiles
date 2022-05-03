@@ -3,6 +3,8 @@
     excludesfile = ~/.gitignore
     autocrlf = input
     savecrlf = true
+    symlinks = true # windows
+    longpaths = true # windows
 
 [user]
     name = Sascha Peilicke
@@ -75,6 +77,7 @@
 
 [credential]
     helper = osxkeychain
+    #helper = wincred
     helper = store
     helper = cache --timeout=3600
 
