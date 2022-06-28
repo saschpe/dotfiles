@@ -93,11 +93,3 @@
     process = git-lfs filter-process
     required = true
     smudge = git-lfs smudge -- %f
-
-[url "git://anongit.kde.org/"]
-    insteadOf = kde:
-[url "git@git.kde.org:"]
-    pushInsteadOf = kde:
-
-[review "gerrit.it.here.com"]
-    username = peilicke
