@@ -23,9 +23,13 @@
 
 [push]
     default = simple
+    autoSetupRemote = true
 
 [color]
     ui = auto
+
+[advice]
+    skippedCherryPicks = false
 
 [alias]
     ama = am --abort
