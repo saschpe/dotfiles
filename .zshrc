@@ -136,14 +136,11 @@ if command -v ruby >/dev/null ; then
     export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
-# NodeJS 14 LTS, NPM, Ionic
+# NodeJS
 if [ $(uname) = "Darwin" ] ; then
     if [ $(uname -m) = "arm64" ] ; then
         export PATH="/opt/homebrew/opt/node@16/bin:${PATH}"
     else
         export PATH="/usr/local/opt/node@16/bin:${PATH}"
     fi
-    #androidStudioToolboxBase=${HOME}/Library/Application\ Support/JetBrains/Toolbox/apps/AndroidStudio/ch-0
-    #androidStudioToolboxVersion=$(ls ${androidStudioToolboxBase})
-    #export CAPACITOR_ANDROID_STUDIO_PATH=${androidStudioToolboxBase}/${androidStudioToolboxVersion}/Android\ Studio.app/
 fi
