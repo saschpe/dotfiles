@@ -6,6 +6,9 @@
     symlinks = true # windows
     longpaths = true # windows
 
+[init]
+    defaultBranch = main
+
 [user]
     name = Sascha Peilicke
     email = sascha@peilicke.de
