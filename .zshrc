@@ -100,6 +100,9 @@ gcloud_sdk_root="${HOME}/Applications/google-cloud-sdk"
 export PATH="${PATH}":"${HOME}/.pub-cache/bin":"${HOME}/Applications/flutter/bin"
 export CHROME_EXECUTABLE=$(command -v brave-browser)
 
+# Docker Desktop CLI
+export PATH="${PATH}":"${HOME}/.docker/bin"
+
 # Golang
 export GOPATH="${HOME}/.go"
 export PATH="${PATH}":"${GOPATH//://bin:}/bin"
