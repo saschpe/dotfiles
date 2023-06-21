@@ -142,8 +142,8 @@ fi
 # NodeJS
 if [ $(uname) = "Darwin" ] ; then
     if [ $(uname -m) = "arm64" ] ; then
-        export PATH="/opt/homebrew/opt/node@16/bin:${PATH}"
+        export PATH="/opt/homebrew/opt/node@18/bin:${PATH}"
     else
-        export PATH="/usr/local/opt/node@16/bin:${PATH}"
+        export PATH="/usr/local/opt/node@18/bin:${PATH}"
     fi
 fi
