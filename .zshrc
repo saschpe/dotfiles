@@ -126,10 +126,10 @@ if [ $(uname) = "Darwin" ] ; then
         export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
         export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
         export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-        export PATH="/opt/homebrew/opt/ruby@2/bin:${PATH}"
+        export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
     else
         export PATH="/usr/local/sbin:${PATH}"
-        export PATH="/usr/local/opt/ruby@2/bin:${PATH}"
+        export PATH="/usr/local/opt/ruby/bin:${PATH}"
     fi
 fi
 
