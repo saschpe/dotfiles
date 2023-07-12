@@ -1,12 +1,9 @@
+[misc]
 # Additional git repositories to pull
 #git_repos = [
 #    "~/src/*/",
 #    "~/.config/something"
 #]
-
-# Don't pull the predefined git repos
-# predefined_git_repos = false
-display_preamble = false
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
