@@ -147,3 +147,4 @@ if [ $(uname) = "Darwin" ] ; then
         export PATH="/usr/local/opt/node@18/bin:${PATH}"
     fi
 fi
+NX_SKIP_NX_CACHE=true # nx nonsense
