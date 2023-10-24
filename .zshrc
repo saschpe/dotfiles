@@ -28,7 +28,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases dirhistory zsh-autosuggestions)
+plugins=(common-aliases zsh-autosuggestions)
 # ssh-agent
 source $ZSH/oh-my-zsh.sh
 
