@@ -7,7 +7,7 @@
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
-disable = ["containers", "node", "vim"]
+disable = ["certbot", "containers", "node", "vim"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
