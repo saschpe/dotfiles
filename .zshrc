@@ -142,9 +142,9 @@ fi
 # NodeJS
 if [ $(uname) = "Darwin" ] ; then
     if [ $(uname -m) = "arm64" ] ; then
-        export PATH="/opt/homebrew/opt/node@20/bin:${PATH}"
+        export PATH="/opt/homebrew/opt/node/bin:${PATH}"
     else
-        export PATH="/usr/local/opt/node@20/bin:${PATH}"
+        export PATH="/usr/local/opt/node/bin:${PATH}"
     fi
 fi
 NX_SKIP_NX_CACHE=true # nx nonsense
