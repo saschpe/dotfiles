@@ -62,7 +62,7 @@ export DEB_BUILD_ARCH=amd64
 # Android
 if [ `uname` = "Darwin" ] ; then
     export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-    export JAVA_HOME=`/usr/libexec/java_home -v 17`
+    export JAVA_HOME=`/usr/libexec/java_home`
 else
     export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
     case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
