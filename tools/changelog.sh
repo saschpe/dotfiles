@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+cd "$ZSH"
+setopt extendedglob
+
 ##############################
 # CHANGELOG SCRIPT CONSTANTS #
 ##############################
@@ -20,8 +23,7 @@ TYPES=(
   test      "Testing"
 )
 
-#* Types that will be displayed in their own section,
-#* in the order specified here.
+#* Types that will be displayed in their own section, in the order specified here.
 local -a MAIN_TYPES
 MAIN_TYPES=(feat fix perf docs)
 
@@ -31,7 +33,8 @@ OTHER_TYPES=(refactor style other)
 
 #* Commit types that don't appear in $MAIN_TYPES nor $OTHER_TYPES
 #* will not be displayed and will simply be ignored.
-
+local -a IGNORED_TYPES
+IGNORED_TYPES=(${${${(@k)TYPES}:|MAIN_TYPES}:|OTHER_TYPES})
 
 ############################
 # COMMIT PARSING UTILITIES #
@@ -49,10 +52,15 @@ function parse-commit {
   #   make a breaking change
 
   function commit:type {
-    local type="$(sed -E 's/^([a-zA-Z_\-]+)(\(.+\))?!?: .+$/\1/' <<< "$1")"
+    local type
+
+    # Parse commit type from the subject
+    if [[ "$1" =~ '^([a-zA-Z_\-]+)(\(.+\))?!?: .+$' ]]; then
+      type="${match[1]}"
+    fi
 
     # If $type doesn't appear in $TYPES array mark it as 'other'
-    if [[ -n "${(k)TYPES[(i)$type]}" ]]; then
+    if [[ -n "$type" && -n "${(k)TYPES[(i)$type]}" ]]; then
       echo $type
     else
       echo other
@@ -63,17 +71,18 @@ function parse-commit {
     local scope
 
     # Try to find scope in "type(<scope>):" format
-    scope=$(sed -nE 's/^[a-zA-Z_\-]+\((.+)\)!?: .+$/\1/p' <<< "$1")
-    if [[ -n "$scope" ]]; then
-      echo "$scope"
+    if [[ "$1" =~ '^[a-zA-Z_\-]+\((.+)\)!?: .+$' ]]; then
+      echo "${match[1]}"
       return
     fi
 
     # If no scope found, try to find it in "<scope>:" format
-    # Make sure it's not a type before printing it
-    scope=$(sed -nE 's/^([a-zA-Z_\-]+): .+$/\1/p' <<< "$1")
-    if [[ -z "${(k)TYPES[(i)$scope]}" ]]; then
-      echo "$scope"
+    if [[ "$1" =~ '^([a-zA-Z_\-]+): .+$' ]]; then
+      scope="${match[1]}"
+      # Make sure it's not a type before printing it
+      if [[ -z "${(k)TYPES[(i)$scope]}" ]]; then
+        echo "$scope"
+      fi
     fi
   }
 
@@ -81,7 +90,11 @@ function parse-commit {
     # Only display the relevant part of the commit, i.e. if it has the format
     # type[(scope)!]: subject, where the part between [] is optional, only
     # displays subject. If it doesn't match the format, returns the whole string.
-    sed -E 's/^[a-zA-Z_\-]+(\(.+\))?!?: (.+)$/\2/' <<< "$1"
+    if [[ "$1" =~ '^[a-zA-Z_\-]+(\(.+\))?!?: (.+)$' ]]; then
+      echo "${match[2]}"
+    else
+      echo "$1"
+    fi
   }
 
   # Return subject if the body or subject match the breaking change format
@@ -93,6 +106,9 @@ function parse-commit {
       message="${match[1]}"
       # remove CR characters (might be inserted in GitHub UI commit description form)
       message="${message//$'\r'/}"
+      # remove lines containing only whitespace
+      local nlnl=$'\n\n'
+      message="${message//$'\n'[[:space:]]##$'\n'/$nlnl}"
       # skip next paragraphs (separated by two newlines or more)
       message="${message%%$'\n\n'*}"
       # ... and replace newlines with spaces
@@ -114,15 +130,8 @@ function parse-commit {
     fi
   }
 
-  # Ignore commit if it is a merge commit
-  if [[ $(command git show -s --format=%p $1 | wc -w) -gt 1 ]]; then
-    return
-  fi
-
   # Parse commit with hash $1
-  local hash="$1" subject body warning rhash
-  subject="$(command git show -s --format=%s $hash)"
-  body="$(command git show -s --format=%b $hash)"
+  local hash="$1" subject="$2" body="$3" warning rhash
 
   # Commits following Conventional Commits (https://www.conventionalcommits.org/)
   # have the following format, where parts between [] are optional:
@@ -133,7 +142,7 @@ function parse-commit {
   #  [BREAKING CHANGE: warning]
 
   # commits holds the commit type
-  commits[$hash]="$(commit:type "$subject")"
+  types[$hash]="$(commit:type "$subject")"
   # scopes holds the commit scope
   scopes[$hash]="$(commit:scope "$subject")"
   # subjects holds the commit subject
@@ -151,6 +160,94 @@ function parse-commit {
   fi
 }
 
+################################
+# SUPPORTS HYPERLINKS FUNCTION #
+################################
+
+# The code for checking if a terminal supports hyperlinks is copied from install.sh
+
+# The [ -t 1 ] check only works when the function is not called from
+# a subshell (like in `$(...)` or `(...)`, so this hack redefines the
+# function at the top level to always return false when stdout is not
+# a tty.
+if [ -t 1 ]; then
+  is_tty() {
+    true
+  }
+else
+  is_tty() {
+    false
+  }
+fi
+
+# This function uses the logic from supports-hyperlinks[1][2], which is
+# made by Kat Marchán (@zkat) and licensed under the Apache License 2.0.
+# [1] https://github.com/zkat/supports-hyperlinks
+# [2] https://crates.io/crates/supports-hyperlinks
+#
+# Copyright (c) 2021 Kat Marchán
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+supports_hyperlinks() {
+  # $FORCE_HYPERLINK must be set and be non-zero (this acts as a logic bypass)
+  if [ -n "$FORCE_HYPERLINK" ]; then
+    [ "$FORCE_HYPERLINK" != 0 ]
+    return $?
+  fi
+
+  # If stdout is not a tty, it doesn't support hyperlinks
+  is_tty || return 1
+
+  # DomTerm terminal emulator (domterm.org)
+  if [ -n "$DOMTERM" ]; then
+    return 0
+  fi
+
+  # VTE-based terminals above v0.50 (Gnome Terminal, Guake, ROXTerm, etc)
+  if [ -n "$VTE_VERSION" ]; then
+    [ $VTE_VERSION -ge 5000 ]
+    return $?
+  fi
+
+  # If $TERM_PROGRAM is set, these terminals support hyperlinks
+  case "$TERM_PROGRAM" in
+  Hyper|iTerm.app|terminology|WezTerm|vscode) return 0 ;;
+  esac
+
+  # These termcap entries support hyperlinks
+  case "$TERM" in
+  xterm-kitty|alacritty|alacritty-direct) return 0 ;;
+  esac
+
+  # xfce4-terminal supports hyperlinks
+  if [ "$COLORTERM" = "xfce4-terminal" ]; then
+    return 0
+  fi
+
+  # Windows Terminal also supports hyperlinks
+  if [ -n "$WT_SESSION" ]; then
+    return 0
+  fi
+
+  # Konsole supports hyperlinks, but it's an opt-in setting that can't be detected
+  # https://github.com/ohmyzsh/ohmyzsh/issues/10964
+  # if [ -n "$KONSOLE_VERSION" ]; then
+  #   return 0
+  # fi
+
+  return 1
+}
+
 #############################
 # RELEASE CHANGELOG DISPLAY #
 #############################
@@ -158,28 +255,40 @@ function parse-commit {
 function display-release {
 
   # This function uses the following globals: output, version,
-  # commits (A), subjects (A), scopes (A), breaking (A) and reverts (A).
+  # types (A), subjects (A), scopes (A), breaking (A) and reverts (A).
   #
   # - output is the output format to use when formatting (raw|text|md)
   # - version is the version in which the commits are made
-  # - commits, subjects, scopes, breaking, and reverts are associative arrays
+  # - types, subjects, scopes, breaking, and reverts are associative arrays
   #   with commit hashes as keys
 
   # Remove commits that were reverted
   local hash rhash
   for hash rhash in ${(kv)reverts}; do
-    if (( ${+commits[$rhash]} )); then
+    if (( ${+types[$rhash]} )); then
       # Remove revert commit
-      unset "commits[$hash]" "subjects[$hash]" "scopes[$hash]" "breaking[$hash]"
+      unset "types[$hash]" "subjects[$hash]" "scopes[$hash]" "breaking[$hash]"
       # Remove reverted commit
-      unset "commits[$rhash]" "subjects[$rhash]" "scopes[$rhash]" "breaking[$rhash]"
+      unset "types[$rhash]" "subjects[$rhash]" "scopes[$rhash]" "breaking[$rhash]"
     fi
   done
 
+  # Remove commits from ignored types unless it has breaking change information
+  for hash in ${(k)types[(R)${(j:|:)IGNORED_TYPES}]}; do
+    (( ! ${+breaking[$hash]} )) || continue
+    unset "types[$hash]" "subjects[$hash]" "scopes[$hash]"
+  done
+
   # If no commits left skip displaying the release
-  if (( $#commits == 0 )); then
+  if (( $#types == 0 )); then
     return
   fi
+
+  # Get length of longest scope for padding
+  local max_scope=0
+  for hash in ${(k)scopes}; do
+    max_scope=$(( max_scope < ${#scopes[$hash]} ? ${#scopes[$hash]} : max_scope ))
+  done
 
   ##* Formatting functions
 
@@ -188,10 +297,17 @@ function display-release {
   function fmt:hash {
     #* Uses $hash from outer scope
     local hash="${1:-$hash}"
+    local short_hash="${hash:0:7}" # 7 characters sha, top level sha is 12 characters
     case "$output" in
-    raw) printf "$hash" ;;
-    text) printf "\e[33m$hash\e[0m" ;; # red
-    md) printf "[\`$hash\`](https://github.com/ohmyzsh/ohmyzsh/commit/$hash)" ;;
+    raw) printf '%s' "$short_hash" ;;
+    text)
+      local text="\e[33m$short_hash\e[0m"; # red
+      if supports_hyperlinks; then
+        printf "\e]8;;%s\a%s\e]8;;\a" "https://github.com/ohmyzsh/ohmyzsh/commit/$hash" $text;
+      else
+        echo $text;
+      fi ;;
+    md) printf '[`%s`](https://github.com/ohmyzsh/ohmyzsh/commit/%s)' "$short_hash" "$hash" ;;
     esac
   }
 
@@ -203,16 +319,16 @@ function display-release {
     case "$output" in
     raw)
       case "$level" in
-      1) printf "$header\n$(printf '%.0s=' {1..${#header}})\n\n" ;;
-      2) printf "$header\n$(printf '%.0s-' {1..${#header}})\n\n" ;;
-      *) printf "$header:\n\n" ;;
+      1) printf '%s\n%s\n\n' "$header" "$(printf '%.0s=' {1..${#header}})" ;;
+      2) printf '%s\n%s\n\n' "$header" "$(printf '%.0s-' {1..${#header}})" ;;
+      *) printf '%s:\n\n' "$header" ;;
       esac ;;
     text)
       case "$level" in
-      1|2) printf "\e[1;4m$header\e[0m\n\n" ;; # bold, underlined
-      *) printf "\e[1m$header:\e[0m\n\n" ;; # bold
+      1|2) printf '\e[1;4m%s\e[0m\n\n' "$header" ;; # bold, underlined
+      *) printf '\e[1m%s:\e[0m\n\n' "$header" ;; # bold
       esac ;;
-    md) printf "$(printf '%.0s#' {1..${level}}) $header\n\n" ;;
+    md) printf '%s %s\n\n' "$(printf '%.0s#' {1..${level}})" "$header" ;;
     esac
   }
 
@@ -220,18 +336,13 @@ function display-release {
     #* Uses $scopes (A) and $hash from outer scope
     local scope="${1:-${scopes[$hash]}}"
 
-    # Get length of longest scope for padding
-    local max_scope=0 padding=0
-    for hash in ${(k)scopes}; do
-      max_scope=$(( max_scope < ${#scopes[$hash]} ? ${#scopes[$hash]} : max_scope ))
-    done
-
     # If no scopes, exit the function
     if [[ $max_scope -eq 0 ]]; then
       return
     fi
 
     # Get how much padding is required for this scope
+    local padding=0
     padding=$(( max_scope < ${#scope} ? 0 : max_scope - ${#scope} ))
     padding="${(r:$padding:: :):-}"
 
@@ -243,8 +354,8 @@ function display-release {
 
     # Print [scope]
     case "$output" in
-    raw|md) printf "[$scope]${padding} " ;;
-    text) printf "[\e[38;5;9m$scope\e[0m]${padding} " ;; # red 9
+    raw|md) printf '[%s]%s ' "$scope" "$padding";;
+    text) printf '[\e[38;5;9m%s\e[0m]%s ' "$scope" "$padding";; # red 9
     esac
   }
 
@@ -257,9 +368,14 @@ function display-release {
     subject="${(U)subject:0:1}${subject:1}"
 
     case "$output" in
-    raw) printf "$subject" ;;
+    raw) printf '%s' "$subject" ;;
     # In text mode, highlight (#<issue>) and dim text between `backticks`
-    text) sed -E $'s|#([0-9]+)|\e[32m#\\1\e[0m|g;s|`([^`]+)`|`\e[2m\\1\e[0m`|g' <<< "$subject" ;;
+    text)
+      if supports_hyperlinks; then
+        sed -E $'s|#([0-9]+)|\e]8;;https://github.com/ohmyzsh/ohmyzsh/issues/\\1\a\e[32m#\\1\e[0m\e]8;;\a|g;s|`([^`]+)`|`\e[2m\\1\e[0m`|g' <<< "$subject"
+      else
+        sed -E $'s|#([0-9]+)|\e[32m#\\1\e[0m|g;s|`([^`]+)`|`\e[2m\\1\e[0m`|g' <<< "$subject"
+      fi ;;
     # In markdown mode, link to (#<issue>) issues
     md) sed -E 's|#([0-9]+)|[#\1](https://github.com/ohmyzsh/ohmyzsh/issues/\1)|g' <<< "$subject" ;;
     esac
@@ -270,8 +386,8 @@ function display-release {
     local type="${1:-${TYPES[$type]:-${(C)type}}}"
     [[ -z "$type" ]] && return 0
     case "$output" in
-    raw|md) printf "$type: " ;;
-    text) printf "\e[4m$type\e[24m: " ;; # underlined
+    raw|md) printf '%s: ' "$type" ;;
+    text) printf '\e[4m%s\e[24m: ' "$type" ;; # underlined
     esac
   }
 
@@ -285,22 +401,28 @@ function display-release {
     (( $#breaking != 0 )) || return 0
 
     case "$output" in
+    text) printf '\e[31m'; fmt:header "BREAKING CHANGES" 3 ;;
     raw) fmt:header "BREAKING CHANGES" 3 ;;
-    text|md) fmt:header "⚠ BREAKING CHANGES" 3 ;;
+    md) fmt:header "BREAKING CHANGES ⚠" 3 ;;
     esac
 
-    local hash subject
+    local hash message
+    local wrap_width=$(( (COLUMNS < 100 ? COLUMNS : 100) - 3 ))
     for hash message in ${(kv)breaking}; do
-      echo " - $(fmt:hash) $(fmt:scope)$(fmt:subject "${message}")"
-    done | sort
-    echo
+      # Format the BREAKING CHANGE message by word-wrapping it at maximum 100
+      # characters (use $COLUMNS if smaller than 100)
+      message="$(fmt -w $wrap_width <<< "$message")"
+      # Display hash and scope in their own line, and then the full message with
+      # blank lines as separators and a 3-space left padding
+      echo " - $(fmt:hash) $(fmt:scope)\n\n$(fmt:subject "$message" | sed 's/^/   /')\n"
+    done
   }
 
   function display:type {
     local hash type="$1"
 
     local -a hashes
-    hashes=(${(k)commits[(R)$type]})
+    hashes=(${(k)types[(R)$type]})
 
     # If no commits found of type $type, go to next type
     (( $#hashes != 0 )) || return 0
@@ -317,7 +439,7 @@ function display-release {
 
     # Commits made under types considered other changes
     local -A changes
-    changes=(${(kv)commits[(R)${(j:|:)OTHER_TYPES}]})
+    changes=(${(kv)types[(R)${(j:|:)OTHER_TYPES}]})
 
     # If no commits found under "other" types, don't display anything
     (( $#changes != 0 )) || return 0
@@ -375,37 +497,60 @@ function main {
   fi
 
   # Commit classification arrays
-  local -A commits subjects scopes breaking reverts
+  local -A types subjects scopes breaking reverts
   local truncate=0 read_commits=0
-  local hash version tag
+  local version tag
+  local hash refs subject body
 
   # Get the first version name:
   # 1) try tag-like version, or
-  # 2) try name-rev, or
-  # 3) try branch name, or
+  # 2) try branch name, or
+  # 3) try name-rev, or
   # 4) try short hash
   version=$(command git describe --tags $until 2>/dev/null) \
-    || version=$(command git name-rev --no-undefined --name-only --exclude="remotes/*" $until 2>/dev/null) \
     || version=$(command git symbolic-ref --quiet --short $until 2>/dev/null) \
+    || version=$(command git name-rev --no-undefined --name-only --exclude="remotes/*" $until 2>/dev/null) \
     || version=$(command git rev-parse --short $until 2>/dev/null)
 
-  # Get commit list from $until commit until $since commit, or until root
-  # commit if $since is unset, in short hash form.
-  # --first-parent is used when dealing with merges: it only prints the
-  # merge commit, not the commits of the merged branch.
-  command git rev-list --first-parent --abbrev-commit --abbrev=7 ${since:+$since..}$until | while read hash; do
+  # Get commit list from $until commit until $since commit, or until root commit if $since is unset
+  local range=${since:+$since..}$until
+
+  # Git log options
+  # -z:             commits are delimited by null bytes
+  # --format:       [7-char hash]<field sep>[ref names]<field sep>[subject]<field sep>[body]
+  # --abbrev=7:     force commit hashes to be 12 characters long
+  # --no-merges:    merge commits are omitted
+  # --first-parent: commits from merged branches are omitted
+  local SEP="0mZmAgIcSeP"
+  local -a raw_commits
+  raw_commits=(${(0)"$(command git -c log.showSignature=false log -z \
+    --format="%h${SEP}%D${SEP}%s${SEP}%b" --abbrev=12 \
+    --no-merges --first-parent $range)"})
+
+  local raw_commit
+  local -a raw_fields
+  for raw_commit in $raw_commits; do
     # Truncate list on versions with a lot of commits
     if [[ -z "$since" ]] && (( ++read_commits > 35 )); then
       truncate=1
       break
     fi
 
+    # Read the commit fields (@ is needed to keep empty values)
+    eval "raw_fields=(\"\${(@ps:$SEP:)raw_commit}\")"
+    hash="${raw_fields[1]}"
+    refs="${raw_fields[2]}"
+    subject="${raw_fields[3]}"
+    body="${raw_fields[4]}"
+
     # If we find a new release (exact tag)
-    if tag=$(command git describe --exact-match --tags $hash 2>/dev/null); then
+    if [[ "$refs" = *tag:\ * ]]; then
+      # Parse tag name (needs: setopt extendedglob)
+      tag="${${refs##*tag: }%%,# *}"
       # Output previous release
       display-release
       # Reinitialize commit storage
-      commits=()
+      types=()
       subjects=()
       scopes=()
       breaking=()
@@ -415,7 +560,7 @@ function main {
       read_commits=1
     fi
 
-    parse-commit "$hash"
+    parse-commit "$hash" "$subject" "$body"
   done
 
   display-release
@@ -425,8 +570,6 @@ function main {
     echo
   fi
 }
-
-cd "$ZSH"
 
 # Use raw output if stdout is not a tty
 if [[ ! -t 1 && -z "$3" ]]; then
