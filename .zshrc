@@ -151,3 +151,4 @@ NX_SKIP_NX_CACHE=true # nx nonsense
 
 # Kubernetes
 source <(kubectl completion zsh)
+source <(minikube completion zsh)
