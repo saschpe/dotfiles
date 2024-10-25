@@ -40,12 +40,14 @@ export LC_ALL=en_US.UTF-8
 export PATH=/usr/sbin:/sbin:"${HOME}/.local/bin":"${HOME}/bin":"${PATH}"
 ulimit -c unlimited # Enable core dumps
 
-if [ `uname` != "Darwin" ] ; then
-    alias open="xdg-open"
-    export PATH="${PATH}:/usr/local/bin" # Avoid Brew x86 on M1
+if [ "$(uname)" != "Darwin" ] ; then
+  alias open="xdg-open"
+  export PATH="${PATH}:/usr/local/bin" # Avoid Brew x86 on M1
 fi
 
-function tmpcd () { cd $(mktemp -d) }
+function tmpcd() {
+  cd "$(mktemp -d)" || exit
+}
 
 # Aliases
 alias find="noglob find"
@@ -60,41 +62,36 @@ export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
 
 # Android
-if [ `uname` = "Darwin" ] ; then
-    export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-    export JAVA_HOME=`/usr/libexec/java_home`
+if [ "$(uname)" = "Darwin" ] ; then
+  export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
+  export JAVA_HOME=$(/usr/libexec/java_home)
 else
-    export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
-    case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
-        'fedora')
-            export JAVA_HOME=/usr/lib/jvm/java
-            ;;
-        'opensuse')
-            export JAVA_HOME=/usr/lib64/jvm/jre
-            ;;
-        'ubuntu'|*)
-            if command -v javac >/dev/null ; then
-                export JAVA_HOME="$(dirname $(dirname $(alternatives --list javac)))"
-            fi
-            ;;
-    esac
+  export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
+  case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
+    'fedora')
+      export JAVA_HOME=/usr/lib/jvm/java
+      ;;
+    'opensuse')
+      export JAVA_HOME=/usr/lib64/jvm/jre
+      ;;
+    'ubuntu'|*)
+      if command -v javac >/dev/null ; then
+        export JAVA_HOME="$(dirname $(dirname $(alternatives --list javac)))"
+      fi
+      ;;
+  esac
 fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
-    ANDROID_BUILD_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)
-    ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
-    ANDROID_CMDLINE_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)
-    ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/${ANDROID_CMDLINE_TOOLS_VERSION}/bin"
-    if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
-        ANDROID_NDK_VERSION=$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)
-        export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
-    fi
-    export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${NDK_ROOT}"
+  ANDROID_BUILD_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)
+  ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/${ANDROID_BUILD_TOOLS_VERSION}"
+  ANDROID_CMDLINE_TOOLS_VERSION=$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)
+  ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/${ANDROID_CMDLINE_TOOLS_VERSION}/bin"
+  if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
+    ANDROID_NDK_VERSION=$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)
+    export NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/${ANDROID_NDK_VERSION}"
+  fi
+  export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${NDK_ROOT}"
 fi
-
-# Google Cloud SDK
-gcloud_sdk_root="${HOME}/Applications/google-cloud-sdk"
-[ -f "${gcloud_sdk_root}/path.zsh.inc" ] && source "${gcloud_sdk_root}/path.zsh.inc"
-[ -f "${gcloud_sdk_root}/completion.zsh.inc" ] && source "${gcloud_sdk_root}/completion.zsh.inc"
 
 # Dart and Flutter
 export PATH="${PATH}":"${HOME}/.pub-cache/bin":"${HOME}/Applications/flutter/bin"
@@ -117,35 +114,41 @@ export JENKINS_URL="http://jenkins"
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Homebrew
-if [ $(uname) = "Darwin" ] ; then
-    if [ $(uname -m) = "arm64" ] ; then
-        export HOMEBREW_PREFIX="/opt/homebrew";
-        export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-        export HOMEBREW_REPOSITORY="/opt/homebrew";
-        export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew";
-        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-        export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-        export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-        export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
-    else
-        export PATH="/usr/local/sbin:${PATH}"
-        export PATH="/usr/local/opt/ruby/bin:${PATH}"
-    fi
+if [ "$(uname)" = "Darwin" ] ; then
+  if [ "$(uname -m)" = "arm64" ] ; then
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew";
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+    export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
+  else
+    export PATH="/usr/local/sbin:${PATH}"
+    export PATH="/usr/local/opt/ruby/bin:${PATH}"
+  fi
+
+  # Command-not-found
+  HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+  if [ -f "$HB_CNF_HANDLER" ]; then
+    source "$HB_CNF_HANDLER";
+  fi
 fi
 
 # Rubygems
 if command -v ruby >/dev/null ; then
-    ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-    export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
+  ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
+  export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
 # NodeJS
-if [ $(uname) = "Darwin" ] ; then
-    if [ $(uname -m) = "arm64" ] ; then
-        export PATH="/opt/homebrew/opt/node/bin:${PATH}"
-    else
-        export PATH="/usr/local/opt/node/bin:${PATH}"
-    fi
+if [ "$(uname)" = "Darwin" ] ; then
+  if [ "$(uname -m)" = "arm64" ] ; then
+    export PATH="/opt/homebrew/opt/node/bin:${PATH}"
+  else
+    export PATH="/usr/local/opt/node/bin:${PATH}"
+  fi
 fi
 NX_SKIP_NX_CACHE=true # nx nonsense
 
