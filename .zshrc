@@ -28,7 +28,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(common-aliases zsh-autosuggestions)
+plugins=(aliases command-not-found common-aliases bundler docker docker-compose flutter gcloud gh helm kubectl macos node podman screen ssh vundle zsh-autosuggestions)
 # ssh-agent
 source $ZSH/oh-my-zsh.sh
 
@@ -150,5 +150,4 @@ fi
 NX_SKIP_NX_CACHE=true # nx nonsense
 
 # Kubernetes
-source <(kubectl completion zsh)
 source <(minikube completion zsh)
