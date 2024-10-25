@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git gc --prune
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
 for r in $(git remote) ; do
     git remote prune $r
 done
