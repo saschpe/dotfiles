@@ -1,0 +1,60 @@
+# GNU screen custom configuration file
+# Created by Sascha Peilicke <sascha@peilicke.de>
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+startup_message off                 # Turn off start message
+msgwait 1                           # Set messages timeout to one second
+deflogin on                         # Log new screen windows in utmp.
+autodetach on                       # Never, ever turn this off.
+shell zsh                           # Just in case it isn't clear...
+vbell off                           # I like to hear the beep.
+#zombie cr                           # Keep dead windows until told to exit
+verbose on                          # Show command for windows when resurrected
+# escape ^zz                          # Escape key is C-z. 
+#scrollback 20000                    # Bump up the size of the scrollback buffer
+defscrollback 20000                 # A large scrollback
+defutf8 on                          # Run everything in UTF-8.
+defnonblock on                      # Unresponsive windows don't block session
+defwrap on                          # Line wrapping
+
+# 256 color xterm
+#attrcolor b ".I"
+#defbce "on"
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# Add stuff to xterm (and cousins) title bars.  This is a moderate abuse of the
+# hardstatus feature--it just puts the hardstatus stuff into an xterm title
+# bar.
+termcapinfo xterm*|Eterm|mlterm 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+defhstatus "screen  (t) | $USER@H"
+hardstatus off
+#caption always "%?%F%{-b bc}%:%{-b bb}%?%C|%D|%M %d|%H|%?%F%{+u wb}%? %L=%-Lw%45>%{+b by}%n%f*%t%{-}%+Lw%-0<"
+#caption always "%w%=%m/%d %c"
+caption always '%{= wk}[ %{k}%H %{k}][%= %{= wk}%?%-Lw%?%{r}(%{r}%n*%f%t%?(%u)%?%{r})%{k}%?%+Lw%?%?%= %{k}][%{b} %d/%m %{k}%c %{k}]' # good looking window bar
+
+# Custom messages.
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t^G"
+vbell_msg " *beep* "
+
+# select works on window names, too. This gives me the first window with a free shell
+bind s select zsh
+
+# make split autofocus and display next free shell
+#bind S eval "split" "focus" "select zsh"
+
+bind j focus down               # vi like focus changing
+bind k focus up
+bind t focus top
+bind b focus bottom
+
+# Make shift-PgUp and shift-PgDn work like they do in xterm.  (Note that this
+# requires xterm to be configured to pass those keys through, and not try to
+# act on them itself.)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+termcapinfo xterm* ti@:te@      # scrolling in xterm
