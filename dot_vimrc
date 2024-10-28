@@ -15,7 +15,6 @@ if version >= 801
   " Include Vundle and initialize (run ./bin/vundle once)
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
-  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
   Plugin 'dart-lang/dart-vim-plugin'
   Plugin 'editorconfig/editorconfig-vim'
   Plugin 'ekalinin/Dockerfile.vim'
