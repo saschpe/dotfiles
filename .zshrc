@@ -76,6 +76,9 @@ export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
 
+# Github
+export GITHUB_USERNAME=saschpe
+
 # Android
 if [ "$(uname)" = "Darwin" ] ; then
   export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
