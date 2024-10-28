@@ -1,0 +1,102 @@
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+    autocrlf = input
+    savecrlf = true
+    symlinks = true # windows
+    longpaths = true # windows
+
+[init]
+    defaultBranch = main
+
+[user]
+    name = Sascha Peilicke
+    email = sascha@peilicke.de
+    signingkey = D3AD34FD
+
+[branch]
+    autosetupmerge = true
+    autoretuprebase = true
+
+[merge]
+    tool = vimdiff
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[color]
+    ui = auto
+
+[advice]
+    skippedCherryPicks = false
+
+[alias]
+    ama = am --abort
+    ams = am --skip
+    can = commit --amend --no-edit
+    br = branch
+    ba = branch -a
+    co = checkout
+    cp = cherry-pick
+    ci = commit
+    dc = diff --cached
+    df = diff
+    ds = diff --stat
+    fa = fetch --all
+    fp = fetch --prune
+    fap = fetch --all --prune
+    fo = fetch origin
+    fp = format-patch
+    lo = log --pretty=oneline --abbrev-commit
+    lol = log --decorate --stat
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --branches
+    pr = pull --rebase
+    prom = pull --rebase origin master
+    # Summary of what to push
+    # like "git log", but include the diffs
+    ps = log --pretty=oneline origin..master
+    ra = rebase --abort
+    rc = rebase --continue
+    rs = rebase --skip
+    #s  = stash
+    sa = stash apply
+    sc = stash clear
+    sl = stash list
+    sp = stash pop
+    st = status
+    wc = whatchanged
+    wh = whatchanged -p
+    wo = whatchanged -p origin..
+    ghpr = "!f() { git fetch $1 refs/pull/$2/head:pr/$2; } ; f"
+    root = rev-parse --show-toplevel
+
+[sendemail]
+    confirm = auto
+    from = Sascha Peilicke <sascha@peilicke.de>
+    smtpencryption = ssl
+    smtpserver = smtp.mailbox.org
+    smtpserverport = 587
+    smtpuser = sascha@peilicke.de
+
+[credential]
+    helper = osxkeychain
+    #helper = wincred
+    helper = store
+    helper = cache --timeout=3600
+
+[http]
+    cookiefile = ~/.gitcookies
+
+[gitreview]
+    username = saschpe
+    remote = origin
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    process = git-lfs filter-process
+    required = true
+    smudge = git-lfs smudge -- %f
