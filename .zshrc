@@ -53,7 +53,6 @@ export EDITOR=vim
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH=/usr/sbin:/sbin:"${HOME}/.local/bin":"${HOME}/bin":"${PATH}"
 ulimit -c unlimited # Enable core dumps
 
 if [ "$(uname)" != "Darwin" ] ; then
@@ -107,11 +106,7 @@ if [ -d "${ANDROID_SDK_ROOT}" ] ; then
 fi
 
 # Dart and Flutter
-export PATH="${PATH}":"${HOME}/.pub-cache/bin":"${HOME}/Applications/flutter/bin"
 export CHROME_EXECUTABLE=$(command -v brave-browser)
-
-# Docker Desktop CLI
-export PATH="${PATH}":"${HOME}/.docker/bin"
 
 # Golang
 export GOPATH="${HOME}/.go"
@@ -132,7 +127,6 @@ if [ "$(uname)" = "Darwin" ] ; then
     export HOMEBREW_PREFIX="/opt/homebrew";
     export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
     export HOMEBREW_REPOSITORY="/opt/homebrew";
-    export HOMEBREW_SHELLENV_PREFIX="/opt/homebrew";
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
     export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
@@ -152,17 +146,10 @@ fi
 # Rubygems
 if command -v ruby >/dev/null ; then
   ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-  export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${HOME}/.gem/ruby/${ruby_version}/bin:${PATH}"
+  export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${PATH}"
 fi
 
 # NodeJS
-if [ "$(uname)" = "Darwin" ] ; then
-  if [ "$(uname -m)" = "arm64" ] ; then
-    export PATH="/opt/homebrew/opt/node/bin:${PATH}"
-  else
-    export PATH="/usr/local/opt/node/bin:${PATH}"
-  fi
-fi
 NX_SKIP_NX_CACHE=true # nx nonsense
 
 # Kubernetes
