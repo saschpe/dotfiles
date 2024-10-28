@@ -16,6 +16,10 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".oh-my-zsh/themes/saschpe.zsh-theme"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/saschpe/dotfiles/master/.oh-my-zsh/themes/saschpe.zsh-theme"
+    refreshPeriod = "168h"
 [".vim/bundle/Vundle.vim"]
     type = "archive"
     url = "https://github.com/VundleVim/Vundle.vim/archive/master.tar.gz"
