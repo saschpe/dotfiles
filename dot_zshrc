@@ -157,3 +157,6 @@ NX_SKIP_NX_CACHE=true # nx nonsense
 
 # Kubernetes
 source <(minikube completion zsh)
+
+# Jetbrains products
+export PATH="${HOME}/.local/bin:${PATH}"
