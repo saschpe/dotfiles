@@ -44,8 +44,12 @@ plugins=(
   ssh
   vundle
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
-# ssh-agent
+# See https://github.com/zsh-users/zsh-completions/issues/603
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+# Init Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
