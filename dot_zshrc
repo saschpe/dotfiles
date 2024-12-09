@@ -167,7 +167,17 @@ if [ "$(uname)" = "Darwin" ] ; then
 fi
 
 # Kubernetes
-source <(minikube completion zsh)
+source <(kind completion zsh 2>/dev/null)
+source <(kn completion zsh 2>/dev/null)
+source <(minikube completion zsh 2>/dev/null)
+source <(tkn completion zsh 2>/dev/null)
+
+# OpenShift
+source <(crc completion zsh 2>/dev/null)
+source <(oc completion zsh 2>/dev/null)
+
+# Amazon Web Services
+complete -C '$(which aws_completer)' aws
 
 # Jetbrains products
 export PATH="${HOME}/.local/bin:${PATH}"
