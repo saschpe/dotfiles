@@ -171,10 +171,12 @@ source <(kind completion zsh 2>/dev/null)
 source <(kn completion zsh 2>/dev/null)
 source <(minikube completion zsh 2>/dev/null)
 source <(tkn completion zsh 2>/dev/null)
+alias kubectl="kubecolor"
 
 # OpenShift
 source <(crc completion zsh 2>/dev/null)
 source <(oc completion zsh 2>/dev/null)
+alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 # Amazon Web Services
 complete -C '$(which aws_completer)' aws
