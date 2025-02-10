@@ -169,9 +169,11 @@ fi
 # Kubernetes
 source <(kind completion zsh 2>/dev/null)
 source <(kn completion zsh 2>/dev/null)
+source <(kubectl completion zsh 2>/dev/null)
 source <(minikube completion zsh 2>/dev/null)
 source <(tkn completion zsh 2>/dev/null)
-alias kubectl="kubecolor"
+alias kubectl=kubecolor
+compdef kubecolor=kubectl # Use completion from 'kubectl'
 
 # OpenShift
 source <(crc completion zsh 2>/dev/null)
