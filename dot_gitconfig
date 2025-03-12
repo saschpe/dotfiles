@@ -73,6 +73,7 @@
     wo = whatchanged -p origin..
     ghpr = "!f() { git fetch $1 refs/pull/$2/head:pr/$2; } ; f"
     root = rev-parse --show-toplevel
+    unstage = reset HEAD --
 
 [sendemail]
     confirm = auto
