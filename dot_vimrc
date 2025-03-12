@@ -55,9 +55,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if &t_Co > 2 || has("gui_running")          " If we have colors
   syntax on                                  " Syntax highlighting
-  if version >= 801
-    colorscheme desert
-  endif
   if (system('uname') =~ "Darwin")
     " Only for MacVim, which doesn't have VIM's auto detection
     if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
