@@ -167,6 +167,7 @@ if [ "$(uname)" = "Darwin" ] ; then
 fi
 
 # Kubernetes
+source <(cilium completion zsh 2>/dev/null)
 source <(kind completion zsh 2>/dev/null)
 source <(kn completion zsh 2>/dev/null)
 source <(kubectl completion zsh 2>/dev/null)
