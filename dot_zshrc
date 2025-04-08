@@ -175,6 +175,7 @@ source <(minikube completion zsh 2>/dev/null)
 source <(tkn completion zsh 2>/dev/null)
 alias kubectl=kubecolor
 compdef kubecolor=kubectl # Use completion from 'kubectl'
+alias k=kubectl
 
 # OpenShift
 source <(crc completion zsh 2>/dev/null)
