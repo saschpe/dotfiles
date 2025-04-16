@@ -176,6 +176,9 @@ source <(tkn completion zsh 2>/dev/null)
 alias kubectl=kubecolor
 compdef kubecolor=kubectl # Use completion from 'kubectl'
 alias k=kubectl
+alias kn="kubectl config view -o jsonpath=\"{$.contexts[?(@.name=='\$(kubectl config current-context)')].context.namespace}\""
+alias kns="kubectl config set-context --current --namespace"
+alias knu="kubectl config unset contexts.\$(kubectl config current-context).namespace"
 
 # OpenShift
 source <(crc completion zsh 2>/dev/null)
