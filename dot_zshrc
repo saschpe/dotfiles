@@ -170,6 +170,7 @@ fi
 # Kubernetes
 export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.linkerd2/bin"
 source <(cilium completion zsh 2>/dev/null)
+source <(istioctl completion zsh 2>/dev/null)
 source <(kind completion zsh 2>/dev/null)
 source <(kn completion zsh 2>/dev/null)
 source <(kubectl completion zsh 2>/dev/null)
