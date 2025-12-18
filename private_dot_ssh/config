@@ -1,7 +1,7 @@
 Host *
     AddKeysToAgent yes
     ForwardX11Trusted no
-    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_ed25519
     SendEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES 
     SendEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT 
     SendEnv LC_IDENTIFICATION LC_ALL
