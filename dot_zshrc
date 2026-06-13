@@ -107,68 +107,42 @@ fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
   ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)"
   ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)/bin"
+  export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}"
   if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
-    export ANDROID_NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)"
+        export ANDROID_NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)"
+    export PATH="${PATH}":"${ANDROID_NDK_ROOT}"
   fi
-  export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}":"${ANDROID_NDK_ROOT}"
 fi
-
-# Dart and Flutter
-export CHROME_EXECUTABLE=$(command -v brave-browser)
 
 # Golang
 export GOPATH="${HOME}/.go"
 export PATH="${PATH}":"${GOPATH//://bin:}/bin"
 
-# Icecream / ccache (prefer over ccache which comes via /etc/profile.d/ccache.sh)
-#export CCACHE_PREFIX=icecc
-
-# Jenkins CLI
-export JENKINS_URL="http://jenkins"
-
 # Java
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Homebrew
-if [ "$(uname)" = "Darwin" ] ; then
-  if [ "$(uname -m)" = "arm64" ] ; then
-    export HOMEBREW_PREFIX="/opt/homebrew";
-    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-    export HOMEBREW_REPOSITORY="/opt/homebrew";
-    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-    export PATH="/opt/homebrew/opt/ruby/bin:${PATH}"
-  else
-    export PATH="/usr/local/sbin:${PATH}"
-    export PATH="/usr/local/opt/ruby/bin:${PATH}"
-  fi
-
-  # Command-not-found
-  HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
-  if [ -f "$HB_CNF_HANDLER" ]; then
-    source "$HB_CNF_HANDLER";
-  fi
-fi
+command -v brew >/dev/null || export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
+command -v brew >/dev/null && eval "$(brew shellenv)"
 
 # Rubygems
-if command -v ruby >/dev/null ; then
-  ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
-  export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${PATH}"
-fi
+#if command -v ruby >/dev/null ; then
+#  ruby_version=$(ruby -e "puts RUBY_VERSION[0,3] + \".0\"")
+#  export PATH="${HOME}/.local/share/gem/ruby/${ruby_version}/bin:${PATH}"
+#fi
 
 # NodeJS
-NX_SKIP_NX_CACHE=true # nx nonsense
-if [ "$(uname)" = "Darwin" ] ; then
-  if [ "$(uname -m)" = "arm64" ] ; then
-    export PATH="/opt/homebrew/opt/node@20/bin:${PATH}"
-  else
-    export PATH="/usr/local/opt/node@20/bin:${PATH}"
-  fi
-fi
+#NX_SKIP_NX_CACHE=true # nx nonsense
+#if [ "$(uname)" = "Darwin" ] ; then
+#  if [ "$(uname -m)" = "arm64" ] ; then
+#    export PATH="/opt/homebrew/opt/node@20/bin:${PATH}"
+#  else
+#    export PATH="/usr/local/opt/node@20/bin:${PATH}"
+#  fi
+#fi
 
 # Kubernetes
-export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.linkerd2/bin"
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 source <(cilium completion zsh 2>/dev/null)
 source <(istioctl completion zsh 2>/dev/null)
 source <(kind completion zsh 2>/dev/null)
@@ -191,6 +165,3 @@ alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 # Amazon Web Services
 complete -C '$(which aws_completer)' aws
-
-# Jetbrains products
-export PATH="${HOME}/.local/bin:${PATH}"
