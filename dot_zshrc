@@ -165,3 +165,6 @@ alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 # Amazon Web Services
 complete -C '$(which aws_completer)' aws
+
+# LM Studio on macOS
+export PATH="${PATH}":"${HOME}/.lmstudio/bin"
