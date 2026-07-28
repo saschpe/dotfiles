@@ -55,3 +55,6 @@ disable = ["certbot", "containers", "node", "shell", "vim"]
 #[linux]
 # Arguments to pass yay when updating packages
 #yay_arguments = "--nodevel"
+
+[flutter]
+force = true
