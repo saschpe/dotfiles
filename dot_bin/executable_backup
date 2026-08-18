@@ -1,0 +1,60 @@
+#!/bin/sh
+
+SCRIPT_DIR=$(cd -- "$(dirname -- "${0}")" && pwd)
+. "${SCRIPT_DIR}/.util.sh"
+
+
+DEFAULT_PASS_FILE=".backup-password"
+
+usage() {
+  printf "Usage: %s [COMMAND] [OPTIONS]\n\n" "${0}"
+  printf "Manage zstd-compressed and gpg-encrypted folder backup archives.\n\n"
+  printf "Commands:\n"
+  printf "  create  BASENAME SOURCE_DIR\t\t\n"
+  printf "  restore ARCHIVE  DESTINATION_DIR\n"
+  printf "Options:\n"
+  printf "  --pass-file NAME\tdefault: %s\n" "${DEFAULT_PASS_FILE}"
+  exit 0
+}
+
+cmd=
+create_basename=
+create_src_dir=
+pass_file="$HOME/${DEFAULT_PASS_FILE}"
+restore_archive=
+restore_dest_dir=
+while [ ${#} -gt 0 ]; do
+  key="${1}"
+  case ${key} in
+  create)  cmd="${1}" ; create_basename="${2}" ; shift ; create_src_dir="${2}" ; shift ;;
+  restore) cmd="${1}" ; restore_archive="${2}" ; shift ; restore_dest_dir="${2}" ; shift ;;
+  --pass-file) pass_file="${2}" ; shift ;;
+  -h | --help | *) usage ;;
+  esac
+  shift
+done
+
+[ -n "${cmd}" ] || die "Command 'create' or 'restore' required!"
+if [ "${cmd}" = "create"  -a \( -z "${create_basename}" -o -z "${create_src_dir}" \) ]; then
+  die "BASENAME and SOURCE_DIR required!"
+fi
+if [ "${cmd}" = "restore" -a \( -z "${restore_archive}" -o -z "${restore_dest_dir}" \) ]; then
+  die "ARCHIVE and DESTINATION_DIR required!"
+fi
+if [ ! -f "${pass_file}" ]; then
+  die "The password file '${pass_file}' does not exist!"
+fi
+
+case "${cmd}" in
+create)
+  echo "Archiving '${create_src_dir}'..."
+  create_archive="$(date -Idate) ${create_basename}.tar.zst.gpg"
+  tar -cf - "${create_src_dir}" | zstd -T0 | gpg -c --batch --passphrase-file "${pass_file}" > "${create_archive}"
+  echo "Backup completed: ${create_archive}"
+  ;;
+restore)
+  echo "Restoring '${restore_archive}' to '${restore_dest_dir}'..."
+  mkdir -p "${restore_dest_dir}"
+  gpg -d --batch --passphrase-file "${pass_file}" "${restore_archive}" | zstd -d -T0 | tar -xf - -C "${restore_dest_dir}"
+  ;;
+esac

@@ -68,6 +68,8 @@ function tmpcd() {
   cd "$(mktemp -d)" || exit
 }
 
+export PATH="${PATH}:${HOME}/.bin"
+
 # Aliases
 alias df1='df --type btrfs --type ext4 --type ext3 --type ext2 --type vfat --type iso9660'
 alias find="noglob find"
@@ -91,12 +93,8 @@ if [ "$(uname)" = "Darwin" ] ; then
 else
   export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
   case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
-    'fedora')
-      export JAVA_HOME=/usr/lib/jvm/java
-      ;;
-    'opensuse')
-      export JAVA_HOME=/usr/lib64/jvm/jre
-      ;;
+    'fedora') export JAVA_HOME=/usr/lib/jvm/java ;;
+    'opensuse') export JAVA_HOME=/usr/lib64/jvm/jre ;;
     'ubuntu'|*)
       if command -v javac >/dev/null ; then
         export JAVA_HOME="$(dirname $(dirname $(alternatives --list javac)))"
@@ -107,16 +105,16 @@ fi
 if [ -d "${ANDROID_SDK_ROOT}" ] ; then
   ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)"
   ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)/bin"
-  export PATH="${PATH}":"${ANDROID_SDK_ROOT}/emulator":"${ANDROID_SDK_ROOT}/platform-tools":"${ANDROID_BUILD_TOOLS_ROOT}":"${ANDROID_CMDLINE_TOOLS_ROOT}"
+  export PATH="${PATH}:${ANDROID_SDK_ROOT}/emulator:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_BUILD_TOOLS_ROOT}:${ANDROID_CMDLINE_TOOLS_ROOT}"
   if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
         export ANDROID_NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)"
-    export PATH="${PATH}":"${ANDROID_NDK_ROOT}"
+    export PATH="${PATH}:${ANDROID_NDK_ROOT}"
   fi
 fi
 
 # Golang
 export GOPATH="${HOME}/.go"
-export PATH="${PATH}":"${GOPATH//://bin:}/bin"
+export PATH="${PATH}:${GOPATH//://bin:}/bin"
 
 # Java
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
@@ -167,4 +165,4 @@ alias oc="env KUBECTL_COMMAND=oc kubecolor"
 complete -C '$(which aws_completer)' aws
 
 # LM Studio on macOS
-export PATH="${PATH}":"${HOME}/.lmstudio/bin"
+export PATH="${PATH}:${HOME}/.lmstudio/bin"
