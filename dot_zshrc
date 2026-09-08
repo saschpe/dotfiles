@@ -83,41 +83,9 @@ export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
 
-# Github
-export GITHUB_USERNAME=saschpe
-
-# Android
-if [ "$(uname)" = "Darwin" ] ; then
-  export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-  export JAVA_HOME=$(/usr/libexec/java_home)
-else
-  export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
-  case "$(grep -e "^ID=" /etc/os-release | cut -d"=" -f2)" in
-    'fedora') export JAVA_HOME=/usr/lib/jvm/java ;;
-    'opensuse') export JAVA_HOME=/usr/lib64/jvm/jre ;;
-    'ubuntu'|*)
-      if command -v javac >/dev/null ; then
-        export JAVA_HOME="$(dirname $(dirname $(alternatives --list javac)))"
-      fi
-      ;;
-  esac
-fi
-if [ -d "${ANDROID_SDK_ROOT}" ] ; then
-  ANDROID_BUILD_TOOLS_ROOT="${ANDROID_SDK_ROOT}/build-tools/$(ls "${ANDROID_SDK_ROOT}/build-tools" | tail -n1)"
-  ANDROID_CMDLINE_TOOLS_ROOT="${ANDROID_SDK_ROOT}/cmdline-tools/$(ls "${ANDROID_SDK_ROOT}/cmdline-tools" | tail -n1)/bin"
-  export PATH="${PATH}:${ANDROID_SDK_ROOT}/emulator:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_BUILD_TOOLS_ROOT}:${ANDROID_CMDLINE_TOOLS_ROOT}"
-  if [ -d "${ANDROID_SDK_ROOT}/ndk" ] ; then
-        export ANDROID_NDK_ROOT="${ANDROID_SDK_ROOT}/ndk/$(ls "${ANDROID_SDK_ROOT}/ndk" | tail -n1)"
-    export PATH="${PATH}:${ANDROID_NDK_ROOT}"
-  fi
-fi
-
 # Golang
 export GOPATH="${HOME}/.go"
 export PATH="${PATH}:${GOPATH//://bin:}/bin"
-
-# Java
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 # Homebrew
 command -v brew >/dev/null || export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
@@ -163,6 +131,3 @@ alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 # Amazon Web Services
 complete -C '$(which aws_completer)' aws
-
-# LM Studio on macOS
-export PATH="${PATH}:${HOME}/.lmstudio/bin"
