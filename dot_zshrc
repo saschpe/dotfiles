@@ -83,6 +83,13 @@ export DEBFULLNAME="Sascha Peilicke"
 export DEBEMAIL="sascha@peilicke.de"
 export DEB_BUILD_ARCH=amd64
 
+# Android
+if [ "$(uname)" = "Darwin" ] ; then
+  export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
+else
+  export ANDROID_SDK_ROOT="${HOME}/.android/sdk"
+fi
+
 # Golang
 export GOPATH="${HOME}/.go"
 export PATH="${PATH}:${GOPATH//://bin:}/bin"
