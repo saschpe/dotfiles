@@ -61,7 +61,6 @@ ulimit -c unlimited # Enable core dumps
 
 if [ "$(uname)" != "Darwin" ] ; then
   alias open="xdg-open"
-  export PATH="${PATH}:/usr/local/bin" # Avoid Brew x86 on M1
 fi
 
 function tmpcd() {
@@ -95,8 +94,10 @@ export GOPATH="${HOME}/.go"
 export PATH="${PATH}:${GOPATH//://bin:}/bin"
 
 # Homebrew
-command -v brew >/dev/null || export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
-command -v brew >/dev/null && eval "$(brew shellenv)"
+if [ "$(uname)" != "Darwin" ] ; then
+  command -v brew >/dev/null || export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
+  command -v brew >/dev/null && eval "$(brew shellenv)"
+fi
 
 # Rubygems
 #if command -v ruby >/dev/null ; then
@@ -136,5 +137,9 @@ source <(crc completion zsh 2>/dev/null)
 source <(oc completion zsh 2>/dev/null)
 alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
+# OpenTofu
+complete -o nospace -C /opt/homebrew/bin/tofu tofu
+
 # Amazon Web Services
 complete -C '$(which aws_completer)' aws
+
