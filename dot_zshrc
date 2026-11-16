@@ -125,8 +125,11 @@ source <(kubectl completion zsh 2>/dev/null)
 source <(linkerd completion zsh 2>/dev/null)
 source <(minikube completion zsh 2>/dev/null)
 source <(tkn completion zsh 2>/dev/null)
-alias kubectl=kubecolor
-compdef kubecolor=kubectl # Use completion from 'kubectl'
+
+if command -v kubecolor >/dev/null ; then
+  alias kubectl=kubecolor
+  compdef kubecolor=kubectl # Use completion from 'kubectl'
+fi
 alias k=kubectl
 alias kn="kubectl config view -o jsonpath=\"{$.contexts[?(@.name=='\$(kubectl config current-context)')].context.namespace}\""
 alias kns="kubectl config set-context --current --namespace"
