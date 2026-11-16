@@ -138,7 +138,9 @@ alias knu="kubectl config unset contexts.\$(kubectl config current-context).name
 # OpenShift
 source <(crc completion zsh 2>/dev/null)
 source <(oc completion zsh 2>/dev/null)
-alias oc="env KUBECTL_COMMAND=oc kubecolor"
+if command -v kubecolor >/dev/null ; then
+  alias oc="env KUBECTL_COMMAND=oc kubecolor"
+fi
 
 # OpenTofu
 complete -o nospace -C /opt/homebrew/bin/tofu tofu
