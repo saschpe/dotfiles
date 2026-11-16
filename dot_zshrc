@@ -94,7 +94,7 @@ export GOPATH="${HOME}/.go"
 export PATH="${PATH}:${GOPATH//://bin:}/bin"
 
 # Homebrew
-if [ "$(uname)" != "Darwin" ] ; then
+if [ "$(uname)" = "Darwin" ] ; then
   command -v brew >/dev/null || export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
   command -v brew >/dev/null && eval "$(brew shellenv)"
 fi
